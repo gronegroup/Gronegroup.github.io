@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Stock</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <img src="logo.png" alt="Logo" style="width:120px; display:block; margin:0 auto;">
+
+    <h1>📦 Control de Stock</h1>
+
+  <nav>
+    <button onclick="mostrarSeccion('productos')">Productos</button>
+    <button onclick="mostrarSeccion('ventas')">Ventas</button>
+    <button onclick="mostrarSeccion('reportes')">Reportes</button>
+  </nav>
+
+  <section id="productos">
+    <h3>Importar productos desde CSV</h3>
+<input type="file" id="fileInput" accept=".csv">
+
+    <h3>Agregar producto</h3>
+<form id="form-producto">
+  <input type="text" id="nombre" placeholder="Nombre" required>
+  <input type="number" id="precio" placeholder="Precio" required>
+  <input type="number" id="stock" placeholder="Stock" required>
+  <button type="submit">➕ Guardar</button>
+</form>
+
+    <h2>Lista de Productos</h2>
+    <div id="lista-productos"></div>
+    <button onclick="agregarProducto()">➕ Agregar Producto</button>
+  </section>
+
+  <section id="ventas" style="display:none;">
+    <h2>Registrar Venta</h2>
+    <div id="form-venta"></div>
+  </section>
+
+  <section id="reportes" style="display:none;">
+    <h2>Historial de Ventas</h2>
+    <div id="lista-ventas"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
