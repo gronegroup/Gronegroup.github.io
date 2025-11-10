@@ -1,48 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Mi Stock</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda GroneGroup</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <img src="logo.png" alt="Logo" style="width:120px; display:block; margin:0 auto;">
+    <header>
+        <h1>Mi Tienda de Electrónicos</h1>
+        <nav>
+            <ul>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#carrito">Carrito</a></li>
+                <li><a href="#pago">Pago</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <h1>📦 Control de Stock</h1>
+    <main>
+        <section id="catalogo">
+            <h2>Catálogo de Productos</h2>
+            <div class="productos-grid">
+                <!-- Ejemplo de productos. Puedes agregar más aquí -->
+                <div class="producto">
+                    <img src="imagen1.jpg" alt="Auriculares inalámbricos">
+                    <h3>Auriculares Inalámbricos</h3>
+                    <p>Descripción: Auriculares con cancelación de ruido. Precio: $50.</p>
+                    <button onclick="agregarAlCarrito('Auriculares', 50)">Agregar al Carrito</button>
+                </div>
+                <div class="producto">
+                    <img src="imagen2.jpg" alt="Teléfono inteligente">
+                    <h3>Teléfono Inteligente</h3>
+                    <p>Descripción: Smartphone de última generación. Precio: $300.</p>
+                    <button onclick="agregarAlCarrito('Teléfono', 300)">Agregar al Carrito</button>
+                </div>
+                <div class="producto">
+                    <img src="imagen3.jpg" alt="Laptop">
+                    <h3>Laptop</h3>
+                    <p>Descripción: Laptop con procesador i7. Precio: $800.</p>
+                    <button onclick="agregarAlCarrito('Laptop', 800)">Agregar al Carrito</button>
+                </div>
+                <!-- Agrega más productos según tu catálogo -->
+            </div>
+        </section>
 
-  <nav>
-    <button onclick="mostrarSeccion('productos')">Productos</button>
-    <button onclick="mostrarSeccion('ventas')">Ventas</button>
-    <button onclick="mostrarSeccion('reportes')">Reportes</button>
-  </nav>
+        <section id="carrito">
+            <h2>Carrito de Compras</h2>
+            <div id="lista-carrito">
+                <!-- Aquí se mostrarán los productos agregados -->
+            </div>
+            <button onclick="mostrarPago()">Proceder al Pago</button>
+        </section>
 
-  <section id="productos">
-    <h3>Importar productos desde CSV</h3>
-<input type="file" id="fileInput" accept=".csv">
+        <section id="pago">
+            <h2>Formas de Pago</h2>
+            <p>Elige tu método de pago:</p>
+            <form id="form-pago">
+                <label>
+                    <input type="radio" name="metodo" value="tarjeta"> Tarjeta de Crédito/Débito
+                </label>
+                <label>
+                    <input type="radio" name="metodo" value="paypal"> PayPal
+                </label>
+                <label>
+                    <input type="radio" name="metodo" value="transferencia"> Transferencia Bancaria
+                </label>
+                <input type="text" placeholder="Nombre completo" required>
+                <input type="email" placeholder="Correo electrónico" required>
+                <button type="submit">Realizar Pago</button>
+            </form>
+            <p id="mensaje-pago">Este es un simulacro. En un sitio real, integrarías un gateway de pagos.</p>
+        </section>
 
-    <h3>Agregar producto</h3>
-<form id="form-producto">
-  <input type="text" id="nombre" placeholder="Nombre" required>
-  <input type="number" id="precio" placeholder="Precio" required>
-  <input type="number" id="stock" placeholder="Stock" required>
-  <button type="submit">➕ Guardar</button>
-</form>
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <p>Correo: contacto@mitienda.com | Teléfono: +123 456 789</p>
+        </section>
+    </main>
 
-    <h2>Lista de Productos</h2>
-    <div id="lista-productos"></div>
-    <button onclick="agregarProducto()">➕ Agregar Producto</button>
-  </section>
+    <footer>
+        <p>&copy; 2023 Mi Tienda de Electrónicos. Todos los derechos reservados.</p>
+    </footer>
 
-  <section id="ventas" style="display:none;">
-    <h2>Registrar Venta</h2>
-    <div id="form-venta"></div>
-  </section>
-
-  <section id="reportes" style="display:none;">
-    <h2>Historial de Ventas</h2>
-    <div id="lista-ventas"></div>
-  </section>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
