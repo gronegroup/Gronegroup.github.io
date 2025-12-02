@@ -1,40 +1,256 @@
-<header><img src="assets/logo.png" alt="Mi logo" width="1400"></header>
-<section>
-  <h2>Tu tinda online</h2>
-  <p>Descripción de tus productos o servicios…</p>
-</section>
-<link rel="stylesheet" href="assets/style.css">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grone Group - Inicio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<div class="btn-group" role="group">
-    <button type="button" class="btn btn-primary" data-catalog="celulares">Celulares</button>
-    <!-- otros botones si los hay -->
-</div>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
 
-<script>
-    document.querySelectorAll('.btn-group button').forEach(btn => {
-        btn.addEventListener('click', () => {
-            // marcar botón activo
-            document.querySelectorAll('.btn-group button').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+        header {
+            background: white;
+            padding: 20px 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-            const cat = btn.dataset.catalog; // = "celulares"
-            // cargar el catálogo correspondiente
-            fetch(`/catalogo/${cat}`)
-                .then(r => r.text())
-                .then(html => {
-                    document.getElementById('catalogo').innerHTML = html;
-                })
-                .catch(err => console.error(err));
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #1a1a1a;
+        }
+
+        .btn-editar {
+            background: #28a745;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .btn-editar:hover {
+            background: #218838;
+        }
+
+        .cart-icon {
+            font-size: 24px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .hero-section {
+            background: white;
+            margin: 40px auto;
+            max-width: 1200px;
+            border-radius: 0;
+            padding: 60px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 42px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero-section p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .image-container {
+            width: 350px;
+            height: 350px;
+            background: #e8e8e8;
+            border-radius: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .professional-icon {
+            width: 200px;
+            height: 200px;
+            background: #333;
+            border-radius: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 80px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e0e0e0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .feature-card h3 {
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hero-section {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+
+            .hero-section h1 {
+                font-size: 32px;
+            }
+
+            .hero-section p {
+                font-size: 16px;
+            }
+
+            .features {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Grone Group</div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#admin">Admin</a>
+            <span class="cart-icon">🛒</span>
+            <button class="btn-editar">✏️ Editar</button>
+        </nav>
+    </header>
+
+    <div class="hero-section">
+        <h1>Bienvenido a Grone Group</h1>
+        <p>Encuentra los mejores productos útiles para tu hogar con la mejor calidad y precio.</p>
+        
+        <div class="hero-image">
+            <div class="image-container">
+                <div class="professional-icon">👨‍💼</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="feature-card">
+            <div class="icon">💎</div>
+            <h3>Calidad Premium</h3>
+            <p>Productos seleccionados con los más altos estándares de calidad para tu satisfacción.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">💰</div>
+            <h3>Mejores Precios</h3>
+            <p>Ofrecemos precios competitivos sin comprometer la calidad de nuestros productos.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🚚</div>
+            <h3>Envío Rápido</h3>
+            <p>Entrega rápida y segura directamente a la puerta de tu hogar.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🛡️</div>
+            <h3>Garantía Total</h3>
+            <p>Todos nuestros productos cuentan con garantía y soporte completo.</p>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.btn-editar').addEventListener('click', function() {
+            alert('Modo de edición activado');
         });
-    });
-</script>
 
-<div id="catalogo"></div>
-<button data-catalog="camaras">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
-        <circle cx="12" cy="12" r="4" fill="currentColor"/>
-        <path d="M12 16a4 4 0 0 0 4-4H8a4 4 0 0 0 4 4z" stroke="currentColor" stroke-width="2"/>
-    </svg>
-    CAMARAS
-</button>
+        document.querySelector('.cart-icon').addEventListener('click', function() {
+            alert('Carrito de compras - Funcionalidad próximamente');
+        });
+    </script>
+</body>
+</html>
