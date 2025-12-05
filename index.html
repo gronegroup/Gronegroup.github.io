@@ -21,7 +21,7 @@
         .header {
             background: #fff;
             border-bottom: 1px solid #e0e0e0;
-            padding: 20px 0;
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -37,10 +37,15 @@
         }
         
         .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: #a5d1b6;
-            letter-spacing: -0.5px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
         }
         
         .cart-button {
@@ -440,7 +445,9 @@
     <!-- Header -->
     <div class="header">
         <div class="header-content">
-            <div class="logo">GRONEGROUP</div>
+            <div class="logo">
+                <img src="images/logo.png" alt="GRONEGROUP">
+            </div>
             <button class="cart-button" onclick="toggleCart()">
                 Carrito
                 <span class="cart-count" id="cartCount">0</span>
