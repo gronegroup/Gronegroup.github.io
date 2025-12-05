@@ -166,8 +166,8 @@
         
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 18px;
         }
         
         .product-card {
@@ -185,7 +185,7 @@
         
         .product-image {
             width: 100%;
-            height: 240px;
+            height: 160px;
             background: #f9f9f9;
             display: flex;
             align-items: center;
@@ -194,14 +194,14 @@
         }
         
         .product-placeholder {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             background: #e0e0e0;
             border-radius: 4px;
         }
         
         .product-info {
-            padding: 24px;
+            padding: 16px;
         }
         
         .product-category {
@@ -214,26 +214,150 @@
         }
         
         .product-name {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #1a1a1a;
         }
         
         .product-description {
-            font-size: 14px;
+            font-size: 13px;
             color: #666;
-            margin-bottom: 16px;
-            line-height: 1.5;
+            margin-bottom: 12px;
+            line-height: 1.4;
         }
         
         .product-price {
-            font-size: 24px;
-            font-weight: 300;
+            font-size: 20px;
+            font-weight: 400;
             color: #1a1a1a;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
         }
+
+        /* Catalog grouped view */
+        .catalog {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .catalog-section {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .catalog-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            cursor: pointer;
+            background: linear-gradient(90deg,#ffffff,#f7fbff);
+            border-bottom: 1px solid #e6eef8;
+            box-shadow: 0 6px 18px rgba(20,40,80,0.04);
+            border-radius: 8px;
+            margin: 12px 12px 0 12px;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .catalog-header h4 { margin:0;font-size:16px }
+        .catalog-header h4 { margin:0;font-size:16px; display:flex; align-items:center; gap:10px }
+        .catalog-header h4 .folder-icon { width:20px;height:20px;display:inline-block;background:linear-gradient(90deg,#ffd86b,#ffb84d);border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+
+        .catalog-header:hover{ transform: translateY(-2px); box-shadow: 0 14px 34px rgba(20,40,80,0.08); }
+
+        .inline-toggle { background: none; border: 1px solid #e0e6ef; padding:6px 8px; border-radius:6px; cursor:pointer; color:#1a1a1a }
+        .inline-toggle:hover{ background:#f1f7ff }
+        .view-toggle{ margin-right:8px }
+
+        .catalog-list { display: none; padding: 12px 16px; }
+
+        .catalog-list.open { display: block; }
+
+        .catalog-item { display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid #f5f5f5 }
+
+        .catalog-item:last-child { border-bottom: none }
+
+        .catalog-thumb { width:64px;height:64px;background:#eee;border-radius:4px;overflow:hidden;flex-shrink:0 }
+
+        .catalog-thumb img{width:100%;height:100%;object-fit:cover}
+
+        .catalog-item .info { flex:1 }
+
+        .catalog-item .info .name { font-size:14px;font-weight:500 }
+
+        .catalog-item .info .price { font-size:13px;color:#666 }
+
+        .catalog-item .actions { margin-left:8px; display:flex; align-items:center; }
+
+        .view-toggle {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 6px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #333;
+        }
+
+        /* Grid / miniaturas */
+        .catalog-section.view-grid .catalog-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap: 12px; }
+        .catalog-section.view-grid .catalog-item { display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px;border-bottom:none }
+        .catalog-section.view-grid .catalog-thumb{width:100%;height:100px;border-radius:6px;overflow:hidden}
+        .catalog-section.view-grid .catalog-thumb img{width:100%;height:100%;object-fit:cover}
+        .catalog-section.view-grid .catalog-item .info{padding-top:8px}
+        .catalog-section.view-grid .catalog-item .info .name{font-size:13px}
+        .catalog-section.view-grid .catalog-item .info .price{font-size:12px;color:#666}
+        .catalog-section.view-grid .catalog-item .actions{margin-left:0;margin-top:8px;display:flex;flex-direction:row;justify-content:center}
+
+        /* Cover (preview) for each category - larger framed thumbnails */
+        .catalog-cover { padding: 16px; display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-start }
+        .catalog-cover { padding: 12px 16px; }
+        .cover-thumb { width:120px; height:76px; border-radius:8px; overflow:hidden; box-shadow: 0 6px 16px rgba(10,20,40,0.06); border:1px solid rgba(0,0,0,0.04); }
+        .cover-thumb img{width:100%;height:100%;object-fit:cover}
+        /* Carousel cover */
+        .carousel { position:relative; width:100%; max-width:900px; margin:0 auto; height:320px; overflow:hidden; border-radius:8px; background:#fafafa }
+        .carousel .slide { position:absolute; inset:0; display:flex;align-items:center;justify-content:center; opacity:0; transition:opacity 400ms ease; }
+        .carousel .slide.active { opacity:1 }
+        .carousel .slide img{width:100%;height:100%;object-fit:cover}
+        .carousel .controls { position:absolute; inset:0; display:flex;justify-content:space-between;align-items:center;padding:12px}
+        .carousel button.control{background:rgba(0,0,0,0.4);color:#fff;border:none;padding:8px 10px;border-radius:6px;cursor:pointer}
+        .carousel-indicators { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:6px }
+        .carousel-indicators .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.6);cursor:pointer}
+        .carousel-indicators .dot.active{background:#fff}
+        .catalog-header .open-section-btn{background:#1a1a1a;color:#fff;padding:8px 10px;border-radius:4px;border:none;cursor:pointer}
+        /* Full tab (overlay) style - apariencia tipo "pestaña" grande */
+        .catalog-section.full-tab {
+            position: fixed;
+            inset: 32px;
+            z-index: 2000;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+            overflow: auto;
+            width: calc(100% - 64px);
+            height: calc(100% - 64px);
+            display: block !important;
+            padding-bottom: 40px;
+        }
+
+        .catalog-section.full-tab .catalog-header{
+            background: linear-gradient(90deg,#f5f5f7,#fff);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            padding: 16px;
+        }
+
+        .catalog-section.full-tab .catalog-cover .carousel{height:60vh}
+
+        .catalog-section.full-tab .catalog-list{padding:20px 24px}
+
+        .catalog-close-btn{position:absolute;left:18px;top:12px;background:none;border:none;font-size:18px;cursor:pointer;color:#999}
         
         .add-to-cart {
             width: 100%;
@@ -452,6 +576,55 @@
         .empty-cart-text {
             font-size: 15px;
         }
+
+        /* Product modal */
+        .product-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-modal.active { display:flex; }
+
+        .product-modal-content {
+            background: #fff;
+            border-radius: 6px;
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            align-items: stretch;
+        }
+
+        .product-modal-image {
+            flex: 1 1 45%;
+            background: #f7f7f7;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:4px;
+            overflow:hidden;
+        }
+
+        .product-modal-image img { width:100%; height:100%; object-fit:cover; }
+
+        .product-modal-info { flex:1 1 55%; display:flex; flex-direction:column; }
+
+        .product-modal-info h3 { margin-bottom:8px; }
+
+        .product-qty { width:80px; padding:8px; border:1px solid #e0e0e0; border-radius:4px; }
+
+        /* Make add buttons inline with qty inputs in cards and catalog list */
+        .product-card .add-to-cart, .catalog-item .add-to-cart { width: auto; padding: 10px 14px; }
+        .catalog-item .product-qty, .product-card .product-qty { width: 76px; }
+        /* Full-tab close button styling override to ensure visibility */
+        .catalog-section.full-tab .catalog-close-btn { position: absolute; right: 18px; left: auto; top: 12px; background: rgba(0,0,0,0.6); color: #fff; font-size: 22px; width:40px; height:40px; border-radius:6px; border:none; z-index:1002; cursor:pointer }
         
         @media (max-width: 768px) {
             .hero h1 {
@@ -526,19 +699,10 @@
         <!-- Categories -->
         <div class="categories" id="categories">
             <button class="category-button active" data-category="todos" onclick="filterCategory('todos')">
-                Todos los productos
+                Nuestros Productos
             </button>
-            <button class="category-button" data-category="celulares" onclick="filterCategory('celulares')">
-                Celulares
-            </button>
-            <button class="category-button" data-category="camaras" onclick="filterCategory('camaras')">
-                Equipos de Seguridad
-            </button>
-            <button class="category-button" data-category="computacion" onclick="filterCategory('computacion')">
-                Computación
-            </button>
-            <button class="category-button" data-category="electronica" onclick="filterCategory('electronica')">
-                Electrónica
+            <button class="category-button" data-category="nosotros" onclick="filterCategory('nosotros')">
+                Nosotros
             </button>
         </div>
         
@@ -563,6 +727,13 @@
             <div class="cart-total" id="cartTotal"></div>
             
             <div id="checkoutForm"></div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="product-modal-content" id="productModalContent">
+            <!-- content generado por JS -->
         </div>
     </div>
 
@@ -657,9 +828,12 @@
         // Renderizar productos
         function renderProducts() {
             const productsContainer = document.getElementById('products');
-            const filteredProducts = currentCategory === 'todos' 
-                ? products 
-                : products.filter(p => p.category === currentCategory);
+            if(currentCategory === 'todos'){
+                renderCatalogView(productsContainer);
+                return;
+            }
+
+            const filteredProducts = products.filter(p => p.category === currentCategory);
 
             productsContainer.innerHTML = filteredProducts.map(product => {
                 const priceARS = product.price;
@@ -673,22 +847,25 @@
 
                 return `
                 <div class="product-card">
-                    <div class="product-image">
-                        ${product.image 
-                            ? `<img src="${product.image}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;">` 
-                            : `<div class="product-placeholder"></div>`
-                        }
+                        <div class="product-image" onclick="openProductModal(${product.id})" style="cursor:pointer;">
+                            ${product.image 
+                                ? `<img src="${product.image}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;">` 
+                                : `<div class="product-placeholder"></div>`
+                            }
                     </div>
                     <div class="product-info">
                         <div class="product-category">${getCategoryName(product.category)}</div>
-                        <div class="product-name">${product.name}</div>
+                            <div class="product-name" onclick="openProductModal(${product.id})" style="cursor:pointer;">${product.name}</div>
                         <div class="product-description">${product.description}</div>
                         <div class="product-price">${primaryPrice}
                             <div style="font-size:14px;color:#666;margin-top:6px;">${secondaryPrice}</div>
                         </div>
-                        <button class="add-to-cart" onclick="addToCart(${product.id})">
-                            Agregar al carrito
-                        </button>
+                        <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+                            <input id="qty-${product.id}" class="product-qty" type="number" min="1" value="1" style="width:76px">
+                            <button class="add-to-cart" onclick="addToCartFromCard(${product.id})">
+                                Agregar al carrito
+                            </button>
+                        </div>
                     </div>
                 </div>
             `}).join('');
@@ -703,6 +880,237 @@
             };
             return names[category] || category;
         }
+
+        function renderCatalogView(container){
+            // Agrupar productos por categoría
+            const groups = {};
+            products.forEach(p => {
+                if(!groups[p.category]) groups[p.category] = [];
+                groups[p.category].push(p);
+            });
+
+            // Order categories: keep buttons order if possible
+            const order = Array.from(document.querySelectorAll('.category-button')).map(b => b.dataset.category);
+            const categories = order.filter(c=>c && groups[c]).concat(Object.keys(groups).filter(c=>!order.includes(c)));
+
+            container.innerHTML = categories.map(cat => {
+                const items = groups[cat] || [];
+                // prepare up to 6 thumbs for the cover
+                const coverThumbs = items.slice(0,6).map(i => i.image ? `<div class="cover-thumb"><img src="${i.image}" alt="${i.name}"></div>` : `<div class="cover-thumb cover-empty">${i.name}</div>`).join('');
+
+                return `
+                <div class="catalog-section view-grid" id="catalog-section-${cat}">
+                    <div class="catalog-header" onclick="openSection('${cat}')">
+                        <h4>${getCategoryName(cat)} (${items.length}) <span class="folder-icon" aria-hidden></span></h4>
+                    </div>
+                        <div class="catalog-cover">
+                            <div class="carousel" id="carousel-${cat}">
+                                ${items.map((i, idx) => `
+                                    <div class="slide ${idx===0? 'active':''}" data-index="${idx}">
+                                        ${i.image ? `<img src="${i.image}" alt="${i.name}">` : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#999">${i.name}</div>`}
+                                    </div>
+                                `).join('')}
+                                <div class="controls">
+                                    <button class="control" onclick="prevSlide('${cat}')">◂</button>
+                                    <button class="control" onclick="nextSlide('${cat}')">▸</button>
+                                </div>
+                                <div class="carousel-indicators" id="indicators-${cat}">
+                                    ${items.map((i, idx) => `<div class="dot ${idx===0? 'active':''}" onclick="goToSlide('${cat}',${idx})"></div>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="catalog-list" id="catalog-${cat}">
+                        ${items.map(item => `
+                            <div class="catalog-item">
+                                <div class="catalog-thumb">${item.image ? `<img src="${item.image}" alt="${item.name}">` : ''}</div>
+                                <div class="info">
+                                    <div class="name" onclick="openProductModal(${item.id})" style="cursor:pointer">${item.name}</div>
+                                    <div class="price">$${item.price.toLocaleString('es-AR')}</div>
+                                </div>
+                                        <div class="actions">
+                                            <input id="qty-${item.id}" class="product-qty" type="number" min="1" value="1" style="width:64px;margin-right:8px">
+                                            <button class="add-to-cart" onclick="addToCartFromCard(${item.id})">Agregar</button>
+                                        </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                `;
+            }).join('');
+            // Initialize carousels after rendering
+            setTimeout(initCarousels, 100);
+        }
+
+        function toggleCatalogGroup(cat){
+            const el = document.getElementById(`catalog-${cat}`);
+            if(!el) return;
+            el.classList.toggle('open');
+        }
+
+        function toggleCatalogView(cat){
+            const section = document.getElementById(`catalog-section-${cat}`);
+            const btn = document.getElementById(`viewToggle-${cat}`);
+            if(!section) return;
+            section.classList.toggle('view-grid');
+            if(section.classList.contains('view-grid')){
+                if(btn) btn.textContent = 'Ver lista';
+            } else {
+                if(btn) btn.textContent = 'Ver miniaturas';
+            }
+        }
+
+        // Carousel controls per category
+        const carouselIntervals = {};
+
+        function initCarousels(){
+            // clear previous intervals
+            Object.values(carouselIntervals).forEach(id => clearInterval(id));
+            Object.keys(carouselIntervals).forEach(k => delete carouselIntervals[k]);
+            const carousels = document.querySelectorAll('.carousel');
+            carousels.forEach(c => {
+                const cid = c.id.replace('carousel-','');
+                const slides = c.querySelectorAll('.slide');
+                if(slides.length <= 1) return;
+                // start autoplay
+                carouselIntervals[cid] = setInterval(()=> nextSlide(cid), 3500);
+            });
+        }
+
+        function showSlide(cat, index){
+            const carousel = document.getElementById(`carousel-${cat}`);
+            if(!carousel) return;
+            const slides = carousel.querySelectorAll('.slide');
+            const dots = document.getElementById(`indicators-${cat}`)?.querySelectorAll('.dot') || [];
+            slides.forEach(s => s.classList.remove('active'));
+            if(slides[index]) slides[index].classList.add('active');
+            dots.forEach(d => d.classList.remove('active'));
+            if(dots[index]) dots[index].classList.add('active');
+        }
+
+        function nextSlide(cat){
+            const carousel = document.getElementById(`carousel-${cat}`);
+            if(!carousel) return;
+            const slides = carousel.querySelectorAll('.slide');
+            const active = carousel.querySelector('.slide.active');
+            let idx = Array.from(slides).indexOf(active);
+            idx = (idx + 1) % slides.length;
+            showSlide(cat, idx);
+        }
+
+        function prevSlide(cat){
+            const carousel = document.getElementById(`carousel-${cat}`);
+            if(!carousel) return;
+            const slides = carousel.querySelectorAll('.slide');
+            const active = carousel.querySelector('.slide.active');
+            let idx = Array.from(slides).indexOf(active);
+            idx = (idx - 1 + slides.length) % slides.length;
+            showSlide(cat, idx);
+        }
+
+        function goToSlide(cat, idx){
+            showSlide(cat, idx);
+        }
+
+        // Open a focused view for a single category: hide others and show full list
+        function openSection(cat){
+            const sections = document.querySelectorAll('.catalog-section');
+            sections.forEach(s => { if(s.id !== `catalog-section-${cat}`) s.style.display = 'none'; });
+            const sel = document.getElementById(`catalog-section-${cat}`);
+            if(!sel) return;
+            // make it full tab (overlay)
+            sel.classList.add('full-tab');
+            sel.style.display = 'block';
+            const list = document.getElementById(`catalog-${cat}`);
+            if(list) list.classList.add('open');
+
+            // HIDE the carousel/cover when opening the section so only the list shows
+            const cover = document.querySelector(`#catalog-section-${cat} .catalog-cover`);
+            if(cover) cover.style.display = 'none';
+
+            // add close button inside header if not exists
+            if(!sel.querySelector('.catalog-close-btn')){
+                const closeBtn = document.createElement('button');
+                closeBtn.className = 'catalog-close-btn';
+                closeBtn.innerHTML = '✕';
+                closeBtn.onclick = closeSection;
+                sel.prepend(closeBtn);
+            }
+
+            // prevent background scroll
+            document.body.style.overflow = 'hidden';
+
+            // stop other carousels, and ensure this section's carousel runs
+            Object.values(carouselIntervals).forEach(id => clearInterval(id));
+            Object.keys(carouselIntervals).forEach(k => delete carouselIntervals[k]);
+            const carousel = document.getElementById(`carousel-${cat}`);
+            if(carousel){
+                carouselIntervals[cat] = setInterval(()=> nextSlide(cat), 3500);
+            }
+            sel.scrollIntoView({behavior: 'smooth', block: 'start'});
+
+            // add a visible close button if not present
+            if(!sel.querySelector('.catalog-close-btn')){
+                const btn = document.createElement('button');
+                btn.className = 'catalog-close-btn';
+                btn.innerHTML = '&times;';
+                btn.title = 'Cerrar';
+                btn.style.position = 'absolute';
+                btn.style.top = '12px';
+                btn.style.right = '12px';
+                btn.style.zIndex = '1001';
+                btn.style.fontSize = '24px';
+                btn.style.background = 'rgba(0,0,0,0.6)';
+                btn.style.color = '#fff';
+                btn.style.border = 'none';
+                btn.style.borderRadius = '6px';
+                btn.style.width = '40px';
+                btn.style.height = '40px';
+                btn.style.cursor = 'pointer';
+                btn.addEventListener('click', closeSection);
+                sel.appendChild(btn);
+            }
+
+            // add Escape key handler to close
+            window._catalogEscapeHandler = function(e){ if(e.key === 'Escape') closeSection(); };
+            document.addEventListener('keydown', window._catalogEscapeHandler);
+        }
+
+        function closeSection(){
+            // remove full-tab from any section
+            document.querySelectorAll('.catalog-section.full-tab').forEach(s => {
+                s.classList.remove('full-tab');
+            });
+            // restore all sections
+            document.querySelectorAll('.catalog-section').forEach(s => s.style.display = 'block');
+            // remove any close buttons added
+            document.querySelectorAll('.catalog-close-btn').forEach(b=>b.remove());
+            // collapse lists
+            document.querySelectorAll('.catalog-list').forEach(l => l.classList.remove('open'));
+            // restore carousel/cover display for all sections
+            document.querySelectorAll('.catalog-cover').forEach(c => c.style.display = 'block');
+            // restore body scroll
+            document.body.style.overflow = '';
+            // remove Escape key handler if present
+            if(window._catalogEscapeHandler){
+                document.removeEventListener('keydown', window._catalogEscapeHandler);
+                window._catalogEscapeHandler = null;
+            }
+            // restart carousels
+            initCarousels();
+            // focus main container so user can continue agregando productos
+            const container = document.querySelector('.container');
+            if(container) container.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+
+        // Render 'Nosotros' section
+        function renderNosotros(container){
+            container.innerHTML = `
+                <div style="background:#fff;border:1px solid #e0e0e0;padding:24px;border-radius:6px;">
+                    <h2>Nosotros</h2>
+                    <p style="color:#555;line-height:1.6">Somos una empresa dedicada a la venta de productos electrónicos con garantía. Nos enfocamos en ofrecer equipos de calidad, soporte postventa y asesoramiento técnico. Nuestro catálogo incluye soluciones para el hogar y empresas, desde dispositivos móviles y accesorios hasta equipos de seguridad y componentes de computación. Trabajamos con marcas reconocidas y brindamos garantía en todos nuestros productos para que compres con confianza.</p>
+                </div>
+            `;
+        }
         
         // Filtrar por categoría
         function filterCategory(category) {
@@ -710,23 +1118,38 @@
             document.querySelectorAll('.category-button').forEach(btn => {
                 btn.classList.remove('active');
             });
-            document.querySelector(`[data-category="${category}"]`).classList.add('active');
-            renderProducts();
+            const btn = document.querySelector(`[data-category="${category}"]`);
+            if(btn) btn.classList.add('active');
+            const productsContainer = document.getElementById('products');
+            if(category === 'nosotros'){
+                renderNosotros(productsContainer);
+            } else {
+                renderProducts();
+            }
         }
         
-        // Agregar al carrito
-        function addToCart(productId) {
+        // Agregar al carrito (acepta cantidad)
+        function addToCart(productId, qty = 1) {
             const product = products.find(p => p.id === productId);
+            if(!product) return;
+            const quantity = Number(qty) || 1;
             const existingItem = cart.find(item => item.id === productId);
-            
+
             if (existingItem) {
-                existingItem.quantity++;
+                existingItem.quantity += quantity;
             } else {
-                cart.push({ ...product, quantity: 1 });
+                cart.push({ ...product, quantity: quantity });
             }
-            
+
             updateCartCount();
             renderCart();
+        }
+
+        // Helper para botones en tarjeta/lista: lee el input de cantidad y llama a addToCart
+        function addToCartFromCard(productId){
+            const el = document.getElementById(`qty-${productId}`);
+            const qty = el ? Number(el.value) : 1;
+            addToCart(productId, qty);
         }
         
         // Remover del carrito
@@ -944,6 +1367,69 @@
         function toggleCart() {
             document.getElementById('cartModal').classList.toggle('active');
         }
+
+        // Product modal functions
+        function openProductModal(productId){
+            const product = products.find(p => p.id === productId);
+            if(!product) return;
+            renderProductModal(product);
+            document.getElementById('productModal').classList.add('active');
+        }
+
+        function closeProductModal(){
+            const m = document.getElementById('productModal');
+            if(m) m.classList.remove('active');
+        }
+
+        function renderProductModal(product){
+            const container = document.getElementById('productModalContent');
+            const priceARS = product.price;
+            const priceUSD = priceARS / exchangeRate;
+            const primaryPrice = (displayCurrency === 'USD')
+                ? `$${formatUSD(priceUSD)} USD`
+                : `$${formatARS(priceARS)} ARS`;
+            const secondaryPrice = (displayCurrency === 'USD')
+                ? `$${formatARS(priceARS)} ARS`
+                : `$${formatUSD(priceUSD)} USD`;
+
+            container.innerHTML = `
+                <div style="flex:1;display:flex;gap:20px;align-items:stretch;">
+                    <div class="product-modal-image">
+                        ${product.image ? `<img src="${product.image}" alt="${product.name}">` : `<div style="width:120px;height:120px;background:#e0e0e0"></div>`}
+                    </div>
+                    <div class="product-modal-info">
+                        <button onclick="closeProductModal()" style="align-self:flex-end;background:none;border:none;font-size:20px;cursor:pointer;color:#999">×</button>
+                        <h3>${product.name}</h3>
+                        <div style="color:#666;margin-bottom:12px">${product.description}</div>
+                        <div style="font-size:20px;font-weight:600;margin-bottom:12px">${primaryPrice}
+                            <div style="font-size:13px;color:#666;margin-top:6px">${secondaryPrice}</div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:12px;margin-top:auto">
+                            <label style="font-size:14px">Cantidad:</label>
+                            <input id="modalQty" class="product-qty" type="number" min="1" value="1">
+                            <button class="add-to-cart" onclick="addToCartFromModal(${product.id})">Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function addToCartFromModal(productId){
+            const qty = Number(document.getElementById('modalQty').value) || 1;
+            const product = products.find(p => p.id === productId);
+            if(!product) return;
+            const existing = cart.find(item => item.id === productId);
+            if(existing) existing.quantity += qty;
+            else cart.push({...product, quantity: qty});
+            updateCartCount();
+            renderCart();
+            closeProductModal();
+        }
+
+        // Close product modal when clicking outside content
+        document.getElementById('productModal')?.addEventListener('click', function(e){
+            if(e.target && e.target.id === 'productModal') closeProductModal();
+        });
 
         // Aplicar código de descuento desde el formulario
         function applyDiscount(){
