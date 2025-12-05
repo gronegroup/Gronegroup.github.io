@@ -474,7 +474,7 @@
             <div style="display:flex;align-items:center;gap:12px">
                 <div class="currency-controls">
                     <button id="currencyToggle" class="currency-button active">USD</button>
-                    <button id="changeRate" class="currency-button">Cot: <span id="rateLabel">350</span></button>
+                    <button id="changeRate" class="currency-button">Cot: <span id="rateLabel">1470</span></button>
                 </div>
                 <button class="cart-button" onclick="toggleCart()">
                     Carrito
@@ -485,7 +485,7 @@
     </div>
     <script>
         // currency state
-        let exchangeRate = Number(localStorage.getItem('exchangeRate')) || 350; // ARS per USD
+        let exchangeRate = Number(localStorage.getItem('exchangeRate')) || 1470; // ARS per USD (valor por defecto actualizado)
         let displayCurrency = localStorage.getItem('displayCurrency') || 'USD'; // 'USD' or 'ARS'
 
         function formatARS(value){
