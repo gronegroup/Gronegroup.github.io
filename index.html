@@ -572,6 +572,16 @@
             whatsappNumber: '543794009856', // TU NÚMERO DE WHATSAPP (con código de país)
             shippingCost: 20000
         };
+        // Códigos de descuento disponibles (clave: porcentaje)
+        CONFIG.discountCodes = {
+            'B1ENVEN1DA': 10,
+            'SOYPR0VEDOR': 15,
+            
+        };
+
+        // Estado de descuento aplicado
+        let appliedDiscountCode = null;
+        let appliedDiscountPercent = 0;
         
         // BASE DE DATOS DE PRODUCTOS - AGREGÁ TUS PRODUCTOS AQUÍ
         const products = [
@@ -776,16 +786,24 @@
             
             // Totales
             const subtotalARS = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const subtotalUSD = subtotalARS / exchangeRate;
-            const totalARS = subtotalARS + CONFIG.shippingCost;
+            const discountAmountARS = subtotalARS * (appliedDiscountPercent / 100);
+            const subtotalAfterDiscountARS = Math.max(0, subtotalARS - discountAmountARS);
+            const subtotalUSD = subtotalAfterDiscountARS / exchangeRate;
+            const totalARS = subtotalAfterDiscountARS + CONFIG.shippingCost;
             const totalUSD = totalARS / exchangeRate;
 
+            // Build rows depending on whether a discount is applied
             if(displayCurrency === 'USD'){
                 cartTotalContainer.innerHTML = `
                     <div class="cart-total-row">
                         <span>Subtotal</span>
                         <span>$${formatUSD(subtotalUSD)} USD</span>
                     </div>
+                    ${appliedDiscountPercent ? `
+                    <div class="cart-total-row">
+                        <span>Descuento (${appliedDiscountCode} - ${appliedDiscountPercent}%)</span>
+                        <span>-$${formatUSD(discountAmountARS / exchangeRate)} USD</span>
+                    </div>` : ''}
                     <div class="cart-total-row">
                         <span>Envío (Andreani)</span>
                         <span>$${formatUSD(CONFIG.shippingCost / exchangeRate)} USD</span>
@@ -802,6 +820,11 @@
                         <span>Subtotal</span>
                         <span>$${formatARS(subtotalARS)} ARS</span>
                     </div>
+                    ${appliedDiscountPercent ? `
+                    <div class="cart-total-row">
+                        <span>Descuento (${appliedDiscountCode} - ${appliedDiscountPercent}%)</span>
+                        <span>-$${formatARS(discountAmountARS)} ARS</span>
+                    </div>` : ''}
                     <div class="cart-total-row">
                         <span>Envío (Andreani)</span>
                         <span>$${formatARS(CONFIG.shippingCost)} ARS</span>
@@ -849,6 +872,14 @@
                         <label>Email</label>
                         <input type="email" id="email" required>
                     </div>
+                    <div class="form-group">
+                        <label>Código de descuento (opcional)</label>
+                        <div style="display:flex;gap:8px;align-items:center">
+                            <input type="text" id="discountCodeInput" placeholder="Ingresá código" style="flex:1;padding:10px;border:1px solid #e0e0e0;border-radius:4px;">
+                            <button type="button" onclick="applyDiscount()" style="padding:10px 12px;border-radius:4px;cursor:pointer;border:1px solid #1a1a1a;background:#fff">Aplicar</button>
+                        </div>
+                        <div id="discountMessage" style="margin-top:8px;color:#666;font-size:13px"></div>
+                    </div>
                     <button type="submit" class="whatsapp-button">
                         Enviar pedido por WhatsApp
                     </button>
@@ -875,9 +906,11 @@
             const telefono = document.getElementById('telefono').value;
             const email = document.getElementById('email').value;
             
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const total = subtotal + CONFIG.shippingCost;
-            
+            const subtotalARS = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const discountAmountARS = subtotalARS * (appliedDiscountPercent / 100);
+            const subtotalAfterDiscountARS = Math.max(0, subtotalARS - discountAmountARS);
+            const total = subtotalAfterDiscountARS + CONFIG.shippingCost;
+
             let message = 'NUEVO PEDIDO\n';
             message += '━━━━━━━━━━━━━━━━━━━━\n\n';
             message += 'PRODUCTOS:\n';
@@ -885,7 +918,11 @@
                 message += `• ${item.name} x${item.quantity} - $${(item.price * item.quantity).toLocaleString('es-AR')}\n`;
             });
             message += '\n━━━━━━━━━━━━━━━━━━━━\n';
-            message += `Subtotal: $${subtotal.toLocaleString('es-AR')}\n`;
+            message += `Subtotal: $${subtotalARS.toLocaleString('es-AR')}\n`;
+            if(appliedDiscountPercent){
+                message += `Descuento (${appliedDiscountCode} - ${appliedDiscountPercent}%): -$${discountAmountARS.toLocaleString('es-AR')}\n`;
+                message += `Subtotal con descuento: $${subtotalAfterDiscountARS.toLocaleString('es-AR')}\n`;
+            }
             message += `Envío (Andreani): $${CONFIG.shippingCost.toLocaleString('es-AR')}\n`;
             message += `TOTAL: $${total.toLocaleString('es-AR')}\n\n`;
             message += '━━━━━━━━━━━━━━━━━━━━\n\n';
@@ -906,6 +943,33 @@
         // Toggle carrito
         function toggleCart() {
             document.getElementById('cartModal').classList.toggle('active');
+        }
+
+        // Aplicar código de descuento desde el formulario
+        function applyDiscount(){
+            const input = document.getElementById('discountCodeInput');
+            const msg = document.getElementById('discountMessage');
+            if(!input) return;
+            const code = input.value.trim().toUpperCase();
+            if(!code){
+                appliedDiscountCode = null;
+                appliedDiscountPercent = 0;
+                if(msg) msg.textContent = '';
+                renderCart();
+                return;
+            }
+            const percent = CONFIG.discountCodes[code];
+            if(percent){
+                appliedDiscountCode = code;
+                appliedDiscountPercent = percent;
+                if(msg) msg.textContent = `Código aplicado: ${code} — ${percent}% de descuento`;
+                renderCart();
+            } else {
+                appliedDiscountCode = null;
+                appliedDiscountPercent = 0;
+                if(msg) msg.textContent = `Código inválido`;
+                renderCart();
+            }
         }
         
         // Inicializar
