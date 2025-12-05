@@ -474,7 +474,7 @@
             <div style="display:flex;align-items:center;gap:12px">
                 <div class="currency-controls">
                     <button id="currencyToggle" class="currency-button active">USD</button>
-                    <button id="changeRate" class="currency-button">Cot: <span id="rateLabel">1470</span></button>
+                    <button id="changeRate" class="currency-button" disabled title="Cotización fija">Cot: <span id="rateLabel">1470</span></button>
                 </div>
                 <button class="cart-button" onclick="toggleCart()">
                     Carrito
@@ -484,8 +484,8 @@
         </div>
     </div>
     <script>
-        // currency state
-        let exchangeRate = Number(localStorage.getItem('exchangeRate')) || 1470; // ARS per USD (valor por defecto actualizado)
+        // currency state (fija)
+        const exchangeRate = 1470; // ARS per USD (valor fijo)
         let displayCurrency = localStorage.getItem('displayCurrency') || 'USD'; // 'USD' or 'ARS'
 
         function formatARS(value){
@@ -514,17 +514,8 @@
                 displayCurrency = (displayCurrency === 'USD') ? 'ARS' : 'USD';
                 localStorage.setItem('displayCurrency', displayCurrency);
                 updateCurrencyUI();
-                // re-render will be triggered by main script's functions
             }
-            if(e.target && (e.target.id === 'changeRate' || e.target.closest && e.target.closest('#changeRate'))){
-                const newRate = prompt('Ingrese la cotización ARS por USD', exchangeRate);
-                const parsed = Number(newRate);
-                if(!isNaN(parsed) && parsed > 0){
-                    exchangeRate = parsed;
-                    localStorage.setItem('exchangeRate', exchangeRate);
-                    updateCurrencyUI();
-                }
-            }
+            // Nota: el cambio de cotización está deshabilitado; exchangeRate es una constante fija.
         });
     </script>
 
