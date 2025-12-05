@@ -65,6 +65,29 @@
             background: #333;
         }
         
+        .currency-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 12px;
+        }
+
+        .currency-button {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .currency-button.active {
+            background: #1a1a1a;
+            color: #fff;
+            border-color: #1a1a1a;
+        }
+        
         .cart-count {
             position: absolute;
             top: -8px;
@@ -448,13 +471,63 @@
             <div class="logo">
                 <img src="images/logo.png" alt="GRONEGROUP">
             </div>
-            <button class="cart-button" onclick="toggleCart()">
-                Carrito
-                <span class="cart-count" id="cartCount">0</span>
-            </button>
+            <div style="display:flex;align-items:center;gap:12px">
+                <div class="currency-controls">
+                    <button id="currencyToggle" class="currency-button active">USD</button>
+                    <button id="changeRate" class="currency-button">Cot: <span id="rateLabel">350</span></button>
+                </div>
+                <button class="cart-button" onclick="toggleCart()">
+                    Carrito
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
         </div>
     </div>
-    
+    <script>
+        // currency state
+        let exchangeRate = Number(localStorage.getItem('exchangeRate')) || 350; // ARS per USD
+        let displayCurrency = localStorage.getItem('displayCurrency') || 'USD'; // 'USD' or 'ARS'
+
+        function formatARS(value){
+            return Number(value).toLocaleString('es-AR');
+        }
+
+        function formatUSD(value){
+            return Number(value).toFixed(2);
+        }
+
+        function updateCurrencyUI(){
+            const rateLabel = document.getElementById('rateLabel');
+            const currencyToggle = document.getElementById('currencyToggle');
+            if(rateLabel) rateLabel.textContent = exchangeRate;
+            if(currencyToggle){
+                if(displayCurrency === 'USD') currencyToggle.classList.add('active');
+                else currencyToggle.classList.remove('active');
+            }
+            if(typeof renderProducts === 'function') renderProducts();
+            if(typeof renderCart === 'function') renderCart();
+        }
+
+        // attach event handlers after DOM ready for those buttons
+        document.addEventListener('click', (e)=>{
+            if(e.target && e.target.id === 'currencyToggle'){
+                displayCurrency = (displayCurrency === 'USD') ? 'ARS' : 'USD';
+                localStorage.setItem('displayCurrency', displayCurrency);
+                updateCurrencyUI();
+                // re-render will be triggered by main script's functions
+            }
+            if(e.target && (e.target.id === 'changeRate' || e.target.closest && e.target.closest('#changeRate'))){
+                const newRate = prompt('Ingrese la cotización ARS por USD', exchangeRate);
+                const parsed = Number(newRate);
+                if(!isNaN(parsed) && parsed > 0){
+                    exchangeRate = parsed;
+                    localStorage.setItem('exchangeRate', exchangeRate);
+                    updateCurrencyUI();
+                }
+            }
+        });
+    </script>
+
     <!-- Hero Section -->
     <div class="hero">
         <h1>Encuentra todo lo que buscas</h1>
@@ -590,8 +663,18 @@
             const filteredProducts = currentCategory === 'todos' 
                 ? products 
                 : products.filter(p => p.category === currentCategory);
-            
-            productsContainer.innerHTML = filteredProducts.map(product => `
+
+            productsContainer.innerHTML = filteredProducts.map(product => {
+                const priceARS = product.price;
+                const priceUSD = priceARS / exchangeRate;
+                const primaryPrice = (displayCurrency === 'USD')
+                    ? `$${formatUSD(priceUSD)} USD`
+                    : `$${formatARS(priceARS)} ARS`;
+                const secondaryPrice = (displayCurrency === 'USD')
+                    ? `$${formatARS(priceARS)} ARS`
+                    : `$${formatUSD(priceUSD)} USD`;
+
+                return `
                 <div class="product-card">
                     <div class="product-image">
                         ${product.image 
@@ -603,13 +686,15 @@
                         <div class="product-category">${getCategoryName(product.category)}</div>
                         <div class="product-name">${product.name}</div>
                         <div class="product-description">${product.description}</div>
-                        <div class="product-price">$${product.price.toLocaleString('es-AR')}</div>
+                        <div class="product-price">${primaryPrice}
+                            <div style="font-size:14px;color:#666;margin-top:6px;">${secondaryPrice}</div>
+                        </div>
                         <button class="add-to-cart" onclick="addToCart(${product.id})">
                             Agregar al carrito
                         </button>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
         
         function getCategoryName(category) {
@@ -678,36 +763,69 @@
             }
             
             // Items del carrito
-            cartItemsContainer.innerHTML = cart.map(item => `
+            cartItemsContainer.innerHTML = cart.map(item => {
+                const itemTotalARS = item.price * item.quantity;
+                const itemTotalUSD = itemTotalARS / exchangeRate;
+                const primary = (displayCurrency === 'USD')
+                    ? `$${formatUSD(itemTotalUSD)} USD`
+                    : `$${formatARS(itemTotalARS)} ARS`;
+                const secondary = (displayCurrency === 'USD')
+                    ? `$${formatARS(itemTotalARS)} ARS`
+                    : `$${formatUSD(itemTotalUSD)} USD`;
+
+                return `
                 <div class="cart-item">
                     <div class="cart-item-image"></div>
                     <div class="cart-item-details">
                         <div class="cart-item-name">${item.name}</div>
                         <div class="cart-item-quantity">Cantidad: ${item.quantity}</div>
-                        <div class="cart-item-price">$${(item.price * item.quantity).toLocaleString('es-AR')}</div>
+                        <div class="cart-item-price">${primary}
+                            <div style="font-size:13px;color:#666;margin-top:6px;">${secondary}</div>
+                        </div>
                     </div>
                     <button class="cart-item-remove" onclick="removeFromCart(${item.id})">Eliminar</button>
                 </div>
-            `).join('');
+            `}).join('');
             
             // Totales
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const total = subtotal + CONFIG.shippingCost;
-            
-            cartTotalContainer.innerHTML = `
-                <div class="cart-total-row">
-                    <span>Subtotal</span>
-                    <span>$${subtotal.toLocaleString('es-AR')}</span>
-                </div>
-                <div class="cart-total-row">
-                    <span>Envío (Andreani)</span>
-                    <span>$${CONFIG.shippingCost.toLocaleString('es-AR')}</span>
-                </div>
-                <div class="cart-total-row cart-total-final">
-                    <span>Total</span>
-                    <span>$${total.toLocaleString('es-AR')}</span>
-                </div>
-            `;
+            const subtotalARS = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const subtotalUSD = subtotalARS / exchangeRate;
+            const totalARS = subtotalARS + CONFIG.shippingCost;
+            const totalUSD = totalARS / exchangeRate;
+
+            if(displayCurrency === 'USD'){
+                cartTotalContainer.innerHTML = `
+                    <div class="cart-total-row">
+                        <span>Subtotal</span>
+                        <span>$${formatUSD(subtotalUSD)} USD</span>
+                    </div>
+                    <div class="cart-total-row">
+                        <span>Envío (Andreani)</span>
+                        <span>$${formatUSD(CONFIG.shippingCost / exchangeRate)} USD</span>
+                    </div>
+                    <div class="cart-total-row cart-total-final">
+                        <span>Total</span>
+                        <span>$${formatUSD(totalUSD)} USD</span>
+                    </div>
+                    <div style="margin-top:8px;color:#666;font-size:13px;">Equivalente: $${formatARS(totalARS)} ARS</div>
+                `;
+            } else {
+                cartTotalContainer.innerHTML = `
+                    <div class="cart-total-row">
+                        <span>Subtotal</span>
+                        <span>$${formatARS(subtotalARS)} ARS</span>
+                    </div>
+                    <div class="cart-total-row">
+                        <span>Envío (Andreani)</span>
+                        <span>$${formatARS(CONFIG.shippingCost)} ARS</span>
+                    </div>
+                    <div class="cart-total-row cart-total-final">
+                        <span>Total</span>
+                        <span>$${formatARS(totalARS)} ARS</span>
+                    </div>
+                    <div style="margin-top:8px;color:#666;font-size:13px;">Equivalente: $${formatUSD(totalUSD)} USD</div>
+                `;
+            }
             
             // Formulario de checkout
             checkoutFormContainer.innerHTML = `
@@ -798,7 +916,8 @@
         }
         
         // Inicializar
-        renderProducts();
+        updateCurrencyUI();
+        updateCartCount();
     </script>
 </body>
 </html>
