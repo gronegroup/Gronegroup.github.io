@@ -519,11 +519,7 @@
         });
     </script>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Encuentra todo lo que buscas</h1>
-        <p>Tecnología de calidad al mejor precio</p>
-    </div>
+    <!-- Hero eliminado -->
     
     <!-- Main Container -->
     <div class="container">
@@ -536,7 +532,7 @@
                 Celulares
             </button>
             <button class="category-button" data-category="camaras" onclick="filterCategory('camaras')">
-                Cámaras de Seguridad
+                Equipos de Seguridad
             </button>
             <button class="category-button" data-category="computacion" onclick="filterCategory('computacion')">
                 Computación
@@ -691,7 +687,7 @@
         function getCategoryName(category) {
             const names = {
                 'celulares': 'Celulares',
-                'camaras': 'Cámaras de Seguridad',
+                'camaras': 'Equipos de Seguridad',
                 'computacion': 'Computación',
                 'electronica': 'Electrónica'
             };
@@ -863,7 +859,13 @@
         // Enviar a WhatsApp
         function sendToWhatsApp(event) {
             event.preventDefault();
-            
+            // Confirmar que el usuario verifica que "está todo en las mejores condiciones"
+            const condicionesOk = confirm('¿Confirmás que todo está en las mejores condiciones para solicitar el presupuesto?');
+            if (!condicionesOk) {
+                alert('Pedido cancelado. Por favor verificá los detalles antes de solicitar el presupuesto.');
+                return;
+            }
+
             const nombre = document.getElementById('nombre').value;
             const direccion = document.getElementById('direccion').value;
             const provincia = document.getElementById('provincia').value;
