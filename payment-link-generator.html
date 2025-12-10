@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Links de Pago - Mercado Pago</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .section-title {
+            color: #2563eb;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+        
+        .info-box {
+            background: #e0f2fe;
+            border-left: 4px solid #0ea5e9;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+        
+        .info-box h3 {
+            color: #0c4a6e;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .info-box p {
+            color: #0c4a6e;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .info-box a {
+            color: #0ea5e9;
+            text-decoration: underline;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+        
+        .warning-box p {
+            color: #92400e;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37,99,235,0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            box-shadow: 0 4px 12px rgba(16,185,129,0.3);
+            margin-left: 12px;
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16,185,129,0.4);
+        }
+        
+        .result {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 24px;
+            display: none;
+        }
+        
+        .result.show {
+            display: block;
+        }
+        
+        .result-title {
+            color: #065f46;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .result-link {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 14px;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .instructions {
+            background: #ede9fe;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+        
+        .instructions h3 {
+            color: #5b21b6;
+            margin-bottom: 16px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+            color: #4c1d95;
+            line-height: 1.8;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        
+        .preview {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+        
+        .preview-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #e11d48;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔗 Generador de Links de Pago</h1>
+        <p class="subtitle">Crea links de pago de Mercado Pago para tus productos</p>
+        
+        <div class="info-box">
+            <h3>📋 Requisitos previos</h3>
+            <p>
+                1. Tener una cuenta de Mercado Pago verificada<br>
+                2. Acceder a <a href="https://www.mercadopago.com.ar/tools/create" target="_blank">https://www.mercadopago.com.ar/tools/create</a><br>
+                3. Crear tu link de pago personalizado<br>
+                4. Copiar el link generado y pegarlo aquí
+            </p>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">💳 Método 1: Link de Mercado Pago ya generado</div>
+            <div class="form-group">
+                <label>Link de Mercado Pago</label>
+                <input type="url" id="mpLink" placeholder="https://mpago.la/2ab3cd4 o link completo de Mercado Pago">
+            </div>
+            <button class="btn btn-primary" onclick="validateMPLink()">✓ Validar Link</button>
+            <button class="btn btn-success" onclick="copyLink()">📋 Copiar Link</button>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">🛠️ Método 2: Crear link manualmente (Información)</div>
+            <div class="warning-box">
+                <p>
+                    <strong>⚠️ Importante:</strong> Para crear links de pago programáticamente necesitás acceso a la API de Mercado Pago.
+                    Te recomiendo crear tus links directamente desde el panel de Mercado Pago y pegarlos en el Método 1.
+                </p>
+            </div>
+            <div class="form-group">
+                <label>Nombre del producto</label>
+                <input type="text" id="productName" placeholder="Ej: Cámara HIKVISION 1080P">
+            </div>
+            <div class="form-group">
+                <label>Precio (ARS)</label>
+                <input type="number" id="productPrice" placeholder="45000">
+            </div>
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea id="productDesc" rows="3" placeholder="Descripción del producto"></textarea>
+            </div>
+            <div class="preview">
+                <div class="preview-title">📝 Pasos para crear tu link:</div>
+                <ol>
+                    <li>Ve a <a href="https://www.mercadopago.com.ar/tools/create" target="_blank">Mercado Pago - Crear Link</a></li>
+                    <li>Ingresa el nombre: <code id="previewName">-</code></li>
+                    <li>Ingresa el precio: <code id="previewPrice">-</code></li>
+                    <li>Agrega la descripción: <code id="previewDesc">-</code></li>
+                    <li>Haz clic en "Crear link"</li>
+                    <li>Copia el link generado y pégalo arriba en el Método 1</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="result" id="result">
+            <div class="result-title">✅ Link validado correctamente</div>
+            <div class="result-link" id="validatedLink"></div>
+            <p style="color: #065f46; font-size: 14px;">
+                Copia este link y agrégalo al campo <code>paymentLink</code> de tu producto en el array de productos.
+            </p>
+        </div>
+        
+        <div class="instructions">
+            <h3>📚 Cómo agregar el link a tu producto</h3>
+            <ol>
+                <li>Abre el archivo <code>index.html</code></li>
+                <li>Busca el producto en el array <code>products</code></li>
+                <li>Agrega el campo <code>paymentLink: 'tu-link-aqui'</code></li>
+                <li>Ejemplo:<br>
+                    <pre style="background: white; padding: 12px; border-radius: 8px; margin-top: 8px; overflow-x: auto;"><code>{
+    id: 9,
+    name: 'HIKVISION Turbo HD',
+    price: 45000,
+    category: 'camaras',
+    image: 'images/camara.jpg',
+    paymentLink: 'https://mpago.la/2ab3cd4'
+}</code></pre>
+                </li>
+                <li>Guarda el archivo y recarga tu página</li>
+                <li>Verás el botón "🔳 Pagar Ahora" en el producto</li>
+            </ol>
+        </div>
+    </div>
+    
+    <script>
+        // Actualizar preview mientras escribes
+        document.getElementById('productName').addEventListener('input', function(e) {
+            document.getElementById('previewName').textContent = e.target.value || '-';
+        });
+        
+        document.getElementById('productPrice').addEventListener('input', function(e) {
+            const price = e.target.value ? `$${parseInt(e.target.value).toLocaleString('es-AR')} ARS` : '-';
+            document.getElementById('previewPrice').textContent = price;
+        });
+        
+        document.getElementById('productDesc').addEventListener('input', function(e) {
+            document.getElementById('previewDesc').textContent = e.target.value || '-';
+        });
+        
+        let currentValidLink = '';
+        
+        function validateMPLink() {
+            const link = document.getElementById('mpLink').value.trim();
+            
+            if (!link) {
+                alert('Por favor ingresa un link de Mercado Pago');
+                return;
+            }
+            
+            // Validar que sea un link válido
+            if (!link.includes('mercadopago') && !link.includes('mpago.la')) {
+                alert('⚠️ El link no parece ser de Mercado Pago. Verifica que sea correcto.');
+                return;
+            }
+            
+            try {
+                new URL(link); // Validar que sea una URL válida
+                currentValidLink = link;
+                document.getElementById('validatedLink').textContent = link;
+                document.getElementById('result').classList.add('show');
+                
+                // Scroll suave al resultado
+                document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } catch (e) {
+                alert('⚠️ El link no es válido. Por favor verifica el formato.');
+            }
+        }
+        
+        function copyLink() {
+            if (!currentValidLink) {
+                alert('Primero valida un link de Mercado Pago');
+                return;
+            }
+            
+            navigator.clipboard.writeText(currentValidLink).then(function() {
+                alert('✅ Link copiado al portapapeles!\n\nAhora pégalo en el campo paymentLink de tu producto.');
+            }, function() {
+                // Fallback para navegadores viejos
+                const textarea = document.createElement('textarea');
+                textarea.value = currentValidLink;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('✅ Link copiado al portapapeles!');
+            });
+        }
+    </script>
+</body>
+</html>
