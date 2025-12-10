@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Factura</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .invoice-preview {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 24px;
+            background: #fafafa;
+        }
+        
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2563eb;
+        }
+        
+        .company-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .company-logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+        
+        .company-details h2 {
+            color: #1a1a1a;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        
+        .company-details p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .invoice-number {
+            text-align: right;
+        }
+        
+        .invoice-number h3 {
+            color: #2563eb;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .invoice-number p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .client-info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .client-info h4 {
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        
+        .client-info p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        
+        .items-table th {
+            background: #2563eb;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .items-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .items-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .totals {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-left: auto;
+            max-width: 350px;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .total-row.final {
+            border-top: 2px solid #2563eb;
+            padding-top: 12px;
+            margin-top: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37,99,235,0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            box-shadow: 0 4px 12px rgba(16,185,129,0.3);
+            margin-left: 12px;
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16,185,129,0.4);
+        }
+        
+        .btn-info {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            box-shadow: 0 4px 12px rgba(99,102,241,0.3);
+            margin-left: 12px;
+        }
+        
+        .btn-info:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99,102,241,0.4);
+        }
+        
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        
+        .info-box {
+            background: #e0f2fe;
+            border-left: 4px solid #0ea5e9;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+        
+        .info-box p {
+            color: #0c4a6e;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📄 Generador de Factura</h1>
+        <p class="subtitle">Vista previa y descarga de factura</p>
+        
+        <div class="info-box">
+            <p><strong>💡 Automático:</strong> Esta factura se genera automáticamente cuando un cliente completa una compra. Puedes descargarla en PDF.</p>
+        </div>
+        
+        <div class="invoice-preview" id="invoicePreview">
+            <div class="invoice-header">
+                <div class="company-info">
+                    <img src="images/logo.png" alt="GRONEGROUP Logo" class="company-logo">
+                    <div class="company-details">
+                        <h2>GRONEGROUP</h2>
+                        <p>
+                            <strong>Dirección:</strong> [Tu dirección]<br>
+                            <strong>CUIT/CUIL:</strong> [Tu CUIT]<br>
+                            <strong>Tel:</strong> +54 379 400 9856<br>
+                            <strong>Email:</strong> info@gronegroup.com
+                        </p>
+                    </div>
+                </div>
+                <div class="invoice-number">
+                    <h3>FACTURA</h3>
+                    <p>
+                        <strong>N°:</strong> <span id="invoiceNum">0001-00000001</span><br>
+                        <strong>Fecha:</strong> <span id="invoiceDate">09/12/2025</span>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="client-info">
+                <h4>DATOS DEL CLIENTE</h4>
+                <p id="clientInfo">
+                    <strong>Nombre:</strong> Cliente Ejemplo<br>
+                    <strong>DNI:</strong> 12.345.678<br>
+                    <strong>Dirección:</strong> Calle Falsa 123, Ciudad<br>
+                    <strong>Email:</strong> cliente@ejemplo.com<br>
+                    <strong>Teléfono:</strong> +54 123 456 7890
+                </p>
+            </div>
+            
+            <table class="items-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unit.</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody id="itemsTable">
+                    <tr>
+                        <td>Producto de ejemplo</td>
+                        <td>1</td>
+                        <td>$10.000</td>
+                        <td>$10.000</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="totals">
+                <div class="total-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotalAmount">$10.000</span>
+                </div>
+                <div class="total-row" id="discountRow" style="display:none;">
+                    <span>Descuento (<span id="discountPercent">0</span>%):</span>
+                    <span id="discountAmount">$0</span>
+                </div>
+                <div class="total-row">
+                    <span>Envío:</span>
+                    <span id="shippingAmount">$20.000</span>
+                </div>
+                <div class="total-row final">
+                    <span>TOTAL:</span>
+                    <span id="totalAmount">$30.000</span>
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e0e0e0; text-align: center; color: #999; font-size: 12px;">
+                <p>Gracias por su compra. Para consultas comuníquese a info@gronegroup.com</p>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-primary" onclick="downloadPDF()">📥 Descargar PDF</button>
+            <button class="btn btn-success" onclick="printInvoice()">🖨️ Imprimir</button>
+            <button class="btn btn-info" onclick="sendEmail()">📧 Enviar por Email</button>
+        </div>
+    </div>
+    
+    <script>
+        // Inicializar EmailJS
+        (function() {
+            emailjs.init("YOUR_PUBLIC_KEY"); // Reemplazar con tu Public Key de EmailJS
+        })();
+        
+        // Datos de ejemplo - estos se cargarían desde el carrito en la implementación real
+        const invoiceData = {
+            invoiceNumber: '0001-00000001',
+            date: new Date().toLocaleDateString('es-AR'),
+            client: {
+                name: 'Cliente Ejemplo',
+                dni: '12.345.678',
+                address: 'Calle Falsa 123, Ciudad',
+                email: 'cliente@ejemplo.com',
+                phone: '+54 123 456 7890'
+            },
+            items: [
+                { name: 'Samsung Galaxy A54', quantity: 1, price: 450000 },
+                { name: 'Cámara IP WiFi', quantity: 2, price: 45000 }
+            ],
+            subtotal: 540000,
+            discount: { code: 'B1ENVEN1DA', percent: 10, amount: 54000 },
+            shipping: 20000,
+            total: 506000
+        };
+        
+        // Cargar datos desde URL params si existen
+        function loadInvoiceData() {
+            const params = new URLSearchParams(window.location.search);
+            const data = params.get('data');
+            
+            if (data) {
+                try {
+                    const parsedData = JSON.parse(decodeURIComponent(data));
+                    renderInvoice(parsedData);
+                } catch (e) {
+                    console.error('Error parsing invoice data:', e);
+                    renderInvoice(invoiceData);
+                }
+            } else {
+                renderInvoice(invoiceData);
+            }
+        }
+        
+        function renderInvoice(data) {
+            document.getElementById('invoiceNum').textContent = data.invoiceNumber;
+            document.getElementById('invoiceDate').textContent = data.date;
+            
+            document.getElementById('clientInfo').innerHTML = `
+                <strong>Nombre:</strong> ${data.client.name}<br>
+                <strong>DNI:</strong> ${data.client.dni}<br>
+                <strong>Dirección:</strong> ${data.client.address}<br>
+                <strong>Email:</strong> ${data.client.email}<br>
+                <strong>Teléfono:</strong> ${data.client.phone}
+            `;
+            
+            const itemsHtml = data.items.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.quantity}</td>
+                    <td>$${item.price.toLocaleString('es-AR')}</td>
+                    <td>$${(item.price * item.quantity).toLocaleString('es-AR')}</td>
+                </tr>
+            `).join('');
+            document.getElementById('itemsTable').innerHTML = itemsHtml;
+            
+            document.getElementById('subtotalAmount').textContent = `$${data.subtotal.toLocaleString('es-AR')}`;
+            document.getElementById('shippingAmount').textContent = `$${data.shipping.toLocaleString('es-AR')}`;
+            document.getElementById('totalAmount').textContent = `$${data.total.toLocaleString('es-AR')}`;
+            
+            if (data.discount && data.discount.amount > 0) {
+                document.getElementById('discountRow').style.display = 'flex';
+                document.getElementById('discountPercent').textContent = data.discount.percent;
+                document.getElementById('discountAmount').textContent = `-$${data.discount.amount.toLocaleString('es-AR')}`;
+            }
+        }
+        
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Logo (si existe)
+            const logo = new Image();
+            logo.src = 'images/logo.png';
+            
+            logo.onload = function() {
+                // Agregar logo
+                doc.addImage(logo, 'PNG', 20, 10, 30, 30);
+                
+                // Header
+                doc.setFontSize(24);
+                doc.setFont(undefined, 'bold');
+                doc.text('GRONEGROUP', 55, 20);
+                
+                doc.setFontSize(10);
+                doc.setFont(undefined, 'normal');
+                doc.text('[Tu dirección]', 55, 28);
+                doc.text('CUIT/CUIL: [Tu CUIT]', 55, 33);
+                doc.text('Tel: +54 379 400 9856', 55, 38);
+                
+                generatePDFContent(doc);
+            };
+            
+            logo.onerror = function() {
+                // Si no se puede cargar el logo, continuar sin él
+                doc.setFontSize(24);
+                doc.setFont(undefined, 'bold');
+                doc.text('GRONEGROUP', 20, 20);
+                
+                doc.setFontSize(10);
+                doc.setFont(undefined, 'normal');
+                doc.text('[Tu dirección]', 20, 28);
+                doc.text('CUIT/CUIL: [Tu CUIT]', 20, 33);
+                doc.text('Tel: +54 379 400 9856', 20, 38);
+                
+                generatePDFContent(doc);
+            };
+        }
+        
+        function generatePDFContent(doc) {
+            
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text('FACTURA', 150, 20);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.text(`N°: ${document.getElementById('invoiceNum').textContent}`, 150, 28);
+            doc.text(`Fecha: ${document.getElementById('invoiceDate').textContent}`, 150, 33);
+            
+            // Client info
+            doc.setFontSize(12);
+            doc.setFont(undefined, 'bold');
+            doc.text('DATOS DEL CLIENTE', 20, 55);
+            
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            const clientText = document.getElementById('clientInfo').innerText;
+            const clientLines = clientText.split('\n');
+            let yPos = 62;
+            clientLines.forEach(line => {
+                doc.text(line, 20, yPos);
+                yPos += 5;
+            });
+            
+            // Items table
+            yPos += 10;
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            doc.text('Producto', 20, yPos);
+            doc.text('Cant.', 110, yPos);
+            doc.text('Precio Unit.', 130, yPos);
+            doc.text('Subtotal', 170, yPos);
+            
+            yPos += 7;
+            doc.setFont(undefined, 'normal');
+            
+            const items = invoiceData.items;
+            items.forEach(item => {
+                doc.text(item.name, 20, yPos);
+                doc.text(item.quantity.toString(), 110, yPos);
+                doc.text(`$${item.price.toLocaleString('es-AR')}`, 130, yPos);
+                doc.text(`$${(item.price * item.quantity).toLocaleString('es-AR')}`, 170, yPos);
+                yPos += 7;
+            });
+            
+            // Totals
+            yPos += 10;
+            doc.text('Subtotal:', 130, yPos);
+            doc.text(document.getElementById('subtotalAmount').textContent, 170, yPos);
+            
+            if (invoiceData.discount && invoiceData.discount.amount > 0) {
+                yPos += 7;
+                doc.text(`Descuento (${invoiceData.discount.percent}%):`, 130, yPos);
+                doc.text(document.getElementById('discountAmount').textContent, 170, yPos);
+            }
+            
+            yPos += 7;
+            doc.text('Envío:', 130, yPos);
+            doc.text(document.getElementById('shippingAmount').textContent, 170, yPos);
+            
+            yPos += 7;
+            doc.setFont(undefined, 'bold');
+            doc.setFontSize(12);
+            doc.text('TOTAL:', 130, yPos);
+            doc.text(document.getElementById('totalAmount').textContent, 170, yPos);
+            
+            // Footer
+            doc.setFontSize(8);
+            doc.setFont(undefined, 'normal');
+            doc.text('Gracias por su compra. Para consultas comuníquese a info@gronegroup.com', 105, 280, { align: 'center' });
+            
+            doc.save(`factura-${invoiceData.invoiceNumber}.pdf`);
+        }
+        
+        function printInvoice() {
+            window.print();
+        }
+        
+        async function sendEmail() {
+            const clientEmail = invoiceData.client.email;
+            
+            if (!clientEmail || !clientEmail.includes('@')) {
+                alert('❌ Email del cliente no válido');
+                return;
+            }
+
+            try {
+                // Mostrar indicador de carga
+                const emailBtn = document.querySelector('.btn-info');
+                const originalText = emailBtn.innerHTML;
+                emailBtn.innerHTML = '⏳ Enviando...';
+                emailBtn.disabled = true;
+
+                // Generar PDF como base64
+                const doc = new jspdf.jsPDF();
+                
+                // Cargar logo
+                const logo = new Image();
+                logo.src = 'images/logo.png';
+                
+                await new Promise((resolve, reject) => {
+                    logo.onload = resolve;
+                    logo.onerror = resolve; // Continuar aunque falle el logo
+                });
+
+                generatePDFContent(doc);
+                const pdfBase64 = doc.output('datauristring').split(',')[1];
+
+                // Preparar datos del template
+                const templateParams = {
+                    to_email: clientEmail,
+                    client_name: invoiceData.client.name,
+                    invoice_number: invoiceData.invoice.number,
+                    invoice_date: invoiceData.invoice.date,
+                    total: invoiceData.invoice.currency + ' ' + invoiceData.invoice.total.toFixed(2),
+                    company_name: invoiceData.company.name,
+                    pdf_attachment: pdfBase64
+                };
+
+                // Enviar email usando EmailJS
+                const response = await emailjs.send(
+                    'YOUR_SERVICE_ID',      // Reemplazar con tu Service ID
+                    'YOUR_TEMPLATE_ID',     // Reemplazar con tu Template ID
+                    templateParams
+                );
+
+                // Éxito
+                alert('✅ Factura enviada exitosamente a ' + clientEmail);
+                emailBtn.innerHTML = originalText;
+                emailBtn.disabled = false;
+
+            } catch (error) {
+                console.error('Error al enviar email:', error);
+                alert('❌ Error al enviar el email. Por favor, intente nuevamente.');
+                
+                const emailBtn = document.querySelector('.btn-info');
+                emailBtn.innerHTML = '📧 Enviar por Email';
+                emailBtn.disabled = false;
+            }
+        }
+        
+        // Cargar datos al iniciar
+        loadInvoiceData();
+    </script>
+    
+    <style media="print">
+        body {
+            background: white;
+            padding: 0;
+        }
+        
+        .container {
+            box-shadow: none;
+            border-radius: 0;
+        }
+        
+        .actions, .info-box, .subtitle {
+            display: none !important;
+        }
+    </style>
+</body>
+</html>
