@@ -92,7 +92,7 @@
             position: absolute;
             top: -8px;
             right: -8px;
-            background: #1a1a1a;
+            background: #ef4444;
             color: white;
             border-radius: 50%;
             width: 22px;
@@ -101,8 +101,11 @@
             align-items: center;
             justify-content: center;
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 700;
             border: 2px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.2s ease;
         }
         
         .hero {
@@ -919,7 +922,6 @@
     <!-- Hero eliminado -->
     
     <!-- Main Container -->
-                paymentLink: '' // Agrega aqu ed el link de pago directo generado en Mercado Pago (por ejemplo mpago.la/abcd1234)
         <!-- Categories -->
         <div class="categories" id="categories">
             <button class="category-button active" data-category="todos" onclick="filterCategory('todos')">
@@ -1458,7 +1460,10 @@
         // Actualizar contador del carrito
         function updateCartCount() {
             const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cartCount').textContent = count;
+            const badge = document.getElementById('cartCount');
+            if (!badge) return;
+            badge.textContent = count;
+            badge.style.opacity = count > 0 ? '1' : '0';
         }
         
         // Renderizar carrito
