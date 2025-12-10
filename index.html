@@ -165,32 +165,113 @@
         }
         
         .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 20px;
+        }
+        
+        .category-scroll {
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            padding-bottom: 10px;
+            position: relative;
+            /* Efecto fade en los bordes */
+            mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
+        }
+        
+        .category-scroll::-webkit-scrollbar {
+            height: 12px;
+        }
+        
+        .category-scroll::-webkit-scrollbar-track {
+            background: linear-gradient(90deg, #f8fafc, #f1f5f9);
+            border-radius: 6px;
+            margin: 0 20px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
+        }
+        
+        .category-scroll::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
+            border-radius: 6px;
+            border: 3px solid #f8fafc;
+            box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+        }
+        
+        .category-scroll::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%);
+            box-shadow: 0 3px 10px rgba(37,99,235,0.5);
         }
         
         .product-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            border: 1px solid rgba(37,99,235,0.08);
+            border-radius: 16px;
             overflow: hidden;
-            transition: all 0.2s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 2px 4px rgba(37,99,235,0.04);
+            width: 100%;
+            max-width: 280px;
+            min-width: 260px;
+            flex-shrink: 0;
+            position: relative;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-card:hover::before {
+            opacity: 1;
         }
         
         .product-card:hover {
-            border-color: #1a1a1a;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(37,99,235,0.2), 0 8px 16px rgba(0,0,0,0.1);
+            border-color: rgba(37,99,235,0.2);
         }
         
         .product-image {
             width: 100%;
-            height: 160px;
-            background: #f9f9f9;
+            height: 200px;
+            background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: transform 0.4s ease;
+            position: relative;
+        }
+        
+        .product-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(59,130,246,0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-card:hover .product-image::after {
+            opacity: 1;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.08);
         }
         
         .product-placeholder {
@@ -201,37 +282,38 @@
         }
         
         .product-info {
-            padding: 16px;
+            padding: 20px;
         }
         
         .product-category {
             font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #999;
+            letter-spacing: 1.2px;
+            color: #2563eb;
             margin-bottom: 8px;
-            font-weight: 500;
+            font-weight: 600;
         }
         
         .product-name {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 6px;
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
             color: #1a1a1a;
+            line-height: 1.3;
         }
         
         .product-description {
             font-size: 13px;
             color: #666;
-            margin-bottom: 12px;
-            line-height: 1.4;
+            margin-bottom: 14px;
+            line-height: 1.5;
         }
         
         .product-price {
             font-size: 20px;
-            font-weight: 400;
+            font-weight: 600;
             color: #1a1a1a;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             letter-spacing: -0.3px;
         }
 
@@ -253,21 +335,29 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 14px 18px;
+            padding: 18px 24px;
             cursor: pointer;
-            background: linear-gradient(90deg,#ffffff,#f7fbff);
-            border-bottom: 1px solid #e6eef8;
-            box-shadow: 0 6px 18px rgba(20,40,80,0.04);
-            border-radius: 8px;
-            margin: 12px 12px 0 12px;
-            transition: transform 160ms ease, box-shadow 160ms ease;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #e0f2fe 100%);
+            border-bottom: 2px solid #bae6fd;
+            box-shadow: 0 8px 24px rgba(14,165,233,0.08);
+            border-radius: 12px;
+            margin: 16px 12px 0 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .catalog-header h4 { margin:0;font-size:16px }
-        .catalog-header h4 { margin:0;font-size:16px; display:flex; align-items:center; gap:10px }
-        .catalog-header h4 .folder-icon { width:20px;height:20px;display:inline-block;background:linear-gradient(90deg,#ffd86b,#ffb84d);border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+        .catalog-header h4 { 
+            margin:0;
+            font-size:18px;
+            font-weight: 700;
+            color: #0c4a6e;
+            letter-spacing: -0.3px;
+        }
 
-        .catalog-header:hover{ transform: translateY(-2px); box-shadow: 0 14px 34px rgba(20,40,80,0.08); }
+        .catalog-header:hover{ 
+            transform: translateY(-4px); 
+            box-shadow: 0 16px 40px rgba(14,165,233,0.16);
+            border-bottom-color: #0ea5e9;
+        }
 
         .inline-toggle { background: none; border: 1px solid #e0e6ef; padding:6px 8px; border-radius:6px; cursor:pointer; color:#1a1a1a }
         .inline-toggle:hover{ background:#f1f7ff }
@@ -303,15 +393,86 @@
             color: #333;
         }
 
-        /* Grid / miniaturas */
-        .catalog-section.view-grid .catalog-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap: 12px; }
-        .catalog-section.view-grid .catalog-item { display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px;border-bottom:none }
-        .catalog-section.view-grid .catalog-thumb{width:100%;height:100px;border-radius:6px;overflow:hidden}
+        /* Grid / miniaturas - Vista horizontal */
+        .catalog-section.view-grid .catalog-list { 
+            display: flex; 
+            flex-direction: row;
+            gap: 20px; 
+            padding: 20px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+        }
+        .catalog-section.view-grid .catalog-list::-webkit-scrollbar {
+            height: 8px;
+        }
+        .catalog-section.view-grid .catalog-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .catalog-section.view-grid .catalog-list::-webkit-scrollbar-thumb {
+            background: #2563eb;
+            border-radius: 4px;
+        }
+        .catalog-section.view-grid .catalog-list::-webkit-scrollbar-thumb:hover {
+            background: #1d4ed8;
+        }
+        .catalog-section.view-grid .catalog-item { 
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            text-align:center;
+            padding:16px;
+            border-bottom:none;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            min-width: 200px;
+            flex-shrink: 0;
+        }
+        .catalog-section.view-grid .catalog-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+            border-color: rgba(26,26,26,0.1);
+        }
+        .catalog-section.view-grid .catalog-thumb{
+            width:100%;
+            height:140px;
+            border-radius:10px;
+            overflow:hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            background: linear-gradient(135deg, #f0f0f0, #e8e8e8);
+        }
+        .catalog-section.view-grid .catalog-item:hover .catalog-thumb{
+            transform: scale(1.05);
+        }
         .catalog-section.view-grid .catalog-thumb img{width:100%;height:100%;object-fit:cover}
-        .catalog-section.view-grid .catalog-item .info{padding-top:8px}
-        .catalog-section.view-grid .catalog-item .info .name{font-size:13px}
-        .catalog-section.view-grid .catalog-item .info .price{font-size:12px;color:#666}
-        .catalog-section.view-grid .catalog-item .actions{margin-left:0;margin-top:8px;display:flex;flex-direction:row;justify-content:center}
+        .catalog-section.view-grid .catalog-item .info{padding-top:12px; width:100%}
+        .catalog-section.view-grid .catalog-item .info .name{
+            font-size:14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        .catalog-section.view-grid .catalog-item .info .price{
+            font-size:15px;
+            color:#2563eb;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+        .catalog-section.view-grid .catalog-item .actions{
+            margin-left:0;
+            margin-top:12px;
+            display:flex;
+            flex-direction:column;
+            gap:8px;
+            width:100%;
+        }
 
         /* Cover (preview) for each category - larger framed thumbnails */
         .catalog-cover { padding: 16px; display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-start }
@@ -362,18 +523,55 @@
         .add-to-cart {
             width: 100%;
             padding: 12px;
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            font-size: 12px;
         }
         
         .add-to-cart:hover {
-            background: #333;
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            box-shadow: 0 6px 20px rgba(37,99,235,0.4);
+            transform: translateY(-2px);
+        }
+        
+        .add-to-cart:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(37,99,235,0.3);
+        }
+        
+        .payment-link-btn {
+            padding: 12px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(16,185,129,0.3);
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        
+        .payment-link-btn:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            box-shadow: 0 6px 20px rgba(16,185,129,0.4);
+            transform: translateY(-2px);
+        }
+        
+        .payment-link-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(16,185,129,0.3);
         }
         
         .cart-modal {
@@ -623,6 +821,32 @@
         /* Make add buttons inline with qty inputs in cards and catalog list */
         .product-card .add-to-cart, .catalog-item .add-to-cart { width: auto; padding: 10px 14px; }
         .catalog-item .product-qty, .product-card .product-qty { width: 76px; }
+        /* Botones más llamativos en grid */
+        .catalog-section.view-grid .catalog-item .add-to-cart {
+            width: 100%;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 10px rgba(37,99,235,0.3);
+            transition: all 0.3s ease;
+        }
+        .catalog-section.view-grid .catalog-item .add-to-cart:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            box-shadow: 0 6px 16px rgba(37,99,235,0.4);
+            transform: translateY(-2px);
+        }
+        .catalog-section.view-grid .catalog-item .product-qty {
+            width: 100%;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 600;
+            border: 2px solid #e5e7eb;
+            transition: border-color 0.2s;
+        }
+        .catalog-section.view-grid .catalog-item .product-qty:focus {
+            border-color: #2563eb;
+            outline: none;
+        }
         /* Full-tab close button styling override to ensure visibility */
         .catalog-section.full-tab .catalog-close-btn { position: absolute; right: 18px; left: auto; top: 12px; background: rgba(0,0,0,0.6); color: #fff; font-size: 22px; width:40px; height:40px; border-radius:6px; border:none; z-index:1002; cursor:pointer }
         
@@ -695,7 +919,7 @@
     <!-- Hero eliminado -->
     
     <!-- Main Container -->
-    <div class="container">
+                paymentLink: '' // Agrega aqu ed el link de pago directo generado en Mercado Pago (por ejemplo mpago.la/abcd1234)
         <!-- Categories -->
         <div class="categories" id="categories">
             <button class="category-button active" data-category="todos" onclick="filterCategory('todos')">
@@ -818,7 +1042,16 @@
                 description: 'HIKVISION TURBO HD MINI BULLET 1080P, LENTE 2,8MM, IR 20MTS',
                 price: 45000,
                 category: 'camaras',
-                image: 'images/CAMARA 1080P.jpg'
+                image: 'images/CAMARA 1080P.jpg',
+                paymentLink: '' // Agregar link de Mercado Pago, PayPal, etc.
+            },
+            {
+                id: 10,
+                name: '🧪 Producto de Prueba',
+                description: 'Producto de prueba para testear el sistema completo: carrito, checkout, factura y email. Precio simbólico de $1 ARS.',
+                price: 1,
+                category: 'electronica',
+                paymentLink: 'https://mpago.la/2LCJeQf' // Link de ejemplo
             }
         ];
         
@@ -828,8 +1061,76 @@
         // Renderizar productos
         function renderProducts() {
             const productsContainer = document.getElementById('products');
-            if(currentCategory === 'todos'){
-                renderCatalogView(productsContainer);
+            
+            if(currentCategory === 'todos') {
+                // Agrupar productos por categoría
+                const groups = {};
+                products.forEach(p => {
+                    if(!groups[p.category]) groups[p.category] = [];
+                    groups[p.category].push(p);
+                });
+                
+                // Renderizar cada categoría como sección horizontal
+                productsContainer.innerHTML = Object.keys(groups).map(cat => {
+                    const items = groups[cat];
+                    return `
+                        <div style="margin-bottom: 56px; position: relative;">
+                            <div style="margin-bottom: 20px; padding: 16px 0; border-bottom: 2px solid rgba(37,99,235,0.1);">
+                                <h2 style="font-size: 32px; font-weight: 800; background: linear-gradient(135deg, #0c4a6e 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; letter-spacing: -0.8px; text-transform: uppercase;">${getCategoryName(cat)}</h2>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 40px; height: 3px; background: linear-gradient(90deg, #2563eb, transparent); border-radius: 2px;"></div>
+                                    <p style="color: #64748b; font-size: 14px; font-weight: 500;">${items.length} producto${items.length !== 1 ? 's' : ''} disponible${items.length !== 1 ? 's' : ''}</p>
+                                </div>
+                            </div>
+                            <div class="category-scroll">
+                                ${items.map(product => {
+                                    const priceARS = product.price;
+                                    const priceUSD = priceARS / exchangeRate;
+                                    const primaryPrice = (displayCurrency === 'USD')
+                                        ? `$${formatUSD(priceUSD)} USD`
+                                        : `$${formatARS(priceARS)} ARS`;
+                                    const secondaryPrice = (displayCurrency === 'USD')
+                                        ? `$${formatARS(priceARS)} ARS`
+                                        : `$${formatUSD(priceUSD)} USD`;
+                                    
+                                    return `
+                                        <div class="product-card">
+                                            <div class="product-image" onclick="openProductModal(${product.id})" style="cursor:pointer;">
+                                                ${product.image 
+                                                    ? `<img src="${product.image}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;">` 
+                                                    : `<div class="product-placeholder"></div>`
+                                                }
+                                            </div>
+                                            <div class="product-info">
+                                                <div class="product-category">${getCategoryName(product.category)}</div>
+                                                <div class="product-name" onclick="openProductModal(${product.id})" style="cursor:pointer;">${product.name}</div>
+                                                <div class="product-description">${product.description}</div>
+                                                <div class="product-price">${primaryPrice}
+                                                    <div style="font-size:14px;color:#666;margin-top:6px;">${secondaryPrice}</div>
+                                                </div>
+                                                <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+                                                    <div style="display:flex;gap:8px;align-items:center;">
+                                                        <input id="qty-${product.id}" class="product-qty" type="number" min="1" value="1" style="width:76px">
+                                                        <button class="add-to-cart" onclick="addToCartFromCard(${product.id})">
+                                                            Agregar al carrito
+                                                        </button>
+                                                    </div>
+                                                    ${product.paymentLink ? `
+                                                        <a href="${product.paymentLink}" target="_blank" style="text-decoration:none;width:100%;">
+                                                            <button class="payment-link-btn" style="width:100%;">
+                                                                💳 Pagar Ahora
+                                                            </button>
+                                                        </a>
+                                                    ` : ''}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
                 return;
             }
 
@@ -860,11 +1161,20 @@
                         <div class="product-price">${primaryPrice}
                             <div style="font-size:14px;color:#666;margin-top:6px;">${secondaryPrice}</div>
                         </div>
-                        <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
-                            <input id="qty-${product.id}" class="product-qty" type="number" min="1" value="1" style="width:76px">
-                            <button class="add-to-cart" onclick="addToCartFromCard(${product.id})">
-                                Agregar al carrito
-                            </button>
+                        <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+                            <div style="display:flex;gap:8px;align-items:center;">
+                                <input id="qty-${product.id}" class="product-qty" type="number" min="1" value="1" style="width:76px">
+                                <button class="add-to-cart" onclick="addToCartFromCard(${product.id})">
+                                    Agregar al carrito
+                                </button>
+                            </div>
+                            ${product.paymentLink ? `
+                                <a href="${product.paymentLink}" target="_blank" style="text-decoration:none;width:100%;">
+                                    <button class="payment-link-btn" style="width:100%;">
+                                        💳 Pagar Ahora
+                                    </button>
+                                </a>
+                            ` : ''}
                         </div>
                     </div>
                 </div>
@@ -901,7 +1211,7 @@
                 return `
                 <div class="catalog-section view-grid" id="catalog-section-${cat}">
                     <div class="catalog-header" onclick="openSection('${cat}')">
-                        <h4>${getCategoryName(cat)} (${items.length}) <span class="folder-icon" aria-hidden></span></h4>
+                        <h4>${getCategoryName(cat)} (${items.length})</h4>
                     </div>
                         <div class="catalog-cover">
                             <div class="carousel" id="carousel-${cat}">
@@ -919,7 +1229,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="catalog-list" id="catalog-${cat}">
+                        <div class="catalog-list open" id="catalog-${cat}">
                         ${items.map(item => `
                             <div class="catalog-item">
                                 <div class="catalog-thumb">${item.image ? `<img src="${item.image}" alt="${item.name}">` : ''}</div>
@@ -942,21 +1252,7 @@
         }
 
         function toggleCatalogGroup(cat){
-            const el = document.getElementById(`catalog-${cat}`);
-            if(!el) return;
-            el.classList.toggle('open');
-        }
-
-        function toggleCatalogView(cat){
-            const section = document.getElementById(`catalog-section-${cat}`);
-            const btn = document.getElementById(`viewToggle-${cat}`);
-            if(!section) return;
-            section.classList.toggle('view-grid');
-            if(section.classList.contains('view-grid')){
-                if(btn) btn.textContent = 'Ver lista';
-            } else {
-                if(btn) btn.textContent = 'Ver miniaturas';
-            }
+            // Eliminada: siempre mostrar en modo grid/miniatura
         }
 
         // Carousel controls per category
@@ -1361,6 +1657,47 @@
             
             const whatsappUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
+            
+            // Generar factura
+            setTimeout(() => {
+                generateInvoice({
+                    nombre, dni, direccion, localidad, provincia, email, telefono,
+                    items: cart,
+                    subtotal: subtotalARS,
+                    discount: appliedDiscountPercent ? { code: appliedDiscountCode, percent: appliedDiscountPercent, amount: discountAmountARS } : null,
+                    shipping: CONFIG.shippingCost,
+                    total: total
+                });
+            }, 1000);
+        }
+        
+        function generateInvoice(data) {
+            const invoiceNumber = `0001-${String(Date.now()).slice(-8)}`;
+            const invoiceData = {
+                invoiceNumber: invoiceNumber,
+                date: new Date().toLocaleDateString('es-AR'),
+                client: {
+                    name: data.nombre,
+                    dni: data.dni,
+                    address: `${data.direccion}, ${data.localidad}, ${data.provincia}`,
+                    email: data.email,
+                    phone: data.telefono
+                },
+                items: data.items.map(item => ({
+                    name: item.name,
+                    quantity: item.quantity,
+                    price: item.price
+                })),
+                subtotal: data.subtotal,
+                discount: data.discount,
+                shipping: data.shipping,
+                total: data.total
+            };
+            
+            const url = `invoice-generator.html?data=${encodeURIComponent(JSON.stringify(invoiceData))}`;
+            window.open(url, '_blank');
+            
+            alert('✅ Pedido enviado correctamente!\n\n📄 Se abrirá una nueva ventana con tu factura.\nPodés descargarla en PDF o imprimirla.');
         }
         
         // Toggle carrito
