@@ -2752,19 +2752,20 @@
                 const subcategories = Object.keys(subcategoryMap).sort();
                 
                 productsContainer.innerHTML = `
-                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:36px;max-width:1150px;margin:100px auto;padding:0 20px;">
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1200px;margin:120px auto;padding:0 40px;">
                         ${subcategories.map(sub => `
                             <div onclick="selectSubcategory('${sub}')" style="
                                 background:white;
-                                border:2px solid #e0e0e0;
-                                border-radius:16px;
-                                padding:56px 36px;
+                                border:3px solid #e0e0e0;
+                                border-radius:20px;
+                                padding:64px 40px;
                                 cursor:pointer;
                                 transition:all 0.3s;
                                 text-align:center;
-                            " onmouseover="this.style.borderColor='#FF6B6B';this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,0.15)';" onmouseout="this.style.borderColor='#e0e0e0';this.style.transform='translateY(0)';this.style.boxShadow='none';">
-                                <div style="font-size:22px;font-weight:700;color:#1a1a1a;margin-bottom:16px;line-height:1.4;">${sub}</div>
-                                <div style="color:#999;font-size:16px;">${subcategoryMap[sub]} producto${subcategoryMap[sub] !== 1 ? 's' : ''}</div>
+                                box-shadow:0 4px 12px rgba(0,0,0,0.08);
+                            " onmouseover="this.style.borderColor='#25D366';this.style.transform='translateY(-8px)';this.style.boxShadow='0 16px 40px rgba(37,211,102,0.25)';" onmouseout="this.style.borderColor='#e0e0e0';this.style.transform='translateY(0)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)';">
+                                <div style="font-size:24px;font-weight:700;color:#1a1a1a;margin-bottom:18px;line-height:1.4;">${sub}</div>
+                                <div style="color:#999;font-size:17px;">${subcategoryMap[sub]} producto${subcategoryMap[sub] !== 1 ? 's' : ''}</div>
                             </div>
                         `).join('')}
                     </div>
