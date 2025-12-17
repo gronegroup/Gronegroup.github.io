@@ -3396,52 +3396,17 @@
                         <label>Email</label>
                         <input type="email" id="email" required>
                     </div>
-                    <div class="form-group">
-                        <label>Método de Pago</label>
-                        <select id="paymentMethod" style="width:100%;padding:12px;border:1px solid #e0e0e0;border-radius:4px;font-size:15px;">
-                            <option value="mercadopago">💳 Pagar con Mercado Pago (Recomendado)</option>
-                            <option value="whatsapp">💬 Solicitar presupuesto por WhatsApp</option>
-                        </select>
-                    </div>
                     <button type="submit" class="whatsapp-button" id="checkoutButton">
-                        💳 Pagar con Mercado Pago
+                        💬 Enviar pedido por WhatsApp
                     </button>
                 </form>
             `;
         }
         
-        // Cambiar texto del botón según método de pago
-        function updateCheckoutButton() {
-            const paymentMethod = document.getElementById('paymentMethod');
-            const checkoutButton = document.getElementById('checkoutButton');
-            if(paymentMethod && checkoutButton) {
-                if(paymentMethod.value === 'mercadopago') {
-                    checkoutButton.innerHTML = '💳 Pagar con Mercado Pago';
-                    checkoutButton.style.background = '#009ee3';
-                } else {
-                    checkoutButton.innerHTML = '💬 Enviar pedido por WhatsApp';
-                    checkoutButton.style.background = '#1a1a1a';
-                }
-            }
-        }
-
-        // Agregar listener para cambio de método de pago
-        document.addEventListener('change', (e) => {
-            if(e.target && e.target.id === 'paymentMethod') {
-                updateCheckoutButton();
-            }
-        });
-
-        // Procesar checkout según método elegido
+        // Procesar checkout
         function processCheckout(event) {
             event.preventDefault();
-            const paymentMethod = document.getElementById('paymentMethod').value;
-            
-            if(paymentMethod === 'mercadopago') {
-                createMercadoPagoPayment();
-            } else {
-                sendToWhatsApp();
-            }
+            sendToWhatsApp();
         }
 
         // Crear pago con Mercado Pago usando Vercel
