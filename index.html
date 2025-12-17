@@ -2752,7 +2752,7 @@
                 const subcategories = Object.keys(subcategoryMap).sort();
                 
                 productsContainer.innerHTML = `
-                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1200px;margin:120px auto;padding:0 40px;">
+                    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1400px;margin:80px auto;padding:0 40px;">
                         ${subcategories.map(sub => `
                             <div onclick="selectSubcategory('${sub}')" style="
                                 background:white;
