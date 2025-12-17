@@ -2810,20 +2810,23 @@
                 resultsCount.innerHTML = `
                     <div style="display:flex;align-items:center;gap:12px;">
                         <button onclick="selectSubcategory('')" style="
-                            padding:8px 16px;
-                            background:#f5f5f5;
-                            border:1px solid #e0e0e0;
-                            border-radius:6px;
+                            padding:10px 20px;
+                            background:#1a1a1a;
+                            color:white;
+                            border:none;
+                            border-radius:8px;
                             cursor:pointer;
-                            font-size:14px;
+                            font-size:15px;
+                            font-weight:600;
                             display:flex;
                             align-items:center;
-                            gap:6px;
-                            transition:all 0.2s;
-                        " onmouseover="this.style.background='#e8e8e8'" onmouseout="this.style.background='#f5f5f5'">
-                            ← Volver a categorías
+                            gap:8px;
+                            transition:all 0.3s;
+                            box-shadow:0 2px 8px rgba(0,0,0,0.15);
+                        " onmouseover="this.style.background='#333';this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.25)'" onmouseout="this.style.background='#1a1a1a';this.style.transform='translateY(0)';this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'">
+                            ← Volver Atrás
                         </button>
-                        <span>${currentSubcategory} (${filteredProducts.length} producto${filteredProducts.length !== 1 ? 's' : ''})</span>
+                        <span style="font-weight:600;color:#1a1a1a;">${currentSubcategory} <span style="color:#666;font-weight:400;">(${filteredProducts.length} producto${filteredProducts.length !== 1 ? 's' : ''})</span></span>
                     </div>
                 `;
             } else {
