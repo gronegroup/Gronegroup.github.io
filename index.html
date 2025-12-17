@@ -2703,6 +2703,19 @@
 
         function selectSubcategory(subcat) {
             currentSubcategory = subcat;
+            
+            // Agregar al historial del navegador
+            if(subcat) {
+                const state = { category: currentCategory, subcategory: subcat };
+                const url = `#${currentCategory}/${encodeURIComponent(subcat)}`;
+                history.pushState(state, '', url);
+            } else {
+                // Volver a categorías sin subcategoría
+                const state = { category: currentCategory, subcategory: '' };
+                const url = `#${currentCategory}`;
+                history.pushState(state, '', url);
+            }
+            
             renderProducts();
         }
         
@@ -3257,6 +3270,12 @@
         function filterCategory(category) {
             currentCategory = category;
             currentSubcategory = ''; // Resetear subcategoría al cambiar de categoría
+            
+            // Agregar al historial del navegador
+            const state = { category: category, subcategory: '' };
+            const url = `#${category}`;
+            history.pushState(state, '', url);
+            
             renderCategories();
             renderProducts();
         }
@@ -3631,11 +3650,30 @@
             }
         }
 
+        // Manejar el botón atrás del navegador
+        window.addEventListener('popstate', (event) => {
+            if(event.state) {
+                currentCategory = event.state.category || 'camaras';
+                currentSubcategory = event.state.subcategory || '';
+                renderCategories();
+                renderProducts();
+            } else {
+                // Si no hay estado, volver a la página inicial
+                currentCategory = 'camaras';
+                currentSubcategory = '';
+                renderCategories();
+                renderProducts();
+            }
+        });
+
         // Inicializar
         renderCategories();
         updateCurrencyUI();
         updateCartCount();
         checkPaymentStatus();
+        
+        // Establecer estado inicial del historial
+        history.replaceState({ category: 'camaras', subcategory: '' }, '', '#camaras');
     </script>
 
     <!-- Footer - Nosotros -->
