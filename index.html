@@ -1071,6 +1071,11 @@
             opacity: 1;
             transform: translateX(-4px) scale(1.05);
         }
+
+        /* Footer styles */
+        footer a:hover {
+            opacity: 0.8;
+        }
         
         @media (max-width: 768px) {
             .header {
@@ -2656,7 +2661,7 @@
         const catalogSortOrder = {};
         
         let cart = [];
-        let currentCategory = 'celulares';
+        let currentCategory = 'camaras';
         let searchQuery = '';
         let globalSortOrder = '';
         let currentSubcategory = '';
@@ -2667,8 +2672,7 @@
             'camaras': '📹',
             'computacion': '💻',
             'electronica': '🔌',
-            'todos': '🛍️',
-            'nosotros': 'ℹ️'
+            'todos': '🛍️'
         };
         
         // Renderizar categorías modernas
@@ -2684,8 +2688,7 @@
                 {id: 'camaras', name: 'Seguridad', count: groups['camaras'] || 0},
                 {id: 'celulares', name: 'Celulares', count: groups['celulares'] || 0},
                 {id: 'computacion', name: 'Computación', count: groups['computacion'] || 0},
-                {id: 'electronica', name: 'Electrónica', count: groups['electronica'] || 0},
-                {id: 'nosotros', name: 'Nosotros', count: 0}
+                {id: 'electronica', name: 'Electrónica', count: groups['electronica'] || 0}
             ];
 
             container.innerHTML = cats.map(cat => `
@@ -2717,12 +2720,6 @@
             const productsContainer = document.getElementById('products');
             const filterBar = document.getElementById('filterBar');
             const resultsCount = document.getElementById('resultsCount');
-
-            if(currentCategory === 'nosotros'){
-                filterBar.style.display = 'none';
-                renderNosotros(productsContainer);
-                return;
-            }
 
             // Mostrar mensaje de "Próximamente" para categorías deshabilitadas
             if(['celulares', 'computacion', 'electronica'].includes(currentCategory)) {
@@ -3211,12 +3208,7 @@
             currentCategory = category;
             currentSubcategory = ''; // Resetear subcategoría al cambiar de categoría
             renderCategories();
-            const productsContainer = document.getElementById('products');
-            if(category === 'nosotros'){
-                renderNosotros(productsContainer);
-            } else {
-                renderProducts();
-            }
+            renderProducts();
         }
         
         // Función changeCategory para compatibilidad
@@ -3630,6 +3622,68 @@
         updateCartCount();
         checkPaymentStatus();
     </script>
+
+    <!-- Footer - Nosotros -->
+    <footer style="background:#1a1a1a;color:white;margin-top:80px;">
+        <div style="max-width:1200px;margin:0 auto;padding:60px 20px;">
+            <!-- Header -->
+            <div style="text-align:center;margin-bottom:50px;">
+                <h2 style="font-size:36px;font-weight:700;margin-bottom:12px;letter-spacing:-0.5px;">GroneGroup</h2>
+                <p style="font-size:18px;opacity:0.8;font-weight:300;">Tecnología de Calidad con Garantía</p>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;margin-bottom:50px;">
+                <!-- Quiénes Somos -->
+                <div>
+                    <h3 style="font-size:20px;font-weight:600;margin-bottom:16px;color:#FF6B6B;">Quiénes Somos</h3>
+                    <p style="color:#ccc;line-height:1.7;font-size:14px;">
+                        Empresa especializada en equipos electrónicos y soluciones tecnológicas de alta calidad. Referente confiable en sistemas de seguridad y videovigilancia con garantía oficial.
+                    </p>
+                </div>
+
+                <!-- Especialidad -->
+                <div>
+                    <h3 style="font-size:20px;font-weight:600;margin-bottom:16px;color:#FF6B6B;">Nuestra Especialidad</h3>
+                    <ul style="color:#ccc;line-height:1.9;font-size:14px;list-style:none;padding:0;">
+                        <li>✓ Cámaras IP, Analógicas y PTZ</li>
+                        <li>✓ Grabadores DVR/NVR HIKVISION</li>
+                        <li>✓ Discos Duros Seagate SkyHawk</li>
+                        <li>✓ Sistemas completos de vigilancia</li>
+                    </ul>
+                </div>
+
+                <!-- Contacto -->
+                <div>
+                    <h3 style="font-size:20px;font-weight:600;margin-bottom:16px;color:#FF6B6B;">Contacto</h3>
+                    <div style="color:#ccc;line-height:2;font-size:14px;">
+                        <p style="margin-bottom:12px;">
+                            <strong>WhatsApp:</strong><br>
+                            <a href="https://wa.me/543794009856" style="color:#25D366;text-decoration:none;">+54 379 400-9856</a>
+                        </p>
+                        <p style="margin-bottom:12px;">
+                            <strong>Email:</strong><br>
+                            <a href="mailto:gronegroup@gmail.com" style="color:#FF6B6B;text-decoration:none;">gronegroup@gmail.com</a>
+                        </p>
+                    </div>
+                    <div style="display:flex;gap:12px;margin-top:20px;">
+                        <a href="https://wa.me/543794009856" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:50px;height:50px;background:#25D366;border-radius:50%;color:white;text-decoration:none;font-size:24px;transition:transform 0.3s;">
+                            <span>💬</span>
+                        </a>
+                        <a href="mailto:gronegroup@gmail.com" style="display:inline-flex;align-items:center;justify-content:center;width:50px;height:50px;background:#FF6B6B;border-radius:50%;color:white;text-decoration:none;font-size:24px;transition:transform 0.3s;">
+                            <span>✉</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div style="border-top:1px solid #333;padding-top:30px;text-align:center;">
+                <p style="color:#999;font-size:14px;margin:0;">
+                    © 2025 GroneGroup. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/543794009856" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
