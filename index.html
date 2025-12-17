@@ -2951,9 +2951,78 @@
         // Render 'Nosotros' section
         function renderNosotros(container){
             container.innerHTML = `
-                <div style="background:#fff;border:1px solid #e0e0e0;padding:24px;border-radius:6px;">
-                    <h2>Nosotros</h2>
-                    <p style="color:#555;line-height:1.6">Somos una empresa dedicada a la venta de productos electrónicos con garantía. Nos enfocamos en ofrecer equipos de calidad, soporte postventa y asesoramiento técnico. Nuestro catálogo incluye soluciones para el hogar y empresas, desde dispositivos móviles y accesorios hasta equipos de seguridad y componentes de computación. Trabajamos con marcas reconocidas y brindamos garantía en todos nuestros productos para que compres con confianza.</p>
+                <div style="max-width:1000px;margin:0 auto;">
+                    <!-- Header Section -->
+                    <div style="background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 100%);color:white;padding:60px 40px;border-radius:12px;margin-bottom:40px;text-align:center;">
+                        <h1 style="font-size:42px;font-weight:700;margin-bottom:16px;letter-spacing:-0.5px;">GroneGroup</h1>
+                        <p style="font-size:20px;opacity:0.9;font-weight:300;">Tecnología de Calidad con Garantía</p>
+                    </div>
+
+                    <!-- Quiénes Somos -->
+                    <div style="background:#fff;border:1px solid #e0e0e0;padding:40px;border-radius:12px;margin-bottom:32px;">
+                        <h2 style="font-size:28px;font-weight:600;margin-bottom:24px;color:#1a1a1a;border-bottom:3px solid #FF6B6B;display:inline-block;padding-bottom:8px;">Quiénes Somos</h2>
+                        <p style="color:#555;line-height:1.8;font-size:16px;margin-bottom:16px;">
+                            Somos una empresa especializada en la comercialización de equipos electrónicos y soluciones tecnológicas de alta calidad. Con años de experiencia en el sector, nos hemos consolidado como un referente confiable en el mercado.
+                        </p>
+                        <p style="color:#555;line-height:1.8;font-size:16px;">
+                            Nuestro compromiso es ofrecer productos de marcas reconocidas internacionalmente, respaldados por garantía oficial y un servicio de atención personalizada que acompaña a nuestros clientes en cada etapa de su compra.
+                        </p>
+                    </div>
+
+                    <!-- Nuestra Especialidad -->
+                    <div style="background:#fff;border:1px solid #e0e0e0;padding:40px;border-radius:12px;margin-bottom:32px;">
+                        <h2 style="font-size:28px;font-weight:600;margin-bottom:24px;color:#1a1a1a;border-bottom:3px solid #FF6B6B;display:inline-block;padding-bottom:8px;">Nuestra Especialidad</h2>
+                        <p style="color:#555;line-height:1.8;font-size:16px;margin-bottom:24px;">
+                            Nos especializamos en <strong>sistemas de seguridad y videovigilancia</strong>, ofreciendo soluciones integrales para hogares, comercios e industrias. Nuestro catálogo incluye:
+                        </p>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:24px;">
+                            <div style="padding:24px;background:#f8f8f8;border-radius:8px;border-left:4px solid #FF6B6B;">
+                                <h3 style="font-size:18px;font-weight:600;margin-bottom:12px;color:#1a1a1a;">Cámaras de Seguridad</h3>
+                                <p style="color:#666;font-size:15px;line-height:1.6;">IP, analógicas, PTZ y especializadas con tecnología ColorVu y Acusense</p>
+                            </div>
+                            <div style="padding:24px;background:#f8f8f8;border-radius:8px;border-left:4px solid #FF6B6B;">
+                                <h3 style="font-size:18px;font-weight:600;margin-bottom:12px;color:#1a1a1a;">Grabadores DVR/NVR</h3>
+                                <p style="color:#666;font-size:15px;line-height:1.6;">Equipos HIKVISION desde 4 hasta 64 canales para sistemas profesionales</p>
+                            </div>
+                            <div style="padding:24px;background:#f8f8f8;border-radius:8px;border-left:4px solid #FF6B6B;">
+                                <h3 style="font-size:18px;font-weight:600;margin-bottom:12px;color:#1a1a1a;">Almacenamiento</h3>
+                                <p style="color:#666;font-size:15px;line-height:1.6;">Discos duros especializados Seagate SkyHawk para videovigilancia 24/7</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nuestros Valores -->
+                    <div style="background:#fff;border:1px solid #e0e0e0;padding:40px;border-radius:12px;margin-bottom:32px;">
+                        <h2 style="font-size:28px;font-weight:600;margin-bottom:24px;color:#1a1a1a;border-bottom:3px solid #FF6B6B;display:inline-block;padding-bottom:8px;">Nuestros Valores</h2>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-top:24px;">
+                            <div style="text-align:center;">
+                                <div style="width:80px;height:80px;background:#FF6B6B;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:36px;color:white;">✓</div>
+                                <h3 style="font-size:18px;font-weight:600;margin-bottom:8px;color:#1a1a1a;">Calidad Garantizada</h3>
+                                <p style="color:#666;font-size:14px;line-height:1.6;">Todos nuestros productos cuentan con garantía oficial</p>
+                            </div>
+                            <div style="text-align:center;">
+                                <div style="width:80px;height:80px;background:#FF6B6B;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:36px;color:white;">★</div>
+                                <h3 style="font-size:18px;font-weight:600;margin-bottom:8px;color:#1a1a1a;">Atención Profesional</h3>
+                                <p style="color:#666;font-size:14px;line-height:1.6;">Asesoramiento técnico personalizado</p>
+                            </div>
+                            <div style="text-align:center;">
+                                <div style="width:80px;height:80px;background:#FF6B6B;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:36px;color:white;">▲</div>
+                                <h3 style="font-size:18px;font-weight:600;margin-bottom:8px;color:#1a1a1a;">Soporte Postventa</h3>
+                                <p style="color:#666;font-size:14px;line-height:1.6;">Acompañamiento continuo después de la compra</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contacto -->
+                    <div style="background:linear-gradient(135deg,#f8f8f8 0%,#e8e8e8 100%);padding:40px;border-radius:12px;text-align:center;">
+                        <h2 style="font-size:28px;font-weight:600;margin-bottom:16px;color:#1a1a1a;">¿Necesitás Asesoramiento?</h2>
+                        <p style="color:#666;font-size:16px;margin-bottom:24px;line-height:1.6;">
+                            Nuestro equipo está disponible para ayudarte a encontrar la solución perfecta para tus necesidades
+                        </p>
+                        <a href="https://wa.me/543794009856" target="_blank" style="display:inline-block;background:#25D366;color:white;padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:600;font-size:16px;transition:all 0.3s;">
+                            Contactar por WhatsApp
+                        </a>
+                    </div>
                 </div>
             `;
         }
