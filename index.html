@@ -2752,42 +2752,23 @@
                 const subcategories = Object.keys(subcategoryMap).sort();
                 
                 productsContainer.innerHTML = `
-                    <div style="margin-bottom:24px;">
+                    <div style="margin-bottom:32px;">
                         <h2 style="font-size:28px;font-weight:600;color:#1a1a1a;margin-bottom:8px;">Equipos de Seguridad</h2>
                         <p style="color:#666;font-size:16px;">Selecciona una categoría para ver los productos</p>
                     </div>
-                    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;">
+                    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;">
                         ${subcategories.map(sub => `
                             <div onclick="selectSubcategory('${sub}')" style="
                                 background:white;
                                 border:2px solid #e0e0e0;
                                 border-radius:12px;
-                                padding:32px 24px;
+                                padding:24px 20px;
                                 cursor:pointer;
                                 transition:all 0.3s;
-                                text-align:center;
-                                display:flex;
-                                flex-direction:column;
-                                align-items:center;
-                                gap:16px;
+                                text-align:left;
                             " onmouseover="this.style.borderColor='#FF6B6B';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.12)';" onmouseout="this.style.borderColor='#e0e0e0';this.style.transform='translateY(0)';this.style.boxShadow='none';">
-                                <div style="
-                                    width:80px;
-                                    height:80px;
-                                    background:linear-gradient(135deg, #FF6B6B 0%, #FF5252 100%);
-                                    border-radius:16px;
-                                    display:flex;
-                                    align-items:center;
-                                    justify-content:center;
-                                    font-size:40px;
-                                    box-shadow:0 4px 12px rgba(255,107,107,0.3);
-                                ">
-                                    📁
-                                </div>
-                                <div>
-                                    <div style="font-size:18px;font-weight:600;color:#1a1a1a;margin-bottom:8px;">${sub}</div>
-                                    <div style="color:#666;font-size:14px;">${subcategoryMap[sub]} producto${subcategoryMap[sub] !== 1 ? 's' : ''}</div>
-                                </div>
+                                <div style="font-size:18px;font-weight:600;color:#1a1a1a;margin-bottom:8px;">${sub}</div>
+                                <div style="color:#666;font-size:14px;">${subcategoryMap[sub]} producto${subcategoryMap[sub] !== 1 ? 's' : ''}</div>
                             </div>
                         `).join('')}
                     </div>
