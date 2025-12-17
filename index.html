@@ -2809,7 +2809,7 @@
             if(currentSubcategory) {
                 resultsCount.innerHTML = `
                     <div style="display:flex;align-items:center;gap:12px;">
-                        <button onclick="selectSubcategory('')" style="
+                        <button type="button" onclick="event.preventDefault(); event.stopPropagation(); selectSubcategory(''); return false;" style="
                             padding:10px 20px;
                             background:#1a1a1a;
                             color:white;
