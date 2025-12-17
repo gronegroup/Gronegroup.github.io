@@ -1208,9 +1208,8 @@
         const CONFIG = {
             whatsappNumber: '543794009856', // TU NÚMERO DE WHATSAPP (con código de país)
             shippingCost: 20000,
-            // Mercado Pago - Obtén tu access token en: https://www.mercadopago.com.ar/developers/panel
-            mercadoPagoAccessToken: 'TU_ACCESS_TOKEN_AQUI', // Reemplaza con tu token real
-            mercadoPagoPublicKey: 'TU_PUBLIC_KEY_AQUI' // Reemplaza con tu public key
+            // URL del backend en Vercel - Actualizar después del deploy
+            vercelApiUrl: 'https://TU-PROYECTO.vercel.app/api/create-payment'
         };
         // Códigos de descuento disponibles (clave: porcentaje)
         CONFIG.discountCodes = {
@@ -2959,11 +2958,11 @@
             }
         }
 
-        // Crear pago con Mercado Pago
+        // Crear pago con Mercado Pago usando Vercel
         async function createMercadoPagoPayment() {
-            // Validar que el token esté configurado
-            if(CONFIG.mercadoPagoAccessToken === 'TU_ACCESS_TOKEN_AQUI') {
-                alert('⚠️ Mercado Pago no está configurado.\n\nPara habilitar pagos automáticos:\n1. Creá una cuenta en https://www.mercadopago.com.ar\n2. Obtené tu Access Token en el Panel de Desarrolladores\n3. Reemplazá TU_ACCESS_TOKEN_AQUI en el código\n\nPor ahora, podés usar WhatsApp para el presupuesto.');
+            // Validar que Vercel esté configurado
+            if(CONFIG.vercelApiUrl === 'https://TU-PROYECTO.vercel.app/api/create-payment') {
+                alert('⚠️ Mercado Pago no está configurado.\n\nPrimero debes:\n1. Subir el código a GitHub\n2. Desplegar en Vercel\n3. Actualizar la URL del API\n\nPor ahora, usá WhatsApp para el presupuesto.');
                 return;
             }
 
@@ -3005,39 +3004,27 @@
                     currency_id: 'ARS'
                 });
 
-                // Crear preference de pago
-                const preference = {
-                    items: items,
-                    payer: {
-                        name: nombre,
-                        email: email,
-                        phone: {
-                            area_code: telefono.substring(0, 4),
-                            number: telefono.substring(4)
-                        },
-                        address: {
-                            street_name: direccion,
-                            zip_code: codigoPostal
-                        }
-                    },
-                    back_urls: {
-                        success: window.location.href + '?payment=success',
-                        failure: window.location.href + '?payment=failure',
-                        pending: window.location.href + '?payment=pending'
-                    },
-                    auto_return: 'approved',
-                    external_reference: `ORDER-${Date.now()}`,
-                    notification_url: 'https://tu-webhook-url.com/notifications' // Configurar webhook
+                // Preparar datos del comprador
+                const payerData = {
+                    name: nombre,
+                    email: email,
+                    phone: telefono,
+                    address: direccion,
+                    zipCode: codigoPostal,
+                    returnUrl: window.location.origin + window.location.pathname
                 };
 
-                // Llamar a la API de Mercado Pago
-                const response = await fetch('https://api.mercadopago.com/checkout/preferences', {
+                // Llamar a la función serverless de Vercel
+                const response = await fetch(CONFIG.vercelApiUrl, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${CONFIG.mercadoPagoAccessToken}`
+                        'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(preference)
+                    body: JSON.stringify({
+                        items: items,
+                        payer: payerData,
+                        totalAmount: total
+                    })
                 });
 
                 if (!response.ok) {
