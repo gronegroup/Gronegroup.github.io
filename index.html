@@ -1218,14 +1218,16 @@
                 name: 'Samsung Galaxy A54',
                 description: 'Smartphone 128GB, 6GB RAM, Pantalla AMOLED',
                 price: 405000,
-                category: 'celulares'
+                category: 'celulares',
+                disabled: true
             },
             {
                 id: 2,
                 name: 'iPhone 13',
                 description: 'Apple iPhone 13 128GB, Cámara dual',
                 price: 765000,
-                category: 'celulares'
+                category: 'celulares',
+                disabled: true
             },
             {
                 id: 3,
@@ -1246,28 +1248,32 @@
                 name: 'Notebook HP',
                 description: 'Intel i5, 8GB RAM, 256GB SSD',
                 price: 585000,
-                category: 'computacion'
+                category: 'computacion',
+                disabled: true
             },
             {
                 id: 6,
                 name: 'Mouse Gamer RGB',
                 description: 'Mouse óptico 6400 DPI, iluminación RGB',
                 price: 22500,
-                category: 'computacion'
+                category: 'computacion',
+                disabled: true
             },
             {
                 id: 7,
                 name: 'Auriculares Bluetooth',
                 description: 'Auriculares inalámbricos con cancelación de ruido',
                 price: 31500,
-                category: 'electronica'
+                category: 'electronica',
+                disabled: true
             },
             {
                 id: 8,
                 name: 'Smart TV 50"',
                 description: 'Smart TV 4K UHD, Android TV',
                 price: 468000,
-                category: 'electronica'
+                category: 'electronica',
+                disabled: true
             },
             {
                 id: 9,
@@ -2431,6 +2437,37 @@
                 const secondaryPrice = `$${formatARS(priceARS)} ARS`;
 
                 const badge = product.featured ? '<div class="product-badge new">Destacado</div>' : '';
+                
+                // Si el producto está deshabilitado, mostrar cartel de "Próximamente"
+                if(product.disabled) {
+                    return `
+                    <div class="product-card" style="position:relative;opacity:0.7;pointer-events:none;">
+                        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,107,107,0.95);color:white;padding:20px 40px;border-radius:8px;font-weight:bold;font-size:18px;z-index:10;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+                            🚀 PRÓXIMAMENTE
+                        </div>
+                        ${badge}
+                        <div class="product-image" style="filter:grayscale(100%);">
+                            ${product.image 
+                                ? `<img src="${product.image}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;">` 
+                                : `<div class="product-placeholder"></div>`
+                            }
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">${getCategoryName(product.category)}</div>
+                            <div class="product-name">${product.name}</div>
+                            <div class="product-description">${product.description}</div>
+                            <div class="product-rating">
+                                <div class="stars">★★★★★</div>
+                                <span class="rating-count">(${Math.floor(Math.random() * 50) + 10})</span>
+                            </div>
+                            <div class="product-price-wrapper">
+                                <div class="product-price">${primaryPrice}</div>
+                                <div class="product-price-secondary">${secondaryPrice}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                }
 
                 return `
                 <div class="product-card">
