@@ -1080,14 +1080,47 @@
                 padding: 24px;
             }
         }
+        
+        /* Banner de descuento */
+        .discount-banner {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF5252 100%);
+            color: white;
+            text-align: center;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(255,82,82,0.3);
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        .discount-banner span {
+            font-size: 18px;
+            margin: 0 8px;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Banner de descuento -->
+    <div class="discount-banner">
+        🎉 <span>¡OFERTA ESPECIAL!</span> Todos los productos con <span>10% DE DESCUENTO</span> 🎉
+    </div>
+    
     <!-- Header -->
     <div class="header">
         <div class="header-content">
             <div class="logo">
-                <img src="images/logo.png" alt="GRONEGROUP">
+                <img src="images/LOGO.png" alt="GRONEGROUP">
             </div>
             <div style="display:flex;align-items:center;gap:12px">
                 <div class="currency-controls">
@@ -1209,16 +1242,6 @@
             whatsappNumber: '543794009856', // TU NÚMERO DE WHATSAPP (con código de país)
             shippingCost: 20000
         };
-        // Códigos de descuento disponibles (clave: porcentaje)
-        CONFIG.discountCodes = {
-            'B1ENVEN1DA': 10,
-            'SOYPR0VEDOR': 15,
-            
-        };
-
-        // Estado de descuento aplicado
-        let appliedDiscountCode = null;
-        let appliedDiscountPercent = 0;
         
         // BASE DE DATOS DE PRODUCTOS - AGREGÁ TUS PRODUCTOS AQUÍ
         const products = [
@@ -2837,10 +2860,8 @@
             
             // Totales
             const subtotalARS = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const discountAmountARS = subtotalARS * (appliedDiscountPercent / 100);
-            const subtotalAfterDiscountARS = Math.max(0, subtotalARS - discountAmountARS);
-            const subtotalUSD = subtotalAfterDiscountARS / exchangeRate;
-            const totalARS = subtotalAfterDiscountARS + CONFIG.shippingCost;
+            const subtotalUSD = subtotalARS / exchangeRate;
+            const totalARS = subtotalARS + CONFIG.shippingCost;
             const totalUSD = totalARS / exchangeRate;
 
             // Mostrar siempre en ARS (pesos) en el total del carrito
@@ -2849,11 +2870,6 @@
                     <span>Subtotal</span>
                     <span>$${formatARS(subtotalARS)} ARS</span>
                 </div>
-                ${appliedDiscountPercent ? `
-                <div class="cart-total-row">
-                    <span>Descuento (${appliedDiscountCode} - ${appliedDiscountPercent}%)</span>
-                    <span>-$${formatARS(discountAmountARS)} ARS</span>
-                </div>` : ''}
                 <div class="cart-total-row">
                     <span>Envío (Andreani)</span>
                     <span>$${formatARS(CONFIG.shippingCost)} ARS</span>
@@ -2899,14 +2915,6 @@
                     <div class="form-group">
                         <label>Email</label>
                         <input type="email" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Código de descuento (opcional)</label>
-                        <div style="display:flex;gap:8px;align-items:center">
-                            <input type="text" id="discountCodeInput" placeholder="Ingresá código" style="flex:1;padding:10px;border:1px solid #e0e0e0;border-radius:4px;">
-                            <button type="button" onclick="applyDiscount()" style="padding:10px 12px;border-radius:4px;cursor:pointer;border:1px solid #1a1a1a;background:#fff">Aplicar</button>
-                        </div>
-                        <div id="discountMessage" style="margin-top:8px;color:#666;font-size:13px"></div>
                     </div>
                     <div class="form-group">
                         <label>Método de Pago</label>
@@ -2973,9 +2981,7 @@
             const codigoPostal = document.getElementById('codigoPostal').value;
 
             const subtotalARS = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const discountAmountARS = subtotalARS * (appliedDiscountPercent / 100);
-            const subtotalAfterDiscountARS = Math.max(0, subtotalARS - discountAmountARS);
-            const total = subtotalAfterDiscountARS + CONFIG.shippingCost;
+            const total = subtotalARS + CONFIG.shippingCost;
 
             // Mostrar loader
             const checkoutButton = document.getElementById('checkoutButton');
@@ -3062,9 +3068,7 @@
             const email = document.getElementById('email').value;
             
             const subtotalARS = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const discountAmountARS = subtotalARS * (appliedDiscountPercent / 100);
-            const subtotalAfterDiscountARS = Math.max(0, subtotalARS - discountAmountARS);
-            const total = subtotalAfterDiscountARS + CONFIG.shippingCost;
+            const total = subtotalARS + CONFIG.shippingCost;
 
             let message = 'NUEVO PEDIDO\n';
             message += '━━━━━━━━━━━━━━━━━━━━\n\n';
@@ -3074,10 +3078,6 @@
             });
             message += '\n━━━━━━━━━━━━━━━━━━━━\n';
             message += `Subtotal: $${subtotalARS.toLocaleString('es-AR')}\n`;
-            if(appliedDiscountPercent){
-                message += `Descuento (${appliedDiscountCode} - ${appliedDiscountPercent}%): -$${discountAmountARS.toLocaleString('es-AR')}\n`;
-                message += `Subtotal con descuento: $${subtotalAfterDiscountARS.toLocaleString('es-AR')}\n`;
-            }
             message += `Envío (Andreani): $${CONFIG.shippingCost.toLocaleString('es-AR')}\n`;
             message += `TOTAL: $${total.toLocaleString('es-AR')}\n\n`;
             message += '━━━━━━━━━━━━━━━━━━━━\n\n';
@@ -3159,32 +3159,7 @@
             if(e.target && e.target.id === 'productModal') closeProductModal();
         });
 
-        // Aplicar código de descuento desde el formulario
-        function applyDiscount(){
-            const input = document.getElementById('discountCodeInput');
-            const msg = document.getElementById('discountMessage');
-            if(!input) return;
-            const code = input.value.trim().toUpperCase();
-            if(!code){
-                appliedDiscountCode = null;
-                appliedDiscountPercent = 0;
-                if(msg) msg.textContent = '';
-                renderCart();
-                return;
-            }
-            const percent = CONFIG.discountCodes[code];
-            if(percent){
-                appliedDiscountCode = code;
-                appliedDiscountPercent = percent;
-                if(msg) msg.textContent = `Código aplicado: ${code} — ${percent}% de descuento`;
-                renderCart();
-            } else {
-                appliedDiscountCode = null;
-                appliedDiscountPercent = 0;
-                if(msg) msg.textContent = `Código inválido`;
-                renderCart();
-            }
-        }
+
         
         // Verificar resultado de pago al cargar la página
         function checkPaymentStatus() {
