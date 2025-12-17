@@ -2408,6 +2408,27 @@
                 return;
             }
 
+            // Mostrar mensaje de "Próximamente" para categorías deshabilitadas
+            if(['celulares', 'computacion', 'electronica'].includes(currentCategory)) {
+                filterBar.style.display = 'none';
+                productsContainer.innerHTML = `
+                    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:400px;text-align:center;padding:40px;">
+                        <div style="background:linear-gradient(135deg, #FF6B6B 0%, #FF5252 100%);color:white;padding:40px 60px;border-radius:16px;box-shadow:0 8px 24px rgba(255,82,82,0.4);margin-bottom:20px;">
+                            <div style="font-size:64px;margin-bottom:16px;">🚀</div>
+                            <div style="font-size:32px;font-weight:bold;margin-bottom:12px;">PRÓXIMAMENTE</div>
+                            <div style="font-size:18px;opacity:0.9;">Estamos trabajando para traerte los mejores productos</div>
+                        </div>
+                        <p style="color:#666;font-size:16px;max-width:500px;">
+                            Esta categoría estará disponible muy pronto. Mientras tanto, explora nuestro catálogo de Equipos de Seguridad.
+                        </p>
+                        <button onclick="changeCategory('camaras')" style="margin-top:24px;padding:14px 32px;background:#1a1a1a;color:white;border:none;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;">
+                            Ver Equipos de Seguridad
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
             let filteredProducts = products.filter(p => p.category === currentCategory);
 
             // Aplicar búsqueda
