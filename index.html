@@ -350,7 +350,7 @@
 
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
         }
 
@@ -2671,7 +2671,7 @@
             });
 
             const cats = [
-                {id: 'camaras', name: 'Seguridad', count: groups['camaras'] || 0},
+                {id: 'camaras', name: 'Equipos de Seguridad', count: groups['camaras'] || 0},
                 {id: 'celulares', name: 'Celulares', count: groups['celulares'] || 0},
                 {id: 'computacion', name: 'Computación', count: groups['computacion'] || 0},
                 {id: 'electronica', name: 'Electrónica', count: groups['electronica'] || 0}
