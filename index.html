@@ -1396,20 +1396,6 @@
                 disabled: true
             },
             {
-                id: 3,
-                name: 'Cámara IP WiFi',
-                description: 'Cámara de seguridad 1080p, visión nocturna',
-                price: 40500,
-                category: 'camaras'
-            },
-            {
-                id: 4,
-                name: 'Kit 4 Cámaras + DVR',
-                description: 'Sistema completo de vigilancia 1080p',
-                price: 162000,
-                category: 'camaras'
-            },
-            {
                 id: 5,
                 name: 'Notebook HP',
                 description: 'Intel i5, 8GB RAM, 256GB SSD',
@@ -2714,6 +2700,11 @@
             currentSubcategory = document.getElementById('subcategoryFilter').value;
             renderProducts();
         }
+
+        function selectSubcategory(subcat) {
+            currentSubcategory = subcat;
+            renderProducts();
+        }
         
         // Renderizar productos
         function renderProducts() {
@@ -2743,19 +2734,73 @@
 
             let filteredProducts = products.filter(p => p.category === currentCategory);
 
-            // Poblar filtro de subcategorías para la categoría de seguridad
-            const subcategoryFilter = document.getElementById('subcategoryFilter');
-            if(currentCategory === 'camaras') {
-                // Obtener subcategorías únicas
-                const subcategories = [...new Set(filteredProducts.map(p => p.subcategory).filter(s => s))];
-                subcategories.sort();
+            // Si es categoría de seguridad y NO hay subcategoría seleccionada, mostrar carpetas
+            if(currentCategory === 'camaras' && !currentSubcategory && !searchQuery) {
+                filterBar.style.display = 'none';
                 
-                subcategoryFilter.innerHTML = '<option value="">Todas las subcategorías</option>' +
-                    subcategories.map(sub => `<option value="${sub}" ${currentSubcategory === sub ? 'selected' : ''}>${sub}</option>`).join('');
-                subcategoryFilter.style.display = 'block';
+                // Obtener subcategorías únicas con conteo
+                const subcategoryMap = {};
+                filteredProducts.forEach(p => {
+                    if(p.subcategory) {
+                        if(!subcategoryMap[p.subcategory]) {
+                            subcategoryMap[p.subcategory] = 0;
+                        }
+                        subcategoryMap[p.subcategory]++;
+                    }
+                });
+                
+                const subcategories = Object.keys(subcategoryMap).sort();
+                
+                productsContainer.innerHTML = `
+                    <div style="margin-bottom:24px;">
+                        <h2 style="font-size:28px;font-weight:600;color:#1a1a1a;margin-bottom:8px;">Equipos de Seguridad</h2>
+                        <p style="color:#666;font-size:16px;">Selecciona una categoría para ver los productos</p>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;">
+                        ${subcategories.map(sub => `
+                            <div onclick="selectSubcategory('${sub}')" style="
+                                background:white;
+                                border:2px solid #e0e0e0;
+                                border-radius:12px;
+                                padding:32px 24px;
+                                cursor:pointer;
+                                transition:all 0.3s;
+                                text-align:center;
+                                display:flex;
+                                flex-direction:column;
+                                align-items:center;
+                                gap:16px;
+                            " onmouseover="this.style.borderColor='#FF6B6B';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.12)';" onmouseout="this.style.borderColor='#e0e0e0';this.style.transform='translateY(0)';this.style.boxShadow='none';">
+                                <div style="
+                                    width:80px;
+                                    height:80px;
+                                    background:linear-gradient(135deg, #FF6B6B 0%, #FF5252 100%);
+                                    border-radius:16px;
+                                    display:flex;
+                                    align-items:center;
+                                    justify-content:center;
+                                    font-size:40px;
+                                    box-shadow:0 4px 12px rgba(255,107,107,0.3);
+                                ">
+                                    📁
+                                </div>
+                                <div>
+                                    <div style="font-size:18px;font-weight:600;color:#1a1a1a;margin-bottom:8px;">${sub}</div>
+                                    <div style="color:#666;font-size:14px;">${subcategoryMap[sub]} producto${subcategoryMap[sub] !== 1 ? 's' : ''}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                return;
+            }
+
+            // Si hay subcategoría seleccionada, mostrar botón de volver
+            const subcategoryFilter = document.getElementById('subcategoryFilter');
+            if(currentCategory === 'camaras' && currentSubcategory) {
+                subcategoryFilter.style.display = 'none';
             } else {
                 subcategoryFilter.style.display = 'none';
-                currentSubcategory = '';
             }
 
             // Aplicar filtro de subcategoría
@@ -2781,7 +2826,31 @@
             }
 
             filterBar.style.display = 'flex';
-            resultsCount.textContent = `${filteredProducts.length} producto${filteredProducts.length !== 1 ? 's' : ''} encontrado${filteredProducts.length !== 1 ? 's' : ''}`;
+            
+            // Si hay subcategoría seleccionada, mostrar breadcrumb con botón de volver
+            if(currentSubcategory) {
+                resultsCount.innerHTML = `
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <button onclick="selectSubcategory('')" style="
+                            padding:8px 16px;
+                            background:#f5f5f5;
+                            border:1px solid #e0e0e0;
+                            border-radius:6px;
+                            cursor:pointer;
+                            font-size:14px;
+                            display:flex;
+                            align-items:center;
+                            gap:6px;
+                            transition:all 0.2s;
+                        " onmouseover="this.style.background='#e8e8e8'" onmouseout="this.style.background='#f5f5f5'">
+                            ← Volver a categorías
+                        </button>
+                        <span>${currentSubcategory} (${filteredProducts.length} producto${filteredProducts.length !== 1 ? 's' : ''})</span>
+                    </div>
+                `;
+            } else {
+                resultsCount.textContent = `${filteredProducts.length} producto${filteredProducts.length !== 1 ? 's' : ''} encontrado${filteredProducts.length !== 1 ? 's' : ''}`;
+            }
 
             productsContainer.innerHTML = filteredProducts.map(product => {
                 const priceARS = product.price;
@@ -3639,17 +3708,6 @@
                     <p style="color:#ccc;line-height:1.7;font-size:14px;">
                         Empresa especializada en equipos electrónicos y soluciones tecnológicas de alta calidad. Referente confiable en sistemas de seguridad y videovigilancia con garantía oficial.
                     </p>
-                </div>
-
-                <!-- Especialidad -->
-                <div>
-                    <h3 style="font-size:20px;font-weight:600;margin-bottom:16px;color:#FF6B6B;">Nuestra Especialidad</h3>
-                    <ul style="color:#ccc;line-height:1.9;font-size:14px;list-style:none;padding:0;">
-                        <li>✓ Cámaras IP, Analógicas y PTZ</li>
-                        <li>✓ Grabadores DVR/NVR HIKVISION</li>
-                        <li>✓ Discos Duros Seagate SkyHawk</li>
-                        <li>✓ Sistemas completos de vigilancia</li>
-                    </ul>
                 </div>
 
                 <!-- Contacto -->
