@@ -1322,6 +1322,9 @@
         <div class="filter-bar" id="filterBar" style="display:none;">
             <div class="results-count" id="resultsCount"></div>
             <div class="filter-controls">
+                <select class="sort-select" id="subcategoryFilter" onchange="applySubcategoryFilter()" style="display:none;">
+                    <option value="">Todas las subcategorías</option>
+                </select>
                 <select class="sort-select" id="globalSort" onchange="applyGlobalSort()">
                     <option value="">Ordenar por</option>
                     <option value="price-asc">Menor precio</option>
@@ -1447,119 +1450,136 @@
                 name: 'NVR HIKVISION 4CH DS-7104NI-Q1',
                 description: 'NVR 4CH (PLASTICO) SIN POE (1 SLOT HDD)',
                 price: 84240,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 11,
                 name: 'NVR HIKVISION 4CH DS-7104NI-Q1/4P',
                 description: 'NVR 4CH (PLASTICO) POE INTEGRADO (1 SLOT HDD)',
                 price: 147420,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 12,
                 name: 'NVR HIKVISION 8CH DS-7108NI-Q1',
                 description: 'NVR 8CH (PLASTICO) SIN POE (1 SLOT HDD)',
                 price: 105300,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 13,
                 name: 'NVR HIKVISION 8CH DS-7108NI-Q1/8P',
                 description: 'NVR 8CH (PLASTICO) CON POE INTEGRADO (1 SLOT HDD)',
                 price: 210397,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 14,
                 name: 'NVR HIKVISION 8CH DS-7608NXI-K1',
                 description: 'NVR 8CH METALICO (SERIE ACUSENSE) SIN POE (1 SLOT HDD)',
                 price: 193387,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 15,
                 name: 'NVR HIKVISION 16CH DS-7616NI-Q2',
                 description: 'NVR 16CH (METALICO) SIN POE (2 SLOT HDD)',
                 price: 206347,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 16,
                 name: 'NVR HIKVISION 16CH DS-7616NI-Q2/16P',
                 description: 'NVR 16CH (METALICO) CON POE INTEGRADO (2 SLOT HDD)',
                 price: 408442,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 17,
                 name: 'NVR HIKVISION 16CH DS-7616NXI-K2',
                 description: 'NVR 16CH METALICO (SERIE ACUSENSE) SIN POE (2 SLOT HDD)',
                 price: 347287,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 18,
                 name: 'NVR HIKVISION 16CH DS-7716NXI-K4',
                 description: 'NVR 16CH METALICO (SERIE ACUSENSE) 4K SIN POE (4 SLOT HDD) - RACKEABLE',
                 price: 595350,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 19,
                 name: 'NVR HIKVISION 16CH DS-7716NXI-K4/16P',
                 description: 'NVR 16CH METALICO (SERIE ACUSENSE) 4K CON 16 PUERTOS POE INTEGRADO (4 SLOT HDD) - RACKEABLE',
                 price: 891000,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 20,
                 name: 'NVR HIKVISION 32CH DS-7632NXI-K2',
                 description: 'NVR 32CH METALICO (SERIE ACUSENSE) 4K SIN POE (2 SLOT HDD)',
                 price: 471217,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 21,
                 name: 'NVR HIKVISION 32CH DS-7632NXI-K2/16P',
                 description: 'NVR 32CH METALICO (SERIE ACUSENSE) 4K CON 16 PUERTOS POE INTEGRADO (2 SLOT HDD)',
                 price: 768892,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 22,
                 name: 'NVR HIKVISION 32CH DS-7732NI-K4/16P',
                 description: 'NVR 32CH METALICO CON 16 PUERTOS POE INTEGRADO (4 SLOT HDD) - RACKEABLE',
                 price: 911250,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 23,
                 name: 'NVR HIKVISION 32CH DS-7732NXI-K4',
                 description: 'NVR 32CH METALICO (SERIE ACUSENSE) 4K SIN POE (4 SLOT HDD) - RACKEABLE',
                 price: 693967,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 24,
                 name: 'NVR HIKVISION 32CH DS-7732NXI-K4/16P',
                 description: 'NVR 32CH METALICO (SERIE ACUSENSE) CON 16 PUERTOS POE INTEGRADO (4 SLOT HDD) - RACKEABLE',
                 price: 1041255,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 25,
                 name: 'NVR HIKVISION 64CH DS-7764NI-M4',
                 description: 'NVR 64CH METALICO SIN POE (4 SLOT HDD) - RACKEABLE',
                 price: 1263330,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             {
                 id: 26,
                 name: 'NVR HIKVISION 64CH DS-9664NI-M8',
                 description: 'NVR 64CH METALICO SIN POE (8 SLOT HDD) - RACKEABLE',
                 price: 3726000,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores NVR'
             },
             // CAMARAS IP 2MP
             {
@@ -1567,112 +1587,128 @@
                 name: 'HIKVISION IP BULLET 2MP DS-2CD1021G0-I',
                 description: 'IP BULLET 2MP (ECONOMICO) LENTE 2,8MM, 20MTS IR',
                 price: 54067,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 28,
                 name: 'HIKVISION IP BULLET 2MP DS-2CD1021G2-LIU',
                 description: 'IP BULLET 2MP, LENTE 2,8MM, 20MTS IR (MICROFONO INTEGRADO)',
                 price: 67635,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 29,
                 name: 'HIKVISION IP DOMO 2MP DS-2CD1121G2-LIU',
                 description: 'IP DOMO 2MP, LENTE 2,8MM, 20MTS IR (MICROFONO INTEGRADO)',
                 price: 67635,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 30,
                 name: 'HIKVISION IP BULLET 2MP DS-2CD1023G0E-I',
                 description: 'IP BULLET 2MP, LENTE 2,8MM, 30MTS IR',
                 price: 82012,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 31,
                 name: 'HIKVISION IP DOMO 2MP DS-2CD1123G0E-I',
                 description: 'IP DOMO 2MP, LENTE 2,8MM, 30MTS IR',
                 price: 93555,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 32,
                 name: 'HIKVISION IP BULLET 2MP DS-2CD1023G2-LIU',
                 description: 'IP BULLET CON (MICROFONO INTEGRADO) 2MP, LENTE 2,8MM, 30MTS (DETECCION DE VEHICULOS Y PERSONAS)',
                 price: 86062,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 33,
                 name: 'HIKVISION IP DOMO 2MP DS-2CD1323G2-LIU',
                 description: 'IP DOMO CON (MICROFONO INTEGRADO) 2MP, LENTE 2,8MM, 30MTS (DETECCION DE VEHICULOS Y PERSONAS)',
                 price: 96390,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 34,
                 name: 'HIKVISION IP BULLET 2MP DS-2CD1023G2-LIDUF/4G/SL',
                 description: 'IP BULLET 2MP SMART HYBRID LIGHT, LENTE 2.8MM, 30MTS (MICROFONO INTEGRADO Y RANURA PARA MICROSD) (ESTE MODELO ES 4G)',
                 price: 94972,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 35,
                 name: 'HIKVISION IP BULLET EXIR 2MP DS-2CD1T23G0-I',
                 description: 'IP BULLET EXIR 2MP, LENTE 4MM, IR 50MTS',
                 price: 111577,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 36,
                 name: 'HIKVISION IP BULLET COLORVU 2MP DS-2CD1027G2H-LIU',
                 description: 'IP BULLET COLORVU 2MP, LENTE 2,8MM, 30MTS (MICROFONO INTEGRADO)(DETECCION DE VEHICULOS Y PERSONAS)',
                 price: 98010,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 37,
                 name: 'HIKVISION IP DOMO COLORVU 2MP DS-2CD1327G2H-LIU',
                 description: 'IP DOMO COLORVU 2MP, LENTE 2,8MM, 30MTS (MICROFONO INTEGRADO)(DETECCION DE VEHICULOS Y PERSONAS)',
                 price: 115222,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 38,
                 name: 'HIKVISION IP BULLET COLORVU 2MP DS-2CD1T27G2H-LIU',
                 description: 'IP BULLET COLORVU 2MP,LENTE 2,8MM, 50MTS (MICROFONO INTEGRADO)(DETECCION DE VEHICULOS Y PERSONAS)',
                 price: 125347,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 39,
                 name: 'HIKVISION IP BULLET 2MP DS-2CD2021G1-I',
                 description: 'IP BULLET (RANURA PARA MICROSD) 2MP, LENTE 2,8MM, IR 30MTS',
                 price: 163012,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 40,
                 name: 'HIKVISION IP DOMO 2MP DS-2CD2121G0-IS',
                 description: 'IP DOMO 3 EJES (RANURA PARA MICROSD) 2MP, LENTE 2,8MM, IR 30MTS',
                 price: 179212,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 41,
                 name: 'HIKVISION IP BULLET ACUSENSE 2MP DS-2CD2023G2-IU',
                 description: 'IP BULLET (ACUSENSE CON RANURA PARA MICROSD) 2MP, LENTE 2,8MM, IR 30MTS (MICROFONO INTEGRADO)',
                 price: 246847,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             {
                 id: 42,
                 name: 'HIKVISION IP DOMO ACUSENSE 2MP DS-2CD2123G2-IS',
                 description: 'IP DOMO (ACUSENSE CON RANURA PARA MICROSD) 2MP LENTE 2,8MM, IR 30MTS (ENTRADA PARA MICROFONO Y ALARMA)',
                 price: 256567,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 2MP'
             },
             // CAMARAS IP 4MP
             {
@@ -1680,126 +1716,144 @@
                 name: 'HIKVISION IP BULLET 4MP DS-2CD1041G0-I',
                 description: 'IP BULLET 4MP (ECONOMICO) LENTE 2,8MM, 20MTS IR',
                 price: 78975,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 44,
                 name: 'HIKVISION IP BULLET 4MP DS-2CD1041G2-LIU',
                 description: 'IP BULLET 4MP, LENTE 2,8MM, 20MTS IR (MICROFONO INTEGRADO)',
                 price: 95175,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 45,
                 name: 'HIKVISION IP BULLET 4MP DS-2CD1043G2-LIU',
                 description: 'IP BULLET 4MP,LENTE 2,8MM, 30MTS SMART HYBRID LIGHT (MICROFONO INTEGRADO)(DETECCION DE VEHICULOS Y PERSONAS)',
                 price: 130207,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 46,
                 name: 'HIKVISION IP DOMO 4MP DS-2CD1143G2-LIU',
                 description: 'IP DOMO 4MP, LENTE 2,8MM, 30MTS SMART HYBRID LIGHT (MICROFONO INTEGRADO)(DETECCION DE VEHICULOS Y PERSONAS)',
                 price: 137092,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 47,
                 name: 'HIKVISION IP BULLET 4MP DS-2CD1043G2-LIUF/SL',
                 description: 'IP BULLET 4MP, LENTE 2,8MM, 30MTS SMART HYBRID LIGHT (AUDIO BIDIRECCIONAL) Y RANURA PARA MICROSD',
                 price: 150660,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 48,
                 name: 'HIKVISION IP BULLET 4MP DS-2CD1043G2-LIDUF/4G/SL',
                 description: 'IP BULLET 4MP, LENTE 2,8MM, 30MTS SMART HYBRID LIGHT (AUDIO BIDIRECCIONAL) Y RANURA PARA MICROSD (OPCION 4G)',
                 price: 114210,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 49,
                 name: 'HIKVISION IP BULLET COLORVU 4MP DS-2CD1047G2H-LIU',
                 description: 'IP BULLET COLORVU 4MP, LENTE 2,8MM, 30MTS (MICROFONO INTEGRADO)(DETECCION DE VEHICULOS Y PERSONAS)',
                 price: 158962,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 50,
                 name: 'HIKVISION IP DOMO COLORVU 4MP DS-2CD1347G2H-LIU',
                 description: 'IP DOMO COLORVU 4MP, LENTE 2,8MM, 30MTS (MICROFONO INTEGRADO)(DETECCION DE VEHICULOS Y PERSONAS)',
                 price: 158962,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 51,
                 name: 'HIKVISION IP BULLET COLORVU 4MP DS-2CD1T47G2-L',
                 description: 'IP BULLET COLORVU 4MP, LENTE 4MM, 50MTS',
                 price: 191767,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 52,
                 name: 'HIKVISION IP BULLET EXIR 4MP DS-2CD1T43G2-I',
                 description: 'IP BULLET EXIR 4MP, LENTE 4MM, IR 50MTS',
                 price: 159975,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 53,
                 name: 'HIKVISION IP BULLET ACUSENSE 4MP DS-2CD2T43G2-4I',
                 description: 'IP BULLET EXIR ACUSENSE 4MP, LENTE 4MM, IR 80MTS, RANURA PARA MICROSD',
                 price: 445500,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 54,
                 name: 'HIKVISION IP DOMO ACUSENSE 4MP DS-2CD2146G2-ISU',
                 description: 'IP DOMO 4MP, LENTE 2.8MM, IR 40MTS ACUSENSE (CON ENTRADA DE ALARMA Y MICROFONO) RANURA PARA MICROSD',
                 price: 273375,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 55,
                 name: 'HIKVISION IP BULLET ACUSENSE 4MP DS-2CD2046G2-IU/SL',
                 description: 'IP BULLET 4MP, LENTE 2.8MM, IR 40MTS ACUSENSE CON RANURA PARA MICROSD (MICROFONO INTEGRADO Y LUZ ESTROBO)',
                 price: 355387,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 56,
                 name: 'HIKVISION IP BULLET COLORVU ACUSENSE 4MP DS-2CD2047G2-LU',
                 description: 'IP BULLET COLOR VU 4MP, LENTE 2.8MM, 40MTS ACUSENSE CON RANURA PARA MICROSD (MICROFONO INTEGRADO)',
                 price: 365917,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 57,
                 name: 'HIKVISION IP BULLET COLORVU ACUSENSE 4MP DS-2CD2047G2-LU/SL',
                 description: 'IP BULLET COLOR VU 4MP, LENTE 2.8MM, 40MTS ACUSENSE CON RANURA PARA MICROSD (MICROFONO INTEGRADO Y LUZ ESTROBO)',
                 price: 382117,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 58,
                 name: 'HIKVISION IP BULLET COLORVU 4MP DS-2CD2T47G2-L',
                 description: 'IP BULLET COLORVU 4MP, 4MM, 50MTS (CON EVENTOS INTELIGENTES) Y RANURA PARA MICROSD',
                 price: 432742,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 59,
                 name: 'HIKVISION IP DOMO VARIFOCAL 4MP DS-2CD1743G2-LIZU',
                 description: 'IP DOMO VARIFOCAL MOTORIZADA 4MP IR 40MTS (CON RANURA PARA MICROSD Y MICROFONO INTEGRADO)',
                 price: 241177,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             {
                 id: 60,
                 name: 'HIKVISION IP BULLET PANORAMICO 4MP DS-2CD2T46G2P-ISU-SL',
                 description: 'IP BULLET 4MP PANORAMICO 180°, DOS LENTES DE 2.8MM, IR 40MTS ACUSENSE CON RANURA PARA MICROSD (MICROFONO INTEGRADO Y LUZ ESTROBO)',
                 price: 401760,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 4MP'
             },
             // CAMARAS IP 6MP
             {
@@ -1807,77 +1861,88 @@
                 name: 'HIKVISION IP BULLET 6MP DS-2CD1063G2-LIU',
                 description: 'IP BULLET 6MP,LENTE 2,8MM, 30MTS SMART HYBRID LIGHT (MICROFONO INTEGRADO)(DETECCION DE VEHICULOS Y PERSONAS)',
                 price: 155317,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 6MP'
             },
             {
                 id: 62,
                 name: 'HIKVISION IP DOMO 6MP DS-2CD1163G2-LIU',
                 description: 'IP DOMO 6MP,LENTE 2,8MM, 30MTS SMART HYBRID LIGHT (MICROFONO INTEGRADO)(DETECCION DE VEHICULOS Y PERSONAS)',
                 price: 163012,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 6MP'
             },
             {
                 id: 63,
                 name: 'HIKVISION IP BULLET 6MP DS-2CD1063G2-LIUF/SL',
                 description: 'IP BULLET 6MP, LENTE 2,8MM, 30MTS SMART HYBRID LIGHT (AUDIO BIDIRECCIONAL) Y RANURA PARA MICROSD',
                 price: 178200,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 6MP'
             },
             {
                 id: 64,
                 name: 'HIKVISION IP BULLET COLORVU 6MP DS-2CD1067G2H-LIU',
                 description: 'IP BULLET COLORVU 6MP, LENTE 2,8MM, 30MTS (MICROFONO INTEGRADO)(DETECCION DE VEHICULOS Y PERSONAS)',
                 price: 183667,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 6MP'
             },
             {
                 id: 65,
                 name: 'HIKVISION IP DOMO COLORVU 6MP DS-2CD1167G2H-LIU',
                 description: 'IP DOMO COLORVU 6MP, LENTE 2,8MM, 30MTS (MICROFONO INTEGRADO)(DETECCION DE VEHICULOS Y PERSONAS)',
                 price: 199057,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 6MP'
             },
             {
                 id: 66,
                 name: 'HIKVISION IP BULLET ACUSENSE 6MP DS-2CD2063G2-LI2U',
                 description: 'IP BULLET ACUSENSE 6MP, RANURA PARA MICROSD, LENTE 2,8MM, IR 30MTS (MICROFONO INTEGRADO)',
                 price: 281880,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 6MP'
             },
             {
                 id: 67,
                 name: 'HIKVISION IP DOMO ACUSENSE 6MP DS-2CD2163G2-IU',
                 description: 'IP DOMO ACUSENSE 6MP, RANURA PARA MICROSD, LENTE 2,8MM, IR 30MTS (MICROFONO INTEGRADO)',
                 price: 329467,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 6MP'
             },
             {
                 id: 68,
                 name: 'HIKVISION IP DOMO ACUSENSE 6MP DS-2CD2163G2-IS',
                 description: 'IP DOMO ACUSENSE 6MP, RANURA PARA MICROSD, LENTE 2,8MM, IR 30MTS CON ENTRADA Y SALIDA DE ALARMA',
                 price: 336352,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 6MP'
             },
             {
                 id: 69,
                 name: 'HIKVISION IP BULLET VARIFOCAL 6MP DS-2CD1663G2-LIZU',
                 description: 'IP BULLET VARIFOCAL MOTORIZADA 6MP,LENTE 2,8MM A 12MM, 50MTS SMART HYBRID LIGHT (MICROFONO INTEGRADO)',
                 price: 275602,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 6MP'
             },
             {
                 id: 70,
                 name: 'HIKVISION IP DOMO VARIFOCAL 6MP DS-2CD1763G2-LIZU',
                 description: 'IP DOMO VARIFOCAL MOTORIZADA 6MP,LENTE 2,8MM A 12MM, 50MTS SMART HYBRID LIGHT (MICROFONO INTEGRADO)',
                 price: 275602,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 6MP'
             },
             {
                 id: 71,
                 name: 'HIKVISION IP TURRET PANORAMICO 6MP DS-2CD2366G2P-ISU/SL',
                 description: 'IP TURRET 6MP PANORAMICO 180°, DOS LENTES DE 2.8MM, IR 40MTS ACUSENSE CON RANURA PARA MICROSD (MICROFONO INTEGRADO Y LUZ ESTROBO)',
                 price: 386370,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 6MP'
             },
             // CAMARAS IP 8MP
             {
@@ -1885,21 +1950,24 @@
                 name: 'HIKVISION IP BULLET ACUSENSE 8MP DS-2CD2083G2-LI2U',
                 description: 'IP BULLET 8MP (ACUSENSE CON RANURA PARA MICROSD) LENTE 2,8MM, IR 30MTS (MICROFONO INTEGRADO)',
                 price: 333922,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 8MP'
             },
             {
                 id: 73,
                 name: 'HIKVISION IP DOMO ACUSENSE 8MP DS-2CD2183G2-IU',
                 description: 'IP DOMO 8MP (ACUSENSE CON RANURA PARA MICROSD) LENTE 2,8MM, IR 30MTS (MICROFONO INTEGRADO)',
                 price: 335340,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 8MP'
             },
             {
                 id: 74,
                 name: 'HIKVISION IP BULLET ACUSENSE 8MP DS-2CD2T83G2-4I',
                 description: 'IP BULLET EXIR ACUSENSE 8MP, RANURA PARA MICROSD, LENTE 4MM, IR 80MTS',
                 price: 386572,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP 8MP'
             },
             // CAMARAS IP PTZ
             {
@@ -1907,98 +1975,112 @@
                 name: 'HIKVISION IP MINI PT 4MP DS-2DE2C400MWG-E',
                 description: 'IP MINI PT 4MP SMART HYBRID LIGHT (MICROFONO Y PARLANTE INTEGRADO)',
                 price: 127980,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP PTZ'
             },
             {
                 id: 76,
                 name: 'HIKVISION IP MINI PT COLORVU 4MP DS-2DE2C400SCG-E',
                 description: 'IP MINI PT 4MP COLOR VU (MICROFONO Y PARLANTE INTEGRADO)',
                 price: 238545,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP PTZ'
             },
             {
                 id: 77,
                 name: 'HIKVISION PTZ IP 2MP 15X DS-2DE4215IW-DE',
                 description: 'PTZ IP 2MP 15X',
                 price: 622282,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP PTZ'
             },
             {
                 id: 78,
                 name: 'HIKVISION PTZ IP 2MP 25X DS-2DE4225IW-DE',
                 description: 'PTZ IP 2MP 25X',
                 price: 778410,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP PTZ'
             },
             {
                 id: 79,
                 name: 'HIKVISION PTZ IP DARKFIGHTER 2MP 32X DS-2DE7A232IW-AEB',
                 description: 'PTZ IP DARKFIGHTER 2MP 32X',
                 price: 1739272,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP PTZ'
             },
             {
                 id: 80,
                 name: 'HIKVISION PTZ IP 4MP 25X DS-2DE4425IW-DE',
                 description: 'PTZ IP 4MP 25X',
                 price: 856777,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP PTZ'
             },
             {
                 id: 81,
                 name: 'HIKVISION PTZ IP DARKFIGHTER 4MP 32X DS-2DE7A432IW-AEB',
                 description: 'PTZ IP DARKFIGHTER 4MP 32X',
                 price: 1845180,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP PTZ'
             },
             {
                 id: 82,
                 name: 'HIKVISION PTZ IP DARKFIGHTER 4MP 32X DS-2DE7A432MWG-EB',
                 description: 'PTZ IP DARKFIGHTER 4MP 32X COLORFUL 24/7 (CLASIFICACION DE OBJETIVOS HUMANOS Y VEHICULOS) - AUTOTRACKING',
                 price: 2054160,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP PTZ'
             },
             {
                 id: 83,
                 name: 'HIKVISION PTZ IP DARKFIGHTER 4MP 32X DS-2DE7A432IWG-EB/SL',
                 description: 'PTZ IP DARKFIGHTER 4MP 32X ACUSENSE (POTENTE DISUASIVO CON SONIDO Y LUZ ESTROBO EFICAZ HASTA 100M) - AUTOTRACKING',
                 price: 2097495,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP PTZ'
             },
             {
                 id: 84,
                 name: 'HIKVISION PTZ TANDEMVU 2MP 25X DS-2SE4C225MWG-E',
                 description: 'IP PTZ TANDEMVU 2MP 25X',
                 price: 951750,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP PTZ'
             },
             {
                 id: 85,
                 name: 'HIKVISION PTZ TANDEMVU 4MP 25X DS-2SE4C425MWG-E',
                 description: 'IP PTZ TANDEMVU 4MP 25X',
                 price: 1034370,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP PTZ'
             },
             {
                 id: 86,
                 name: 'HIKVISION PTZ IP DARKFIGHTER 6MP 32X DS-2DE7A632IWG-EB',
                 description: 'PTZ IP DARKFIGHTER 6MP 32X (CLASIFICACION DE OBJETIVOS HUMANOS Y VEHICULOS) - AUTOTRACKING',
                 price: 2045250,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP PTZ'
             },
             {
                 id: 87,
                 name: 'HIKVISION PTZ IP DARKFIGHTER 8MP 25X DS-2DE7A825IW-AEB',
                 description: 'PTZ IP 8MP 25X DARKFIGHTER (CLASIFICACION DE OBJETIVOS HUMANOS Y VEHICULOS) - AUTOTRACKING',
                 price: 2902635,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP PTZ'
             },
             {
                 id: 88,
                 name: 'HIKVISION PTZ IP DARKFIGHTER 4MP 45X DS-2DF7C445IXR-AEL',
                 description: 'PTZ IP DARKFIGHTER 4MP 45X IR 300M - AUTOTRACKING',
                 price: 3455460,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras IP PTZ'
             },
             // HDD
             {
@@ -2006,49 +2088,56 @@
                 name: 'HDD SEAGATE SKYHAWK 500GB',
                 description: 'HDD 500GB DESARROLLADO P/ CCTV ESPECIAL 24/7',
                 price: 52852,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Discos Duros'
             },
             {
                 id: 90,
                 name: 'HDD SEAGATE SKYHAWK 1TB',
                 description: 'HDD 1TB DESARROLLADO P/ CCTV ESPECIAL 24/7',
                 price: 101250,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Discos Duros'
             },
             {
                 id: 91,
                 name: 'HDD SEAGATE SKYHAWK 2TB',
                 description: 'HDD 2TB DESARROLLADO P/ CCTV ESPECIAL 24/7',
                 price: 163012,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Discos Duros'
             },
             {
                 id: 92,
                 name: 'HDD SEAGATE SKYHAWK 4TB',
                 description: 'HDD 4TB DESARROLLADO P/ CCTV ESPECIAL 24/7',
                 price: 237532,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Discos Duros'
             },
             {
                 id: 93,
                 name: 'HDD SEAGATE SKYHAWK 6TB',
                 description: 'HDD 6TB DESARROLLADO P/ CCTV ESPECIAL 24/7',
                 price: 324000,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Discos Duros'
             },
             {
                 id: 94,
                 name: 'HDD SEAGATE SKYHAWK 8TB',
                 description: 'HDD 8TB DESARROLLADO P/ CCTV ESPECIAL 24/7',
                 price: 445500,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Discos Duros'
             },
             {
                 id: 95,
                 name: 'HDD SEAGATE SKYHAWK 10TB',
                 description: 'HDD 10TB DESARROLLADO P/ CCTV ESPECIAL 24/7',
                 price: 661567,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Discos Duros'
             },
             // CAMARAS ANALOGICAS 720P
             {
@@ -2056,49 +2145,56 @@
                 name: 'HIKVISION TURBO HD MINI BULLET 720P DS-2CE16C0T-IRPF',
                 description: 'TURBO HD MINI BULLET 720P, LENTE 2,8MM, IR 20MTS',
                 price: 24907,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 720P'
             },
             {
                 id: 97,
                 name: 'HIKVISION TURBO HD MINI DOMO 720P DS-2CE56C0T-IRPF',
                 description: 'TURBO HD MINI DOMO 720P, LENTE 2,8MM, IR 20MTS',
                 price: 21870,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 720P'
             },
             {
                 id: 98,
                 name: 'HIKVISION TURBO HD MINI DOMO 720P DS-2CE56C0T-IRMMF',
                 description: 'TURBO HD MINI DOMO PLASTICA CON CUPULA 720P, LENTE 2,8MM, IR 20MTS',
                 price: 22072,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 720P'
             },
             {
                 id: 99,
                 name: 'HIKVISION TURBO HD MINI DOMO 720P DS-2CE56C0T-IRMF',
                 description: 'TURBO HD MINI DOMO METALICA ANTIVANDALICA 720P, LENTE 2,8MM, IR 20MTS',
                 price: 29767,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 720P'
             },
             {
                 id: 100,
                 name: 'HIKVISION TURBO HD BULLET EXIR 720P DS-2CE16C0T-IT3F',
                 description: 'TURBO HD BULLET EXIR 720P, LENTE 3,6MM, IR 40MTS',
                 price: 40297,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 720P'
             },
             {
                 id: 101,
                 name: 'HIKVISION TURBO HD BULLET EXIR 720P DS-2CE16C0T-IT5F',
                 description: 'TURBO HD BULLET EXIR 720P, LENTE 3,6MM, IR 80MTS',
                 price: 45967,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 720P'
             },
             {
                 id: 102,
                 name: 'HIKVISION TURBO HD DOMO VARIFOCAL 720P DS-2CE56C0T-VFIR3F',
                 description: 'TURBO HD DOMO VARIFOCAL 720P, LENTE 2,8-12MM, IR 40MTS',
                 price: 56295,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 720P'
             },
             // CAMARAS ANALOGICAS 1080P
             {
@@ -2106,84 +2202,96 @@
                 name: 'HIKVISION TURBO HD MINI BULLET 1080P DS-2CE16D0T-EXIPF',
                 description: 'TURBO HD MINI BULLET 1080P, LENTE 2,8MM, IR 20MTS',
                 price: 33412,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 1080P'
             },
             {
                 id: 104,
                 name: 'HIKVISION TURBO HD MINI DOMO 1080P DS-2CE76D0T-EXIPF',
                 description: 'TURBO HD MINI DOMO 1080P, LENTE 2,8MM, IR 20MTS',
                 price: 30375,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 1080P'
             },
             {
                 id: 105,
                 name: 'HIKVISION 2MP DUAL LIGHT BULLET DS-2CE16D0T-LPFS',
                 description: '2MP DUAL LIGHT MICROFONO INCORPORADO MINI BULLET, LENTE 2,8MM, 20MTS',
                 price: 45967,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 1080P'
             },
             {
                 id: 106,
                 name: 'HIKVISION 2MP DUAL LIGHT DOMO DS-2CE76D0T-LPFS',
                 description: '2MP DUAL LIGHT MICROFONO INCORPORADO MINI DOMO, LENTE 2,8MM, 20MTS',
                 price: 42525,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 1080P'
             },
             {
                 id: 107,
                 name: 'HIKVISION TURBO HD BULLET EXIR 1080P DS-2CE17D0T-IT5F',
                 description: 'TURBO HD BULLET EXIR 1080P, LENTE 3,6MM, IR 80MTS',
                 price: 59737,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 1080P'
             },
             {
                 id: 108,
                 name: 'HIKVISION BULLET VARIFOCAL 1080P DS-2CE19D0T-VFIT3F',
                 description: 'BULLET VARIFOCAL 1080P IR 40M, LENTE 2,8 -12MM',
                 price: 82620,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 1080P'
             },
             {
                 id: 109,
                 name: 'VISUALARM CAMARA OCULTA TIPO PIR VSA-PIR1',
                 description: 'CAMARA OCULTA TIPO PIR LENTE 3,7MM (COMPATIBLE CON DVR HIKVISION)',
                 price: 55687,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 1080P'
             },
             {
                 id: 110,
                 name: 'VISUALARM CAMARA OJO DE PEZ 180° VSA-FE1',
                 description: 'CAMARA OJO DE PEZ 180° (COMPATIBLE CON DVR HIKVISION)',
                 price: 60750,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 1080P'
             },
             {
                 id: 111,
                 name: 'VISUALARM MINI PTZ 5X 1080P VSA-PTZ5X-HD',
                 description: 'MINI PTZ 5X 1080P (COMPATIBLE CON DVR HIKVISION)',
                 price: 178200,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 1080P'
             },
             {
                 id: 112,
                 name: 'VISUALARM PTZ 25X 1080P VSA-25XPTZ-HD',
                 description: 'PTZ 25X 1080P (COMPATIBLE CON DVR HIKVISION)',
                 price: 303750,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 1080P'
             },
             {
                 id: 113,
                 name: 'HIKVISION PTZ 15X 1080P DS-2AE4215TI-D',
                 description: 'PTZ HIKVISION 15X 1080P',
                 price: 501592,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 1080P'
             },
             {
                 id: 114,
                 name: 'HIKVISION PTZ 25X 1080P DS-2AE4225TI-D',
                 description: 'PTZ HIKVISION 25X 1080P',
                 price: 618637,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras Analógicas 1080P'
             },
             // CAMARAS COLOR VU 1080P
             {
@@ -2191,98 +2299,112 @@
                 name: 'HIKVISION TURBO HD BULLET COLORVU 1080P DS-2CE10DF0T-PF',
                 description: 'TURBO HD BULLET COLORVU 1080P, LENTE 2,8MM, 20MTS',
                 price: 44550,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras ColorVu 1080P'
             },
             {
                 id: 116,
                 name: 'HIKVISION TURBO HD DOMO COLORVU 1080P DS-2CE70DF0T-PF',
                 description: 'TURBO HD DOMO COLORVU 1080P, LENTE 2,8MM, 20MTS',
                 price: 46980,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras ColorVu 1080P'
             },
             {
                 id: 117,
                 name: 'HIKVISION TURBO HD BULLET COLORVU 1080P DS-2CE10DF0T-LPFS',
                 description: 'TURBO HD BULLET COLORVU 1080P, LENTE 2,8MM, 20MTS (MICROFONO INTEGRADO)',
                 price: 52947,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras ColorVu 1080P'
             },
             {
                 id: 118,
                 name: 'HIKVISION TURBO HD DOMO COLORVU 1080P DS-2CE70DF0T-LPFS',
                 description: 'TURBO HD DOMO COLORVU 1080P, LENTE 2,8MM, 20MTS (MICROFONO INTEGRADO)',
                 price: 49005,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras ColorVu 1080P'
             },
             {
                 id: 119,
                 name: 'HIKVISION TURBO HD BULLET COLORVU 1080P DS-2CE12DF0T-F',
                 description: 'TURBO HD BULLET EXIR COLORVU 1080P, LENTE 2,8MM, 40MTS',
                 price: 59535,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras ColorVu 1080P'
             },
             {
                 id: 120,
                 name: 'HIKVISION TURBO HD BULLET COLORVU 1080P DS-2CE12DF0T-LFS',
                 description: 'TURBO HD BULLET COLORVU 1080P, LENTE 2,8MM, 40MTS (MICROFONO INTEGRADO)',
                 price: 65205,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras ColorVu 1080P'
             },
             {
                 id: 121,
                 name: 'HIKVISION TURBO HD MINI PT COLORVU 1080P DS-2CE70DF3T-PTS',
                 description: 'TURBO HD MINI PT COLORVU 1080P (MICROFONO INTEGRADO) PARA USO INTERNO',
                 price: 77355,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras ColorVu 1080P'
             },
             {
                 id: 122,
                 name: 'HIKVISION TURBO HD BULLET COLORVU 1080P DS-2CE12DF3T-PIRXOS',
                 description: 'TURBO HD BULLET COLOR VU CON SENSOR PIR, SIRENA, LUZ ESTROBO, (MICROFONO INTEGRADO) 1080P, LENTE 2,8MM, 40MTS',
                 price: 109755,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras ColorVu 1080P'
             },
             {
                 id: 123,
                 name: 'HIKVISION TURBO HD DOMO COLORVU 3K DS-2CE70KF0T-LPFS',
                 description: 'TURBO HD DOMO COLORVU 3K, (MICROFONO INTEGRADO) LENTE 2,8MM, 20MTS',
                 price: 68040,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras ColorVu 1080P'
             },
             {
                 id: 124,
                 name: 'HIKVISION TURBO HD BULLET COLORVU 3K DS-2CE10KF0T-LPFS',
                 description: 'TURBO HD BULLET COLORVU 3K, (MICROFONO INTEGRADO) LENTE 2,8MM, 20MTS',
                 price: 72697,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras ColorVu 1080P'
             },
             {
                 id: 125,
                 name: 'HIKVISION TURBO HD BULLET COLORVU 3K DS-2CE12KF0T-FS',
                 description: 'TURBO HD BULLET EXIR COLORVU 3K, (MICROFONO INTEGRADO) LENTE 2,8MM, 40MTS',
                 price: 94770,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras ColorVu 1080P'
             },
             {
                 id: 126,
                 name: 'HIKVISION TURBO HD BULLET COLORVU 4K DS-2CE10UF3T-E',
                 description: 'TURBO HD BULLET COLORVU 4K, LENTE 2,8MM, IR 20MTS',
                 price: 168682,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras ColorVu 1080P'
             },
             {
                 id: 127,
                 name: 'HIKVISION TURBO HD BULLET COLORVU 4K DS-2CE12UF3T-E',
                 description: 'TURBO HD BULLET EXIR COLORVU 4K, LENTE 2,8MM, IR 40MTS',
                 price: 185895,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras ColorVu 1080P'
             },
             {
                 id: 128,
                 name: 'HIKVISION TURBO HD DOMO COLORVU 4K DS-2CE72UF3T-E',
                 description: 'TURBO HD DOMO COLORVU 4K, LENTE 2,8MM, IR 40MTS',
                 price: 178605,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras ColorVu 1080P'
             },
             // CAMARAS 3K (5MP)
             {
@@ -2290,35 +2412,40 @@
                 name: 'HIKVISION TURBO HD MINI DOMO 5MP DS-2CE76K0T-EXLPF',
                 description: 'TURBO HD MINI DOMO 5MP 3K, LENTE 2,8MM, IR 20MTS',
                 price: 42727,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras 3K (5MP)'
             },
             {
                 id: 130,
                 name: 'HIKVISION TURBO HD MINI DOMO 5MP DS-2CE76K0T-LPFS',
                 description: 'TURBO HD MINI DOMO 5MP 3K, LENTE 2,8MM, IR 20MTS (MICROFONO INTEGRADO)',
                 price: 50625,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras 3K (5MP)'
             },
             {
                 id: 131,
                 name: 'HIKVISION TURBO HD MINI BULLET 5MP DS-2CE16K0T-EXLPF',
                 description: 'TURBO HD MINI BULLET 5MP 3K, LENTE 2,8MM, IR 20MTS',
                 price: 46170,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras 3K (5MP)'
             },
             {
                 id: 132,
                 name: 'HIKVISION TURBO HD MINI BULLET 5MP DS-2CE16K0T-LPFS',
                 description: 'TURBO HD MINI BULLET 5MP 3K, LENTE 2,8MM, IR 20MTS (MICROFONO INTEGRADO)',
                 price: 54877,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras 3K (5MP)'
             },
             {
                 id: 133,
                 name: 'HIKVISION TURBO HD BULLET EXIR 5MP DS-2CE17K0T-EXLF',
                 description: 'TURBO HD BULLET EXIR 5MP 3K, LENTE 2,8MM, IR 40MTS',
                 price: 57105,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras 3K (5MP)'
             },
             // CAMARAS 4K (8MP)
             {
@@ -2326,28 +2453,32 @@
                 name: 'HIKVISION TURBO HD MINI BULLET 4K DS-2CE16U1T-ITPF',
                 description: 'TURBO HD MINI BULLET 4K-8MP, LENTE 2,8MM, IR 30MTS',
                 price: 101007,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras 4K (8MP)'
             },
             {
                 id: 135,
                 name: 'HIKVISION TURBO HD MINI DOMO 4K DS-2CE76U1T-ITPF',
                 description: 'TURBO HD MINI DOMO 4K-8MP,LENTE 2,8MM, IR 30MTS',
                 price: 97605,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras 4K (8MP)'
             },
             {
                 id: 136,
                 name: 'HIKVISION TURBO HD BULLET VARIFOCAL 4K DS-2CE19U1T-IT3ZF',
                 description: 'TURBO HD BULLET VARIFOCAL MOTORIZADA 4K-8MP, LENTE 2,7-13,5MM, IR 40MTS',
                 price: 182250,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras 4K (8MP)'
             },
             {
                 id: 137,
                 name: 'HIKVISION TURBO HD DOMO VARIFOCAL 4K DS-2CE79U1T-IT3ZF',
                 description: 'TURBO HD DOMO VARIFOCAL MOTORIZADA 4K-8MP, LENTE 2,7-13,5MM, IR 40MTS',
                 price: 208575,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Cámaras 4K (8MP)'
             },
             // GRABADORES DVR 720P/1080P LITE
             {
@@ -2355,49 +2486,56 @@
                 name: 'DVR HIKVISION 4CH DS-7104HGHI-M1',
                 description: 'DVR 4CH TURBO HD 720P/1080P LITE (PLASTICO)',
                 price: 72900,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores DVR 720P/1080P'
             },
             {
                 id: 139,
                 name: 'DVR HIKVISION 8CH DS-7108HGHI-M1',
                 description: 'DVR 8CH TURBO HD 720P/1080P LITE (PLASTICO)',
                 price: 91530,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores DVR 720P/1080P'
             },
             {
                 id: 140,
                 name: 'DVR HIKVISION 16CH DS-7116HGHI-M1',
                 description: 'DVR 16CH TURBO HD 720P/1080P LITE (PLASTICO)',
                 price: 162405,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores DVR 720P/1080P'
             },
             {
                 id: 141,
                 name: 'DVR HIKVISION 4CH DS-7204HGHI-M1',
                 description: 'DVR 4CH TURBO HD 720P/1080P LITE (METALICO)',
                 price: 76342,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores DVR 720P/1080P'
             },
             {
                 id: 142,
                 name: 'DVR HIKVISION 8CH DS-7208HGHI-M1/T',
                 description: 'DVR 8CH TURBO HD 720P/1080P LITE (METALICO)',
                 price: 98617,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores DVR 720P/1080P'
             },
             {
                 id: 143,
                 name: 'DVR HIKVISION 16CH DS-7216HGHI-M1/T',
                 description: 'DVR 16CH TURBO HD 720P/1080P LITE (METALICO)',
                 price: 163417,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores DVR 720P/1080P'
             },
             {
                 id: 144,
                 name: 'DVR HIKVISION 32CH DS-7232HGHI-M2',
                 description: 'DVR 32CH TURBO HD 720P/1080P LITE (METALICO)',
                 price: 473850,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'Grabadores DVR 720P/1080P'
             },
             // DVR 1080P REAL/5MP LITE
             {
@@ -2405,70 +2543,80 @@
                 name: 'DVR HIKVISION ACUSENSE 4CH DS-7104HQHI-M1/S',
                 description: 'DVR ACUSENSE 4CH TURBO HD 1080P REAL (PLASTICO)',
                 price: 110767,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'DVR 1080P Real'
             },
             {
                 id: 146,
                 name: 'DVR HIKVISION ACUSENSE 8CH DS-7108HQHI-M1/S',
                 description: 'DVR ACUSENSE 8CH TURBO HD 1080P REAL (PLASTICO)',
                 price: 170505,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'DVR 1080P Real'
             },
             {
                 id: 147,
                 name: 'DVR HIKVISION ACUSENSE 16CH DS-7116HQHI-M1/S',
                 description: 'DVR ACUSENSE 16CH TURBO HD 1080P REAL (PLASTICO)',
                 price: 294030,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'DVR 1080P Real'
             },
             {
                 id: 148,
                 name: 'DVR HIKVISION ACUSENSE 4CH DS-7204HQHI-M1/XT',
                 description: 'DVR ACUSENSE 4CH TURBO HD 1080P REAL (METALICO)',
                 price: 131625,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'DVR 1080P Real'
             },
             {
                 id: 149,
                 name: 'DVR HIKVISION ACUSENSE 8CH DS-7208HQHI-M1/XT',
                 description: 'DVR ACUSENSE 8CH TURBO HD 1080P REAL (METALICO)',
                 price: 197437,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'DVR 1080P Real'
             },
             {
                 id: 150,
                 name: 'DVR HIKVISION ACUSENSE 16CH IDS-7216HQHI-M1/S',
                 description: 'DVR ACUSENSE 16CH TURBO HD 1080P REAL METALICO (1 SLOT HDD)',
                 price: 303750,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'DVR 1080P Real'
             },
             {
                 id: 151,
                 name: 'DVR HIKVISION ACUSENSE 16CH IDS-7216HQHI-M2/XT',
                 description: 'DVR ACUSENSE 16CH TURBO HD 1080P REAL METALICO (2 SLOT HDD)(SERIE XT)',
                 price: 395077,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'DVR 1080P Real'
             },
             {
                 id: 152,
                 name: 'DVR HIKVISION ACUSENSE 32CH IDS-7232HQHI-M2/S',
                 description: 'DVR ACUSENSE 32CH TURBO HD 1080P REAL METALICO (2 SLOT HDD)',
                 price: 57375,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'DVR 1080P Real'
             },
             {
                 id: 153,
                 name: 'DVR HIKVISION ACUSENSE 32CH IDS-7232HQHI-M2/XT',
                 description: 'DVR ACUSENSE 32CH TURBO HD 1080P REAL METALICO (2 SLOT HDD)(SERIE XT)',
                 price: 735075,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'DVR 1080P Real'
             },
             {
                 id: 154,
                 name: 'DVR HIKVISION ACUSENSE 32CH IDS-7332HQHI-M4/S',
                 description: 'DVR ACUSENSE 32CH TURBO HD 1080P REAL METALICO (4 SLOT HDD)(RACKEABLE)',
                 price: 1200217,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'DVR 1080P Real'
             },
             // DVR 5MP/4K
             {
@@ -2476,28 +2624,32 @@
                 name: 'DVR HIKVISION 4CH 5MP IDS-7104HUHI-M1/S',
                 description: 'DVR 4CH TURBO HD 5MP-4K (PLASTICO) ACUSENSE',
                 price: 170505,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'DVR 5MP/4K'
             },
             {
                 id: 156,
                 name: 'DVR HIKVISION 8CH 5MP IDS-7108HUHI-M1/S',
                 description: 'DVR 8CH TURBO HD 5MP-4K (PLASTICO) ACUSENSE',
                 price: 304560,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'DVR 5MP/4K'
             },
             {
                 id: 157,
                 name: 'DVR HIKVISION 16CH 5MP IDS-7216HUHI-M2/S',
                 description: 'DVR 16CH TURBO HD 5MP-4K (METALICO) ACUSENSE (2 SLOT HDD)',
                 price: 789750,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'DVR 5MP/4K'
             },
             {
                 id: 158,
                 name: 'DVR HIKVISION 32CH 5MP IDS-7332HUHI-M4/S',
                 description: 'DVR 32CH TURBO HD 5MP-4K (METALICO) ACUSENSE (4 SLOT HDD)',
                 price: 1661715,
-                category: 'camaras'
+                category: 'camaras',
+                subcategory: 'DVR 5MP/4K'
             }
         ];
         
@@ -2507,6 +2659,7 @@
         let currentCategory = 'celulares';
         let searchQuery = '';
         let globalSortOrder = '';
+        let currentSubcategory = '';
 
         // Iconos por categoría
         const categoryIcons = {
@@ -2528,8 +2681,8 @@
             });
 
             const cats = [
-                {id: 'celulares', name: 'Celulares', count: groups['celulares'] || 0},
                 {id: 'camaras', name: 'Seguridad', count: groups['camaras'] || 0},
+                {id: 'celulares', name: 'Celulares', count: groups['celulares'] || 0},
                 {id: 'computacion', name: 'Computación', count: groups['computacion'] || 0},
                 {id: 'electronica', name: 'Electrónica', count: groups['electronica'] || 0},
                 {id: 'nosotros', name: 'Nosotros', count: 0}
@@ -2551,6 +2704,11 @@
 
         function applyGlobalSort() {
             globalSortOrder = document.getElementById('globalSort').value;
+            renderProducts();
+        }
+
+        function applySubcategoryFilter() {
+            currentSubcategory = document.getElementById('subcategoryFilter').value;
             renderProducts();
         }
         
@@ -2587,6 +2745,26 @@
             }
 
             let filteredProducts = products.filter(p => p.category === currentCategory);
+
+            // Poblar filtro de subcategorías para la categoría de seguridad
+            const subcategoryFilter = document.getElementById('subcategoryFilter');
+            if(currentCategory === 'camaras') {
+                // Obtener subcategorías únicas
+                const subcategories = [...new Set(filteredProducts.map(p => p.subcategory).filter(s => s))];
+                subcategories.sort();
+                
+                subcategoryFilter.innerHTML = '<option value="">Todas las subcategorías</option>' +
+                    subcategories.map(sub => `<option value="${sub}" ${currentSubcategory === sub ? 'selected' : ''}>${sub}</option>`).join('');
+                subcategoryFilter.style.display = 'block';
+            } else {
+                subcategoryFilter.style.display = 'none';
+                currentSubcategory = '';
+            }
+
+            // Aplicar filtro de subcategoría
+            if(currentSubcategory) {
+                filteredProducts = filteredProducts.filter(p => p.subcategory === currentSubcategory);
+            }
 
             // Aplicar búsqueda
             if(searchQuery){
@@ -3031,6 +3209,7 @@
         // Filtrar por categoría
         function filterCategory(category) {
             currentCategory = category;
+            currentSubcategory = ''; // Resetear subcategoría al cambiar de categoría
             renderCategories();
             const productsContainer = document.getElementById('products');
             if(category === 'nosotros'){
@@ -3038,6 +3217,11 @@
             } else {
                 renderProducts();
             }
+        }
+        
+        // Función changeCategory para compatibilidad
+        function changeCategory(category) {
+            filterCategory(category);
         }
         
         // Agregar al carrito (acepta cantidad)
