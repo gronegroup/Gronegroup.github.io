@@ -3196,6 +3196,19 @@
             updateCartCount();
             renderCart();
         }
+
+        // Cambiar cantidad desde el carrito
+        function changeCartQuantity(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+            item.quantity += delta;
+            if (item.quantity < 1) {
+                removeFromCart(productId);
+            } else {
+                updateCartCount();
+                renderCart();
+            }
+        }
         
         // Actualizar contador del carrito
         function updateCartCount() {
@@ -3221,7 +3234,7 @@
                 return;
             }
             
-            // Items del carrito
+            // Items del carrito con botones + y -
             cartItemsContainer.innerHTML = cart.map(item => {
                 const itemTotalARS = item.price * item.quantity;
                 const itemTotalUSD = itemTotalARS / exchangeRate;
@@ -3233,7 +3246,11 @@
                     <div class="cart-item-image"></div>
                     <div class="cart-item-details">
                         <div class="cart-item-name">${item.name}</div>
-                        <div class="cart-item-quantity">Cantidad: ${item.quantity}</div>
+                        <div class="cart-item-quantity">
+                            <button onclick="changeCartQuantity(${item.id}, -1)" style="margin-right:6px;padding:2px 10px;font-size:18px;">-</button>
+                            <span style="min-width:32px;display:inline-block;text-align:center;">${item.quantity}</span>
+                            <button onclick="changeCartQuantity(${item.id}, 1)" style="margin-left:6px;padding:2px 10px;font-size:18px;">+</button>
+                        </div>
                         <div class="cart-item-price">${primary}
                             <div style="font-size:13px;color:#666;margin-top:6px;">${secondary}</div>
                         </div>
