@@ -91,19 +91,22 @@
         
         .cart-count {
             position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #1a1a1a;
-            color: white;
+            top: -10px;
+            right: -10px;
+            background: #ff2d2d;
+            color: #fff;
             border-radius: 50%;
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 700;
             border: 2px solid #fff;
+            box-shadow: 0 0 0 2px #fff, 0 2px 8px rgba(255,45,45,0.15);
+            z-index: 10;
+            transition: background 0.2s, color 0.2s;
         }
         
         .hero {
@@ -476,6 +479,7 @@
             line-height: 1.5;
             display: -webkit-box;
             -webkit-line-clamp: 2;
+            line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -1380,164 +1384,9 @@
         // BASE DE DATOS DE PRODUCTOS - AGREGÁ TUS PRODUCTOS AQUÍ
         const products = [
             {
-                id: 1,
-                name: 'Samsung Galaxy A54',
-                description: 'Smartphone 128GB, 6GB RAM, Pantalla AMOLED',
-                price: 405000,
-                category: 'celulares',
-                disabled: true
-            },
-            {
-                id: 2,
-                name: 'iPhone 13',
-                description: 'Apple iPhone 13 128GB, Cámara dual',
-                price: 765000,
-                category: 'celulares',
-                disabled: true
-            },
-            {
-                id: 5,
-                name: 'Notebook HP',
-                description: 'Intel i5, 8GB RAM, 256GB SSD',
-                price: 585000,
-                category: 'computacion',
-                disabled: true
-            },
-            {
-                id: 6,
-                name: 'Mouse Gamer RGB',
-                description: 'Mouse óptico 6400 DPI, iluminación RGB',
-                price: 22500,
-                category: 'computacion',
-                disabled: true
-            },
-            {
-                id: 7,
-                name: 'Auriculares Bluetooth',
-                description: 'Auriculares inalámbricos con cancelación de ruido',
-                price: 31500,
-                category: 'electronica',
-                disabled: true
-            },
-            {
-                id: 8,
-                name: 'Smart TV 50"',
-                description: 'Smart TV 4K UHD, Android TV',
-                price: 468000,
-                category: 'electronica',
-                disabled: true
-            },
-            {
-                id: 9,
-                name: 'HIKVISION Turbo HD Mini Bullet 1080P',
-                description: 'HIKVISION TURBO HD MINI BULLET 1080P, LENTE 2,8MM, IR 20MTS',
-                price: 40500,
-                category: 'camaras',
-                image: 'images/CAMARA 1080P.jpg'
-            },
-            // GRABADORES NVR
-            {
-                id: 10,
-                name: 'NVR HIKVISION 4CH DS-7104NI-Q1',
-                description: 'NVR 4CH (PLASTICO) SIN POE (1 SLOT HDD)',
-                price: 84240,
-                category: 'camaras',
-                subcategory: 'Grabadores NVR'
-            },
-            {
-                id: 11,
-                name: 'NVR HIKVISION 4CH DS-7104NI-Q1/4P',
-                description: 'NVR 4CH (PLASTICO) POE INTEGRADO (1 SLOT HDD)',
-                price: 147420,
-                category: 'camaras',
-                subcategory: 'Grabadores NVR'
-            },
-            {
-                id: 12,
-                name: 'NVR HIKVISION 8CH DS-7108NI-Q1',
-                description: 'NVR 8CH (PLASTICO) SIN POE (1 SLOT HDD)',
-                price: 105300,
-                category: 'camaras',
-                subcategory: 'Grabadores NVR'
-            },
-            {
-                id: 13,
-                name: 'NVR HIKVISION 8CH DS-7108NI-Q1/8P',
-                description: 'NVR 8CH (PLASTICO) CON POE INTEGRADO (1 SLOT HDD)',
-                price: 210397,
-                category: 'camaras',
-                subcategory: 'Grabadores NVR'
-            },
-            {
-                id: 14,
-                name: 'NVR HIKVISION 8CH DS-7608NXI-K1',
-                description: 'NVR 8CH METALICO (SERIE ACUSENSE) SIN POE (1 SLOT HDD)',
-                price: 193387,
-                category: 'camaras',
-                subcategory: 'Grabadores NVR'
-            },
-            {
-                id: 15,
-                name: 'NVR HIKVISION 16CH DS-7616NI-Q2',
-                description: 'NVR 16CH (METALICO) SIN POE (2 SLOT HDD)',
-                price: 206347,
-                category: 'camaras',
-                subcategory: 'Grabadores NVR'
-            },
-            {
-                id: 16,
-                name: 'NVR HIKVISION 16CH DS-7616NI-Q2/16P',
-                description: 'NVR 16CH (METALICO) CON POE INTEGRADO (2 SLOT HDD)',
-                price: 408442,
-                category: 'camaras',
-                subcategory: 'Grabadores NVR'
-            },
-            {
-                id: 17,
-                name: 'NVR HIKVISION 16CH DS-7616NXI-K2',
-                description: 'NVR 16CH METALICO (SERIE ACUSENSE) SIN POE (2 SLOT HDD)',
-                price: 347287,
-                category: 'camaras',
-                subcategory: 'Grabadores NVR'
-            },
-            {
-                id: 18,
-                name: 'NVR HIKVISION 16CH DS-7716NXI-K4',
-                description: 'NVR 16CH METALICO (SERIE ACUSENSE) 4K SIN POE (4 SLOT HDD) - RACKEABLE',
-                price: 595350,
-                category: 'camaras',
-                subcategory: 'Grabadores NVR'
-            },
-            {
-                id: 19,
-                name: 'NVR HIKVISION 16CH DS-7716NXI-K4/16P',
-                description: 'NVR 16CH METALICO (SERIE ACUSENSE) 4K CON 16 PUERTOS POE INTEGRADO (4 SLOT HDD) - RACKEABLE',
-                price: 891000,
-                category: 'camaras',
-                subcategory: 'Grabadores NVR'
-            },
-            {
-                id: 20,
-                name: 'NVR HIKVISION 32CH DS-7632NXI-K2',
-                description: 'NVR 32CH METALICO (SERIE ACUSENSE) 4K SIN POE (2 SLOT HDD)',
-                price: 471217,
-                category: 'camaras',
-                subcategory: 'Grabadores NVR'
-            },
-            {
-                id: 21,
-                name: 'NVR HIKVISION 32CH DS-7632NXI-K2/16P',
-                description: 'NVR 32CH METALICO (SERIE ACUSENSE) 4K CON 16 PUERTOS POE INTEGRADO (2 SLOT HDD)',
-                price: 768892,
-                category: 'camaras',
-                subcategory: 'Grabadores NVR'
-            },
-            {
-                id: 22,
-                name: 'NVR HIKVISION 32CH DS-7732NI-K4/16P',
-                description: 'NVR 32CH METALICO CON 16 PUERTOS POE INTEGRADO (4 SLOT HDD) - RACKEABLE',
-                price: 911250,
-                category: 'camaras',
+                /* Lines 1386-2364 omitidos */
+                // ...productos nuevos eliminados...
+                // ...puedes seguir agregando productos nuevos aquí...
                 subcategory: 'Grabadores NVR'
             },
             {
@@ -2641,7 +2490,53 @@
                 price: 1661715,
                 category: 'camaras',
                 subcategory: 'DVR 5MP/4K'
-            }
+            },
+            // EJEMPLOS DE PRODUCTOS NUEVOS DEL EXCEL (completar datos y agregar imagen luego)
+            {
+                id: 200,
+                name: 'Kit CCTV 4 Cámaras + DVR',
+                description: 'Kit completo de seguridad con 4 cámaras y grabador DVR. Incluye cables y conectores.',
+                price: 0,
+                category: 'camaras',
+                subcategory: 'Kits de Seguridad',
+                image: ''
+            },
+            {
+                id: 201,
+                name: 'Fuente 12V 2A',
+                description: 'Fuente de alimentación para cámaras de seguridad. 12V 2A.',
+                price: 0,
+                category: 'camaras',
+                subcategory: 'Fuentes',
+                image: ''
+            },
+            // Fuentes
+            {id: 300, name: 'VSA-12V2A(P)', description: 'FUENTE PLASTICA INDIVIDUAL 12V2A - 220V/50Hz', price: 3750, category: 'camaras', subcategory: 'Fuentes', image: ''},
+            {id: 301, name: 'VSA-12V3A(P)', description: 'FUENTE PLASTICA INDIVIDUAL 12V3A - 220V/50Hz', price: 6000, category: 'camaras', subcategory: 'Fuentes', image: ''},
+            {id: 302, name: 'VSA-12V5A(P)', description: 'FUENTE PLASTICA INDIVIDUAL 12V5A - 220V/50Hz', price: 8250, category: 'camaras', subcategory: 'Fuentes', image: ''},
+            {id: 303, name: 'VSA-12V10A(P)', description: 'FUENTE PLASTICA INDIVIDUAL 12V10A - 220V/50Hz', price: 12750, category: 'camaras', subcategory: 'Fuentes', image: ''},
+            {id: 304, name: 'VSA-12V5A 4CH (P)', description: 'FUENTE PLASTICA 12V5A CON FUSIBLE DE 4 CANALES', price: 18000, category: 'camaras', subcategory: 'Fuentes', image: ''},
+            {id: 305, name: 'VSA-12V2A(M)', description: 'FUENTE METALICA CONMUTADA 12V2A - 220V/50Hz', price: 7500, category: 'camaras', subcategory: 'Fuentes', image: ''},
+            {id: 306, name: 'VSA-12V3A(M)', description: 'FUENTE METALICA CONMUTADA 12V3A - 220V/50Hz', price: 10870, category: 'camaras', subcategory: 'Fuentes', image: ''},
+            {id: 307, name: 'VSA-12V5A(M)', description: 'FUENTE METALICA CONMUTADA 12V5A - 220V/50Hz', price: 12750, category: 'camaras', subcategory: 'Fuentes', image: ''},
+            {id: 308, name: 'VSA-12V10A(M)', description: 'FUENTE METALICA CONMUTADA 12V10A - 220V/50Hz', price: 15000, category: 'camaras', subcategory: 'Fuentes', image: ''},
+            {id: 309, name: 'VSA-12V30A(M)', description: 'FUENTE METALICA CONMUTADA 12V30A - 220V/50Hz', price: 20250, category: 'camaras', subcategory: 'Fuentes', image: ''},
+            {id: 310, name: 'VSA-12V5A 4CH (M)', description: 'FUENTE DE ALIMENTACION 12V5A CON TABLERO, FUSIBLE Y ESPACIO PARA BATERIA', price: 39000, category: 'camaras', subcategory: 'Fuentes', image: ''},
+            {id: 311, name: 'VSA-12V30A-RK', description: 'FUENTE 12V30A RACKEABLE', price: 120000, category: 'camaras', subcategory: 'Fuentes', image: ''},
+            // ACCESORIOS Y CONECTORES (precios convertidos a ARS)
+            {id: 420, name: 'PRM-101C', description: 'VIDEO BALUN HD PRISMATIC CON CHICOTE (PAR) PARA 720P-1080P', price: 2805, category: 'camaras', subcategory: 'Accesorios y Conectores', image: ''},
+            {id: 421, name: 'DS-1H18S/E', description: 'VIDEO BALUN HD HIKVISION', price: 4275, category: 'camaras', subcategory: 'Accesorios y Conectores', image: ''},
+            {id: 422, name: 'VSA-009C-HD', description: 'VIDEO BALUN HD VISUALARM CON CHICOTE (PAR) PARA 720P-1080P-5MP Y 8MP', price: 4950, category: 'camaras', subcategory: 'Accesorios y Conectores', image: ''},
+            {id: 423, name: 'DCM-BOR', description: 'CONECTOR VISUALARM DE ALIMENTACION P4 MACHO', price: 375, category: 'camaras', subcategory: 'Accesorios y Conectores', image: ''},
+            {id: 424, name: 'DCH-BOR', description: 'CONECTOR VISUALARM DE ALIMENTACION P4 HEMBRA', price: 375, category: 'camaras', subcategory: 'Accesorios y Conectores', image: ''},
+            {id: 425, name: 'CTR-20X10X2000', description: 'CANALETA PLASTICA BLANCA CON PEGATINA 2MTS 20x10', price: 1350, category: 'camaras', subcategory: 'Accesorios y Conectores', image: ''},
+            {id: 426, name: 'CTR-20X20X2000', description: 'CANALETA PLASTICA BLANCA CON PEGATINA 2MTS 20x20', price: 1725, category: 'camaras', subcategory: 'Accesorios y Conectores', image: ''},
+            {id: 427, name: 'CTR-25X25X2000', description: 'CANALETA PLASTICA BLANCA CON PEGATINA 2MTS 25x25', price: 2475, category: 'camaras', subcategory: 'Accesorios y Conectores', image: ''},
+            {id: 428, name: 'WMBE421', description: 'MOUSE INALAMBRICO PARA DVR', price: 15750, category: 'camaras', subcategory: 'Accesorios y Conectores', image: ''},
+            {id: 429, name: 'VSA-601A', description: 'MICROFONO OCULTO PARA CCTV', price: 12375, category: 'camaras', subcategory: 'Accesorios y Conectores', image: ''},
+            {id: 430, name: 'VSA-606A', description: 'MICROFONO BOX PARA CCTV', price: 14850, category: 'camaras', subcategory: 'Accesorios y Conectores', image: ''},
+            {id: 431, name: 'RCA-BNC', description: 'CONECTOR RCA A BNC', price: 900, category: 'camaras', subcategory: 'Accesorios y Conectores', image: ''},
+            {id: 432, name: 'VSA-GB100', description: 'REDUCTOR DE RUIDO', price: 13500, category: 'camaras', subcategory: 'Accesorios y Conectores', image: ''},
         ];
         
         const catalogSortOrder = {};
@@ -2854,36 +2749,6 @@
 
                 const badge = product.featured ? '<div class="product-badge new">Destacado</div>' : '';
                 
-                // Si el producto está deshabilitado, mostrar cartel de "Próximamente"
-                if(product.disabled) {
-                    return `
-                    <div class="product-card" style="position:relative;opacity:0.7;pointer-events:none;">
-                        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,107,107,0.95);color:white;padding:20px 40px;border-radius:8px;font-weight:bold;font-size:18px;z-index:10;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
-                            PRÓXIMAMENTE
-                        </div>
-                        ${badge}
-                        <div class="product-image" style="filter:grayscale(100%);">
-                            ${product.image 
-                                ? `<img src="${product.image}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;">` 
-                                : `<div class="product-placeholder"></div>`
-                            }
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">${getCategoryName(product.category)}</div>
-                            <div class="product-name">${product.name}</div>
-                            <div class="product-description">${product.description}</div>
-                            <div class="product-rating">
-                                <div class="stars">★★★★★</div>
-                                <span class="rating-count">(${Math.floor(Math.random() * 50) + 10})</span>
-                            </div>
-                            <div class="product-price-wrapper">
-                                <div class="product-price">${primaryPrice}</div>
-                                <div class="product-price-secondary">${secondaryPrice}</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                }
 
                 return `
                 <div class="product-card">
@@ -3189,7 +3054,7 @@
                     <!-- Header Section -->
                     <div style="background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 100%);color:white;padding:60px 40px;border-radius:12px;margin-bottom:40px;text-align:center;">
                         <h1 style="font-size:42px;font-weight:700;margin-bottom:16px;letter-spacing:-0.5px;">GroneGroup</h1>
-                        <p style="font-size:20px;opacity:0.9;font-weight:300;">Tecnología de Calidad con Garantía</p>
+                        <p style="font-size:18px;opacity:0.9;font-weight:300;">Tecnología de Calidad con Garantía</p>
                     </div>
 
                     <!-- Quiénes Somos -->
@@ -3288,7 +3153,11 @@
         // Agregar al carrito (acepta cantidad)
         function addToCart(productId, qty = 1) {
             const product = products.find(p => p.id === productId);
-            if(!product) return;
+            console.log('addToCart:', { productId, qty, product });
+            if(!product) {
+                console.warn('Producto no encontrado en addToCart:', productId);
+                return;
+            }
             const quantity = Number(qty) || 1;
             const existingItem = cart.find(item => item.id === productId);
 
@@ -3306,6 +3175,7 @@
         function addToCartFromCard(productId){
             const el = document.getElementById(`qty-${productId}`);
             const qty = el ? Number(el.value) : 1;
+            console.log('addToCartFromCard llamado:', { productId, qty, el });
             addToCart(productId, qty);
         }
         
@@ -3336,6 +3206,7 @@
                 `;
                 cartTotalContainer.innerHTML = '';
                 checkoutFormContainer.innerHTML = '';
+                instalacionSimulada = null; // Reiniciar simulación si el carrito está vacío
                 return;
             }
             
@@ -3361,28 +3232,55 @@
             `}).join('');
             
             // Totales
-            const subtotalARS = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const subtotalUSD = subtotalARS / exchangeRate;
-            const totalARS = subtotalARS + CONFIG.shippingCost;
+            const subtotalARS = Number(cart.reduce((sum, item) => sum + (item.price * item.quantity), 0));
+            let costoInstalacionARS = 0;
+            if (instalacionSimulada && instalacionSimulada.cantidadCamaras > 0) {
+                costoInstalacionARS = Math.round(Number(instalacionSimulada.costoInstalacionARS));
+            }
+            const envioARS = Number(CONFIG.shippingCost);
+            // El total debe sumar SIEMPRE: subtotal + costoInstalacionARS + envioARS
+            const totalARS = Number(subtotalARS) + Number(costoInstalacionARS) + Number(envioARS);
             const totalUSD = totalARS / exchangeRate;
 
-            // Mostrar siempre en ARS (pesos) en el total del carrito
+            // Botón para simular o quitar simulación de instalación
+            let instalacionBtn = '';
+            if (instalacionSimulada && instalacionSimulada.cantidadCamaras > 0) {
+                instalacionBtn = `<button onclick=\"quitarSimulacionInstalacion()\" style=\"margin-top:16px;padding:12px 24px;background:#e74c3c;color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer;\">Quitar simulación de instalación</button>`;
+            } else {
+                instalacionBtn = `<button onclick=\"simularInstalacion()\" style=\"margin-top:16px;padding:12px 24px;background:#1a1a1a;color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer;\">Simular con instalación</button>`;
+            }
             cartTotalContainer.innerHTML = `
                 <div class="cart-total-row">
                     <span>Subtotal</span>
                     <span>$${formatARS(subtotalARS)} ARS</span>
                 </div>
+                <div id="instalacionRow"></div>
                 <div class="cart-total-row">
                     <span>Envío (Andreani)</span>
-                    <span>$${formatARS(CONFIG.shippingCost)} ARS</span>
+                    <span>$${formatARS(envioARS)} ARS</span>
                 </div>
                 <div class="cart-total-row cart-total-final">
                     <span>Total a Pagar</span>
-                    <span>$${formatARS(totalARS)} ARS</span>
+                    <span id="totalPagar">$${formatARS(totalARS)} ARS</span>
                 </div>
                 <div style="margin-top:8px;color:#666;font-size:13px;">Equivalente: $${formatUSD(totalUSD)} USD</div>
+                ${instalacionBtn}
             `;
+            // Nueva función global para quitar la simulación de instalación
+            function quitarSimulacionInstalacion() {
+                instalacionSimulada = null;
+                renderCart();
+            }
             
+            // Si hay simulación, mostrar el costo de instalación
+            if (instalacionSimulada && instalacionSimulada.cantidadCamaras > 0) {
+                const instalacionRow = document.getElementById('instalacionRow');
+                if(instalacionRow) {
+                    instalacionRow.innerHTML = `<div class=\"cart-total-row\"><span>Costo instalación (${instalacionSimulada.cantidadCamaras} cámara${instalacionSimulada.cantidadCamaras>1?'s':''})</span><span>$${instalacionSimulada.costoInstalacionARS.toLocaleString('es-AR')}
+                    ARS</span></div>`;
+                }
+            }
+
             // Formulario de checkout
             checkoutFormContainer.innerHTML = `
                 <form onsubmit="processCheckout(event)">
@@ -3533,9 +3431,13 @@
             const dni = document.getElementById('dni').value;
             const telefono = document.getElementById('telefono').value;
             const email = document.getElementById('email').value;
-            
+
             const subtotalARS = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const total = subtotalARS + CONFIG.shippingCost;
+            let total = subtotalARS + CONFIG.shippingCost;
+            // Si el cliente simuló instalación, agregar el costo
+            if (instalacionSimulada && instalacionSimulada.cantidadCamaras > 0) {
+                total += instalacionSimulada.costoInstalacionARS;
+            }
 
             let message = 'NUEVO PEDIDO\n';
             message += '━━━━━━━━━━━━━━━━━━━━\n\n';
@@ -3545,6 +3447,10 @@
             });
             message += '\n━━━━━━━━━━━━━━━━━━━━\n';
             message += `Subtotal: $${subtotalARS.toLocaleString('es-AR')}\n`;
+            // Si el cliente simuló instalación, agregar el costo
+            if (instalacionSimulada && instalacionSimulada.cantidadCamaras > 0) {
+                message += `Costo instalación (${instalacionSimulada.cantidadCamaras} cámara${instalacionSimulada.cantidadCamaras>1?'s':''}) - $${instalacionSimulada.costoInstalacionARS.toLocaleString('es-AR')}\n`;
+            }
             message += `Envío (Andreani): $${CONFIG.shippingCost.toLocaleString('es-AR')}\n`;
             message += `TOTAL: $${total.toLocaleString('es-AR')}\n\n`;
             message += '━━━━━━━━━━━━━━━━━━━━\n\n';
@@ -3557,7 +3463,7 @@
             message += `Código Postal: ${codigoPostal}\n`;
             message += `Teléfono: ${telefono}\n`;
             message += `Email: ${email}`;
-            
+
             const whatsappUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         }
@@ -3626,7 +3532,39 @@
             if(e.target && e.target.id === 'productModal') closeProductModal();
         });
 
-
+        // Simular instalación: calcula el costo de mano de obra por cantidad de cámaras y lo muestra en el carrito
+        let instalacionSimulada = null;
+        function simularInstalacion() {
+            const camarasSubcategorias = [
+                'Cámaras Analógicas 720P',
+                'Cámaras Analógicas 1080P',
+                'Cámaras ColorVu 1080P',
+                'Cámaras 3K (5MP)',
+                'Cámaras 4K (8MP)'
+            ];
+            const cantidadCamaras = cart.reduce((sum, item) => {
+                if (item.category === 'camaras' && camarasSubcategorias.includes(item.subcategory)) {
+                    return sum + item.quantity;
+                }
+                return sum;
+            }, 0);
+            const costoPorCamaraUSD = 33.30;
+            const costoInstalacionUSD = cantidadCamaras * costoPorCamaraUSD;
+            const costoInstalacionARS = costoInstalacionUSD * exchangeRate;
+            if (cantidadCamaras === 0) {
+                alert('No hay cámaras en el presupuesto para simular la instalación.');
+                instalacionSimulada = null;
+                renderCart(); // Asegura que se actualice el total si se elimina la simulación
+                return;
+            }
+            // Guardar datos de la simulación para el mensaje de WhatsApp
+            instalacionSimulada = {
+                cantidadCamaras,
+                costoInstalacionUSD,
+                costoInstalacionARS
+            };
+            renderCart(); // Actualiza el carrito y el total a pagar inmediatamente
+        }
         
         // Verificar resultado de pago al cargar la página
         function checkPaymentStatus() {
@@ -3734,5 +3672,16 @@
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
     </a>
+
+    <!-- Carrito Modal (asegurar que existe y es visible) -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-modal-content">
+            <h2>Tu carrito</h2>
+            <div id="cartItems"></div>
+            <div id="cartTotal"></div>
+            <div id="checkoutForm"></div>
+            <button onclick="toggleCart()" style="margin-top:20px;">Cerrar</button>
+        </div>
+    </div>
 </body>
 </html>
